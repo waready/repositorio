@@ -71,6 +71,8 @@ Route::post('pdf', function () {
 
 Route::resource('especilidad', 'EspecialidadController');
 Route::get('holas','EspecialidadController@index');
+
+Route::get('api/params','getUsers@param');
 // Route::post('especilidad', 'EspecialidadController@store'){
 
 // };

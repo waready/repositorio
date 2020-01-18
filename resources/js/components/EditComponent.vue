@@ -28,34 +28,34 @@
                     <div id="tab_1-1" class="tab-pane active">
                         <form role="form" action="#"   v-on:submit.prevent="enviarEdit()">
                             <div class="form-group">
-                                <label class="control-label">Nombres</label>
+                                <label class="control-label">Nombres:</label>
                                 <input type="text" v-model="respuesta.nombres" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Apellido Paterno</label>
+                                <label class="control-label">Apellido Paterno:</label>
                                 <input type="text" v-model="respuesta.paterno" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Apellido Materno</label>
+                                <label class="control-label">Apellido Materno:</label>
                                 <input type="text" v-model="respuesta.materno" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">DNI</label>
+                                <label class="control-label">DNI:</label>
                                 <input type="text" v-model="respuesta.dni" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Numero de Celular</label>
+                                <label class="control-label">Numero de Celular:</label>
                                 <input type="text" v-model="respuesta.celular" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Codigo Cip</label>
+                                <label class="control-label">Codigo Cip:</label>
                                 <input type="text" v-model="respuesta.codigoCIP" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Email</label>
+                                <label class="control-label">Email:</label>
                                 <input type="text" v-model="respuesta.email" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Direccion</label>
+                                <label class="control-label">Direccion:</label>
                                 <input type="text" v-model="respuesta.direccion" class="form-control" /> </div>
                             <div class="form-group">
                                 <label class="control-label">Usuario : (Cambios)</label>
                                 <input type="text" placeholder="admin" class="form-control" disabled /> </div>
                             <div class="margiv-top-10">
-                                <button  type="submit" class="btn green"> Save Changes </button>
+                                <button  type="submit" class="btn green"> Guardar </button>
                                 <a  class="btn default"> Cancel </a>
                             </div>
                         </form>

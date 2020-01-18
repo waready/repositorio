@@ -17,12 +17,13 @@
                     <li>
                         <a href="#tab_1_6" data-toggle="tab"> Especialidad </a>
                     </li>
+
                 </ul>
                 {{-- <perfil-component :datos="{{$message}}"></perfil-component>   --}}
                 <div class="tab-content">
                     
                     <div class="tab-pane active" id="tab_1_1">
-                        <perfil-component :datos="{{$message}}"></perfil-component>
+                        <perfil-component :datos="{{$message}}" :especialidad=" {{$especialidad}}"></perfil-component>
                     </div>
                         
                     <!--tab_1_2-->

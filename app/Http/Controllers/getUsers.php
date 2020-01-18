@@ -13,14 +13,18 @@ class getUsers extends Controller
 {
     public function index(){
         $cip_user = cip_users::paginate(100);
-        $hola = "hola comoe stas";
-
-        return view('usuario.index',compact('cip_user','hola'));
+        $hola = "select * from cip_users A
+        left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+        left join cip_param C on C.grupo = '053' and C.codigo = B.idEspecialidad limit 100";
+       // $especialidad = cip_users_especialidad::pagiante(100);
+       $datoPersona = DB::select($hola);
+        //return $datoPersona;
+        return view('usuario.index',compact('cip_user'));
     }
     public function create()
     {   
-        $ciudad = cip_params::where('grupo','003')->get();
-        return view('usuario.create',compact('ciudad'));
+        $pais = cip_params::where('grupo','004')->get();
+        return view('usuario.create',compact('pais'));
     }
 
     /**
@@ -214,11 +218,31 @@ class getUsers extends Controller
      */
     public function destroy($id)
     {
-        $message = cip_users::find($id);
-        
+        // $busqueda = $id;
+        // $especialidad =  cip_users_especialidad::where('idUser', $busqueda)->get([
+        //     'id',
+        //  ]); 
+        // for ($i = 0; $i <count($especialidad) ; $i++) {
+        //     $des = cip_users_especialidad::find($especialidad['id']);
+        //     $des->delete();
+        // }      
+         $message = cip_users::find($id);
+         
         $message -> delete();
         
         
+    }
+
+    public function param(){
+        $departamento = cip_params::where('grupo','003')->get();
+        $provincia = cip_params::where('grupo','002')->get();
+        $distrito = cip_params::where('grupo','001')->get();
+        return response()->json([
+            'code' =>200,
+            'departamento'=> $departamento,
+            'provincia'=> $provincia,
+            'distrito' =>$distrito
+        ]);
     }
     
 }

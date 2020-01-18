@@ -26,6 +26,7 @@ Vue.component('cip-constancia', require('./components/cip-constancia.vue').defau
 Vue.component('PerfilComponent', require('./components/PerfilComponent.vue').default);
 Vue.component('EditComponent', require('./components/EditComponent.vue').default);
 Vue.component('EspecialidadComponent', require('./components/EspecialidadComponent.vue').default);
+Vue.component('EliminarComponent', require('./components/EliminarComponent.vue').default);
 
 
 

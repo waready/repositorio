@@ -5,7 +5,7 @@
 
     <div class="row">
         
-        <create-component :ciudad="{{$ciudad}}"></example-component> 
+        <create-component :pais="{{$pais}}"></example-component> 
     </div>        
     
 @endsection
