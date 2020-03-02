@@ -59,14 +59,19 @@ class getUsers extends Controller
         $message -> block = $request->block;
 
         $message -> registerDate = $request->registerDate;
-        $message -> lastvisitDate = $request->lastvisitDate;
+
+        //$message -> lastvisitDate = $request->lastvisitDate;
+
         $message -> activation = $request->activation;
         $message -> params = $request->params;
      
         $message -> usuarioCreador = $request->usuarioCreador;
 
+
         $message -> fechaNacimiento = $request->fechaNacimiento;
         $message -> fechaModificacion = $request->fechaModificacion;
+
+        
         $message -> direccion  = $request->direccion;
         $message -> celular  = $request->celular;
         //$message -> paisNacimiento  = $request->paisNacimiento;
@@ -74,12 +79,18 @@ class getUsers extends Controller
         $message -> genero  = "M";
         $message -> estadoCivil  = 1;
         
+        $now = new \DateTime();
+        
+        $message -> registerDate = $now;
+        $message -> lastvisitDate = $now;
+        //$message ->fechaNacimiento = $request ->fechaNacimiento;
+         
 
 
         $saved =$message -> save();
 
         $data = [];
-        $data['success'] = $saved;
+       // $data['success'] = $saved;
         return $data;
     }
 
@@ -92,49 +103,103 @@ class getUsers extends Controller
     public function searchName(Request $request)
     {
         $busqueda = $request->get('search');
-        $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%')->paginate(20);
+
+        $var= '';
+        $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%' )->where( 'estadoUsuario', 'like' , '%'. $var.'%')->paginate(100);
         return view('usuario.index',compact('cip_user'));
     }
     public function searchDni(Request $request)
     {
         $busqueda = $request->get('search');
-        $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%')->paginate(5);
+        
+        $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%')->paginate(100);
+
         return view('usuario.index',compact('cip_user'));
+        
     }
     public function searchCodigo(Request $request)
     {
         $busqueda = $request->get('search');
-        $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%')->paginate(5);
+
+        $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%')->paginate(100);
         return view('usuario.index',compact('cip_user'));
     }
+
+
+/////////////////////////filtros
+    public function searchAbil(Request $request)
+    {
+        $busqueda = $request->get('search');
+        $cip_user = DB::table('cip_users')->where('estadoUsuario', 'like' , '%'. $busqueda.'%')->paginate(100);
+        return view('usuario.index',compact('cip_user'));
+    }
+    public function searchTipo(Request $request)
+    {
+        $busqueda = $request->get('search');
+        $cip_user = DB::table('cip_users')->where('tipoColegiado', 'like' , '%'. $busqueda.'%')->paginate(100);
+        return view('usuario.index',compact('cip_user'));
+    }
+
+    // public function searchCodigo(Request $request)
+    // {
+    //     $busqueda = $request->get('search');
+    //     $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%')->paginate(5);
+    //     return view('usuario.index',compact('cip_user'));
+    // }
+
+
+
+
+
     public function show($id)
     {
 
         $busqueda = $id;
-        $especialidad =  cip_users_especialidad::where('idUser', $busqueda)->get([
-            'id',
-            'idUser',
-            'codigoCIP',
-            'idEspecialidad',  
-            'idInstitucion',  
-            'fechaIncorporacion',  
-            'fechaPromocion',  
-            'fechaGraduacion',  
-            'tituloProfesional',  
-            'numeroResolucion',  
-            'folioResolucion',  
-            'hojaResolucion',  
-            'fechaRevalidacion',  
-            'resolucionRevalidacion',  
-            'fechaInscripcion',  
-            'fechaJuramentacion',  
-            ]);
+        // $especialidad1 =  cip_users_especialidad::where('idUser', $busqueda)->get([
+        //     'id',
+        //     'idUser',
+        //     'codigoCIP',
+        //     'idEspecialidad',  
+        //     'idInstitucion',  
+        //     'fechaIncorporacion',  
+        //     'fechaPromocion',  
+        //     'fechaGraduacion',  
+        //     'tituloProfesional',  
+        //     'numeroResolucion',  
+        //     'folioResolucion',  
+        //     'hojaResolucion',  
+        //     'fechaRevalidacion',  
+        //     'resolucionRevalidacion',  
+        //     'fechaInscripcion',  
+        //     'fechaJuramentacion',  
+        //     ]);
+        $univercidad = cip_params::where('grupo','050')->get();
+            $hola = "SELECT A.id ,A.codigoCIP, A.idEspecialidad, A.idInstitucion, A.fechaIncorporacion, A.fechaPromocion, A.fechaGraduacion, 
+            A.tituloProfesional, A.numeroResolucion, A.folioResolucion, A.hojaResolucion, A.fechaRevalidacion, A.resolucionRevalidacion,  A.fechaInscripcion,
+            A.fechaJuramentacion,
+            D.valor AS institucion, C.valor AS capitulo, B.valor AS especialdiad FROM cip_users_especialidads A
+            LEFT JOIN cip_param D ON D.grupo = '050' AND D.codigo = A.idInstitucion
+            LEFT JOIN cip_param B ON B.grupo = '052' AND B.codigo = A.idEspecialidad
+            LEFT JOIN cip_param C ON C.grupo = '051' AND C.codigo = B.extra 
+            WHERE A.idUser = $busqueda ";
+            // $especialidad = cip_users_especialidad::pagiante(100);
+            $datoPersona = DB::select($hola);
+           // return $datoPersona;
+           $resultadoView = array(
+            "success" => true,
+            "mensaje"  => $datoPersona,
+          );   
+    
+    
+          $especialidad =  json_encode($resultadoView);
+          //return $perro;
+
         
          //= cip_users_especialidad::find($id);
         $message = cip_users::find($id);
         //return $especialidad;
         //return $cip_user;
-        return view('usuario.show',compact('message','especialidad'));
+        return view('usuario.show',compact('message','especialidad','univercidad'));
     }
 
     /**

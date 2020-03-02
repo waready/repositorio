@@ -85,7 +85,6 @@
                                 <th> Tipo de Colegiado</th>
                                 <th>Condicion</th>
                                 <th>Editar</th>
-                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -128,11 +127,6 @@
                                     <td>
                                         <a href="user/{{$users->id}}#tab_1_3">
                                             <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="user/{{$users->id}}">
-                                            <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

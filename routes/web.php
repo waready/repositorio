@@ -41,11 +41,17 @@ Route::get('/searchName', 'getUsers@searchName');
 Route::get('/searchDni', 'getUsers@searchDni');
 Route::get('/searchCodigo', 'getUsers@searchCodigo');
 
+Route::get('/searchAbil', 'getUsers@searchAbil');
+Route::get('/searchTipo', 'getUsers@searchTipo');
+
 //imagen
 Route::post('imagen','getUsers@EditarImagen');
 
 Route::get('pagos','ColegiadoController@pagoColegiados');
+Route::get('pagos','ColegiadoController@pagoColegiados');
 Route::post('busquedaColegiados','ColegiadoController@busquedaColegiados');
+Route::post('busquedaColegiadosNombre','ColegiadoController@busquedaColegiadosNombre');
+
 
 Route::post('registroPago','ColegiadoController@registroPago');
 
@@ -58,7 +64,9 @@ Route::get('vistaComprobante','ColegiadoController@vistaComprobante');
 Route::get('fraccionamiento','ColegiadoController@fraccionamiento');
 Route::post('busquedaColegiadosFrac','ColegiadoController@busquedaColegiadosFrac');
 
+Route::post('registroFracc','ColegiadoController@registroFraccionamiento');
 
+Route::get('fpdf','ColegiadoController@fpdf');
 
 Route::post('pdf', function () {
 
@@ -66,6 +74,32 @@ Route::post('pdf', function () {
 	$pdf = PDF::loadHTML('<h1> TEXTO </h1>');
 
     return $pdf->stream();
+});
+
+
+Route::get('fa', function () {
+
+	//$fpdf = new Fpdf(); 
+    Fpdf::AddPage();
+    Fpdf::SetFont('Courier', 'B', 18);
+    Fpdf::Cell(50, 25, 'Hello World!');
+    Fpdf::Output();
+
+    //$headers = ['Content-Type'=>'application/pdf'];
+
+    //return Response::make(Fpdf::Output(),200,$headers);
+
+});
+
+Route::get('f', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+
+    $fpdf->AddPage();
+    $fpdf->SetFont('Courier', 'B', 18);
+    $fpdf->Cell(50, 25, 'Hello World!');
+    
+
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
 });
 
 

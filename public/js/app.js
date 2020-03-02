@@ -2016,6 +2016,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pais'],
   mounted: function mounted() {
@@ -2063,7 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
       tipoColegiado: '1',
       usuarioCreador: 'admin',
       lugarNacimiento: 'puno',
-      fechaNacimiento: ""
+      fechaNacimiento: "aaaaaaaa"
     };
   },
   methods: {
@@ -2212,6 +2220,43 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2427,90 +2472,18 @@ __webpack_require__.r(__webpack_exports__);
       document.location.href = "../../user/" + id + "/edit";
     },
     enviarEdit: function enviarEdit() {
-      var _this = this;
+      var _params,
+          _this = this;
 
-      var params = {
+      var params = (_params = {
+        name: (this.respuesta.nombres + ' ' + this.respuesta.paterno + ' ' + this.respuesta.materno).toUpperCase(),
+        nombres: this.respuesta.nombres,
         paterno: this.respuesta.paterno,
         materno: this.respuesta.materno,
-        name: this.respuesta.name,
         username: this.respuesta.username,
-        email: this.respuesta.email,
-        celular: this.respuesta.celular,
-        dni: this.respuesta.dni,
-        codigoCIP: this.respuesta.codigoCIP,
-        usuarioCreador: this.respuesta.usuarioCreador,
-        direccion: this.respuesta.direccion,
-        password: this.password
-      };
-      axios.put("/user/".concat(this.respuesta.id), params).then(function (response) {
-        console.log('tag', response);
-        document.location.href = "../../user/" + _this.respuesta.id;
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['datos', 'csrfToken'],
-  data: function data() {
-    return {
-      respuesta: this.datos,
-      password: null,
-      imagen: []
-    };
-  },
-  methods: {
-    eliminar: function eliminar() {
-      //Ingresamos un mensaje a mostrar
-      var mensaje = confirm("¿Esta seguro de eliminar este usuario?"); //Detectamos si el usuario acepto el mensaje
-
-      if (mensaje) {
-        // alert("¡Gracias por aceptar!");
-        axios.delete("/user/".concat(this.datos.id)).then(function () {
-          console.log('hi');
-        });
-      } //Detectamos si el usuario denegó el mensaje
-      else {
-          alert("¡Haz denegado el mensaje!");
-        }
-    },
-    editar: function editar(id) {
-      document.location.href = "../../user/" + id + "/edit";
-    },
-    enviarEdit: function enviarEdit() {
-      var _this = this;
-
-      var params = {
-        paterno: this.respuesta.paterno,
-        materno: this.respuesta.materno,
-        name: this.respuesta.name,
-        username: this.respuesta.username,
-        email: this.respuesta.email,
-        celular: this.respuesta.celular,
-        dni: this.respuesta.dni,
-        codigoCIP: this.respuesta.codigoCIP,
-        usuarioCreador: this.respuesta.usuarioCreador,
-        direccion: this.respuesta.direccion,
-        password: this.password
-      };
+        estadoCivil: this.respuesta.estadoCivil,
+        genero: this.respuesta.genero
+      }, _defineProperty(_params, "estadoCivil", this.estadoCivil), _defineProperty(_params, "lugarNacimiento", this.respuesta.lugarNacimiento), _defineProperty(_params, "fechaNacimiento", this.respuesta.fechaNacimiento), _defineProperty(_params, "paisNacimiento", this.respuesta.paisNacimiento), _defineProperty(_params, "email", this.respuesta.email), _defineProperty(_params, "celular", this.respuesta.celular), _defineProperty(_params, "dni", this.respuesta.dni), _defineProperty(_params, "codigoCIP", this.respuesta.codigoCIP), _defineProperty(_params, "usuarioCreador", this.respuesta.usuarioCreador), _defineProperty(_params, "direccion", this.respuesta.direccion), _defineProperty(_params, "password", this.password), _defineProperty(_params, "ubigeoSede", this.respuesta.ubigeoSede), _defineProperty(_params, "estadoUsuario", 10), _defineProperty(_params, "tipoColegiado", 1), _params);
       axios.put("/user/".concat(this.respuesta.id), params).then(function (response) {
         console.log('tag', response);
         document.location.href = "../../user/" + _this.respuesta.id;
@@ -3024,52 +2997,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['datos', 'especialidad'],
+  props: ['datos', 'especialidad', 'uni'],
   data: function data() {
     return {
-      respuesta: this.especialidad,
-      capitulo: ""
+      respuesta: this.especialidad.mensaje,
+      espe: {
+        capitulo: "",
+        idEspecialidad: "",
+        institucion: "",
+        fechaIncorporacion: "",
+        fechaPromocion: "",
+        fechaGraduacion: "",
+        fechaRevalidacion: "",
+        tituloProfesional: "",
+        numeroResolucion: "",
+        folioResolucion: "",
+        hojaResolucion: "",
+        resolucionRevalidacion: "",
+        fechaInscripcion: "",
+        fechaJuramentacion: ""
+      },
+      info: [],
+      mostrar: false,
+      edit: true
     };
   },
   methods: {
@@ -3079,7 +3030,19 @@ __webpack_require__.r(__webpack_exports__);
       var params = {
         id: this.datos.id,
         cip: this.datos.codigoCIP,
-        iss: this.capitulo
+        iss: this.espe.idEspecialidad,
+        institucion: this.espe.institucion,
+        fechaIncorporacion: this.espe.fechaIncorporacion,
+        fechaPromocion: this.espe.fechaPromocion,
+        fechaGraduacion: this.espe.fechaGraduacion,
+        fechaRevalidacion: this.espe.fechaRevalidacion,
+        tituloProfesional: this.espe.tituloProfesional,
+        numeroResolucion: this.espe.numeroResolucion,
+        folioResolucion: this.espe.folioResolucion,
+        hojaResolucion: this.espe.hojaResolucion,
+        resolucionRevalidacion: this.espe.resolucionRevalidacion,
+        fechaInscripcion: this.espe.fechaInscripcion,
+        fechaJuramentacion: this.espe.fechaJuramentacion
       };
       console.log(params, 'funciona el botton');
       axios.post('/especilidad', params).then(function (response) {
@@ -3089,6 +3052,35 @@ __webpack_require__.r(__webpack_exports__);
           _this.newMensaje = "";
         } else {}
       });
+    },
+    eliminarEspecialidad: function eliminarEspecialidad(id) {
+      var _this2 = this;
+
+      //Ingresamos un mensaje a mostrar
+      var mensaje = confirm("¿Esta seguro de eliminar la especialidad?"); //Detectamos si el usuario acepto el mensaje
+
+      if (mensaje) {
+        // alert("¡Gracias por aceptar!");
+        axios.delete("/especilidad/".concat(id)).then(function () {
+          document.location.href = "../../user/" + _this2.datos.id;
+        });
+      } //Detectamos si el usuario denegó el mensaje
+      else {
+          alert("¡Haz denegado el mensaje!");
+        }
+    },
+    editarEspecialidad: function editarEspecialidad() {
+      var _this3 = this;
+
+      //console.info('tag', items);
+      axios.put("/especilidad/".concat(this.info.id), this.info).then(function (respuesta) {
+        document.location.href = "../../user/" + _this3.datos.id;
+      });
+    },
+    identificadorEspe: function identificadorEspe(dato) {
+      console.log(dato);
+      this.info = dato;
+      this.mostrar = true;
     }
   }
 });
@@ -38727,7 +38719,9 @@ var render = function() {
                           }
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -38870,7 +38864,9 @@ var render = function() {
                           }
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
                   ])
                 ]),
                 _vm._v(" "),
@@ -39009,7 +39005,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm._m(3)
                 ]),
                 _vm._v(" "),
                 _c("hr"),
@@ -39097,7 +39093,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _vm._m(2),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39240,11 +39236,11 @@ var render = function() {
                 _vm._v(" "),
                 _c("hr", { staticStyle: { border: "1px solid red" } }),
                 _vm._v(" "),
-                _vm._m(3),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._m(4),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39338,7 +39334,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._m(5),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39387,7 +39383,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(6)
+                    _vm._m(8)
                   ])
                 ])
               ]),
@@ -39410,7 +39406,7 @@ var render = function() {
                     [_vm._v("Cancel")]
                   ),
                   _vm._v(" "),
-                  !_vm.validator ? [_vm._m(7)] : [_vm._m(8)]
+                  !_vm.validator ? [_vm._m(9)] : [_vm._m(10)]
                 ],
                 2
               )
@@ -39431,6 +39427,32 @@ var staticRenderFns = [
         _c("i", { staticClass: "fa fa-user" }),
         _vm._v("Datos Colegiado - Ingreso\n                    ")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "control-label" }, [_vm._v("Firma:")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "file", placeholder: "Nombres" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "control-label" }, [_vm._v("Foto:")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "file", placeholder: "Nombres" }
+      })
     ])
   },
   function() {
@@ -39807,7 +39829,67 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Numero de Celular:")
+                      _vm._v("Género:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.genero,
+                          expression: "respuesta.genero"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.genero },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.respuesta, "genero", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Estado Civil:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.estadoCivil,
+                          expression: "respuesta.estadoCivil"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.estadoCivil },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.respuesta,
+                            "estadoCivil",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Celular:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -39839,66 +39921,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Codigo Cip:")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.codigoCIP,
-                          expression: "respuesta.codigoCIP"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.codigoCIP },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.respuesta,
-                            "codigoCIP",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Email:")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.email,
-                          expression: "respuesta.email"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.respuesta, "email", $event.target.value)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "control-label" }, [
                       _vm._v("Direccion:")
                     ]),
                     _vm._v(" "),
@@ -39922,6 +39944,190 @@ var render = function() {
                           _vm.$set(
                             _vm.respuesta,
                             "direccion",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Fecha de Nacimiento:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.fechaNacimiento,
+                          expression: "respuesta.fechaNacimiento"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.fechaNacimiento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.respuesta,
+                            "fechaNacimiento",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Lugar de Nacimiento:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.lugarNacimiento,
+                          expression: "respuesta.lugarNacimiento"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.lugarNacimiento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.respuesta,
+                            "lugarNacimiento",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("País:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.paisNacimiento,
+                          expression: "respuesta.paisNacimiento"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.paisNacimiento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.respuesta,
+                            "paisNacimiento",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Departamento:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.ruc,
+                          expression: "respuesta.ruc"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.ruc },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.respuesta, "ruc", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Provincia:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.ruc,
+                          expression: "respuesta.ruc"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.ruc },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.respuesta, "ruc", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _vm._v("Distrito:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.ubigeoNacimiento,
+                          expression: "respuesta.ubigeoNacimiento"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.respuesta.ubigeoNacimiento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.respuesta,
+                            "ubigeoNacimiento",
                             $event.target.value
                           )
                         }
@@ -40059,6 +40265,162 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Código CIP/Usuario:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta.codigoCIP,
+                        expression: "respuesta.codigoCIP"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.respuesta.codigoCIP },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.respuesta,
+                          "codigoCIP",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Sede")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta.ubigeoSede,
+                        expression: "respuesta.ubigeoSede"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.respuesta.ubigeoSede },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.respuesta,
+                          "ubigeoSede",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Estado:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta.estadoUsuario,
+                        expression: "respuesta.estadoUsuario"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.respuesta.estadoUsuario },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.respuesta,
+                          "estadoUsuario",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Condición:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta.tipoColegiado,
+                        expression: "respuesta.tipoColegiado"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.respuesta.tipoColegiado },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.respuesta,
+                          "tipoColegiado",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Email:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta.email,
+                        expression: "respuesta.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.respuesta.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.respuesta, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
                     _vm._v("Nueva Password (opcional)")
                   ]),
                   _vm._v(" "),
@@ -40113,16 +40475,16 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { "data-toggle": "tab", href: "#tab_2-2" } }, [
-            _c("i", { staticClass: "fa fa-picture-o" }),
-            _vm._v(" Foto de Perfil ")
+          _c("a", { attrs: { "data-toggle": "tab", href: "#tab_3-3" } }, [
+            _c("i", { staticClass: "fa fa-lock" }),
+            _vm._v(" Datos colegiado ")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { "data-toggle": "tab", href: "#tab_3-3" } }, [
-            _c("i", { staticClass: "fa fa-lock" }),
-            _vm._v(" Cambio de contraseña ")
+          _c("a", { attrs: { "data-toggle": "tab", href: "#tab_2-2" } }, [
+            _c("i", { staticClass: "fa fa-picture-o" }),
+            _vm._v(" Foto de Perfil ")
           ])
         ]),
         _vm._v(" "),
@@ -40384,43 +40746,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "margin-top-10" }, [
-        _c("a", { staticClass: "btn red", attrs: { href: "javascript:;" } }, [
-          _vm._v(" Save Changes ")
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EspecialidadComponent.vue?vue&type=template&id=4d468d10&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EspecialidadComponent.vue?vue&type=template&id=4d468d10& ***!
@@ -40438,236 +40763,2089 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-2" }, [
-        _c("ul", { staticClass: "ver-inline-menu tabbable margin-bottom-10" }, [
-          _c("li", { staticClass: "active" }, [
-            _c("a", { attrs: { "data-toggle": "tab", href: "#tab_1" } }, [
-              _c("i", { staticClass: "fa fa-briefcase" }),
-              _vm._v(" Especilidad " + _vm._s(_vm.especialidad.length) + " ")
-            ]),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "ul",
+          { staticClass: "ver-inline-menu tabbable margin-bottom-10" },
+          [
+            _vm._l(_vm.respuesta, function(item) {
+              return _c("li", { key: item.id }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { "data-toggle": "tab", href: "#tab_1" },
+                    on: {
+                      click: function($event) {
+                        return _vm.identificadorEspe(item)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-briefcase" }),
+                    _vm._v(
+                      " " +
+                        _vm._s(item.especialdiad) +
+                        " \n                    "
+                    )
+                  ]
+                )
+              ])
+            }),
             _vm._v(" "),
-            _c("span", { staticClass: "after" })
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
+            _vm._m(0)
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
+      _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "tab-content" }, [
           _c(
             "div",
             { staticClass: "tab-pane active", attrs: { id: "tab_1" } },
             [
-              _c(
-                "div",
-                { staticClass: "panel-group", attrs: { id: "accordion1" } },
-                [
-                  _c("div", { staticClass: "panel" }, [
-                    _c("div", { staticClass: "portlet-body" }, [
-                      _c("div", { staticClass: "table-scrollable" }, [
-                        _c("table", { staticClass: "table table-hover" }, [
-                          _vm._m(1),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            _vm._l(_vm.respuesta, function(
-                              especialidad,
-                              index
-                            ) {
-                              return _c("tr", { key: especialidad.id }, [
-                                _c("td", [_vm._v(" " + _vm._s(index + 1))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    " " + _vm._s(especialidad.tituloProfesional)
+              _vm.mostrar
+                ? _c("div", [
+                    _c("div", { staticClass: "portlet box green" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "portlet-body form" }, [
+                        _c(
+                          "form",
+                          {
+                            staticClass: "form-horizontal",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.editarEspecialidad()
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "form-body" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Capítulo:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.info.capitulo,
+                                            expression: "info.capitulo"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "form-control input-circle",
+                                        attrs: { disabled: _vm.edit },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.info,
+                                              "capitulo",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "AGRICOLAS" } },
+                                          [_vm._v("AGRICOLAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { value: "AGROINDUSTRIALES" }
+                                          },
+                                          [_vm._v("AGROINDUSTRIALES")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "AGRONOMÍA" } },
+                                          [_vm._v("AGRONOMÍA")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "CIVILES" } },
+                                          [_vm._v("CIVILES")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "ECONOMISTAS" } },
+                                          [_vm._v("ECONOMISTAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "ELECTRICISTAS" } },
+                                          [_vm._v("ELECTRICISTAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "ELECTRONICA" } },
+                                          [_vm._v("ELECTRONICA")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "ESTADISTICOS" } },
+                                          [_vm._v("ESTADISTICOS ")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "GEOLOGOS" } },
+                                          [_vm._v("GEOLOGOS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "MECANICOS ELECTRICISTAS"
+                                            }
+                                          },
+                                          [_vm._v("MECANICOS ELECTRICISTAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "METALURGISTAS" } },
+                                          [_vm._v("METALURGISTAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "MINAS" } },
+                                          [_vm._v("MINAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "PESQUEROS" } },
+                                          [_vm._v("PESQUEROS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "QUIMICOS" } },
+                                          [_vm._v("QUIMICOS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "SISTEMAS" } },
+                                          [_vm._v("SISTEMAS")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "TOPOGRAFÍA" } },
+                                          [_vm._v("TOPOGRAFÍA")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "CAP. TEMPORAL" } },
+                                          [_vm._v("CAP. TEMPORAL")]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Especialidad:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-5" },
+                                    [
+                                      _vm.info.capitulo == "AGRICOLAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "6" } },
+                                                  [_vm._v("AGRICOLA")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "34" } },
+                                                  [_vm._v("SANITARIO")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "32" } },
+                                                  [
+                                                    _vm._v(
+                                                      "SANITARIO Y AMBIENTAL"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "AGROINDUSTRIALES"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "13" } },
+                                                  [_vm._v("AGROINDUSTRIAL")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "29" } },
+                                                  [_vm._v("ALIMENTOS")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "15" } },
+                                                  [
+                                                    _vm._v(
+                                                      "INDUSTRIAS ALIMENTARIAS"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "AGRONOMÍA"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "1" } },
+                                                  [_vm._v("AGRONOMÍA")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "25" } },
+                                                  [_vm._v("AMBIENTAL")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "2" } },
+                                                  [_vm._v("ZOOTECNIA")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "CIVILES"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "3" } },
+                                                  [_vm._v("CIVIL")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "ECONOMISTAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "7" } },
+                                                  [_vm._v("ECONOMIA")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "35" } },
+                                                  [_vm._v("COMERCIAL")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "ELECTRICISTAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "9" } },
+                                                  [_vm._v("ELECTRICISTAS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "ELECTRONICA"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "8" } },
+                                                  [_vm._v("ELECTRONICOS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "ESTADISTICOS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "4" } },
+                                                  [_vm._v("ESTADISTICA")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "24" } },
+                                                  [
+                                                    _vm._v(
+                                                      "ESTADISTICA E INFORMATICA"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "5" } },
+                                                  [_vm._v("INFORMATICA")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "GEOLOGOS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "12" } },
+                                                  [_vm._v("GEOLOGOS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo ==
+                                      "MECANICOS ELECTRICISTAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "10" } },
+                                                  [_vm._v("MECANICOS")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "11" } },
+                                                  [
+                                                    _vm._v(
+                                                      "MECANICOS ELECTRICISTAS"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "30" } },
+                                                  [_vm._v("MECATRONICOS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "METALURGISTAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "17" } },
+                                                  [_vm._v("METALURGISTAS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "MINAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "21" } },
+                                                  [_vm._v("MINAS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "PESQUEROS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "28" } },
+                                                  [
+                                                    _vm._v(
+                                                      "PESQUERIA ACUICULTOR"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "18" } },
+                                                  [_vm._v("PESQUEROS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "QUIMICOS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "16" } },
+                                                  [_vm._v("QUIMICOS")]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "SISTEMAS"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "33" } },
+                                                  [
+                                                    _vm._v(
+                                                      "EMPRESARIAL Y DE SISTEMAS"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "14" } },
+                                                  [_vm._v("INDUSTRIALES")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "31" } },
+                                                  [
+                                                    _vm._v(
+                                                      "INDUSTRIAS ALIMENTARIAS"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "23" } },
+                                                  [_vm._v("SISTEMAS")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "27" } },
+                                                  [
+                                                    _vm._v(
+                                                      "SISTEMAS COMPUTACIONALES"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "26" } },
+                                                  [
+                                                    _vm._v(
+                                                      "SISTEMAS E INFORMATICA"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "TOPOGRAFÍA"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "20" } },
+                                                  [
+                                                    _vm._v(
+                                                      "TOPOGRAFO Y AGRIMENSOR"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.info.capitulo == "CAP. TEMPORAL"
+                                        ? [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.info.idEspecialidad,
+                                                    expression:
+                                                      "info.idEspecialidad"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-circle",
+                                                attrs: {
+                                                  disabled: _vm.edit,
+                                                  "data-placeholder":
+                                                    "Choose a Category"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.info,
+                                                      "idEspecialidad",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "37" } },
+                                                  [
+                                                    _vm._v(
+                                                      "EMPRESARIAL E INFORMÁTICA"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "38" } },
+                                                  [
+                                                    _vm._v(
+                                                      "ENERGÍAS RENOVABLES"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "19" } },
+                                                  [_vm._v("FORESTALES")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "22" } },
+                                                  [_vm._v("GEÓGRAFOS")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "36" } },
+                                                  [
+                                                    _vm._v(
+                                                      "SEGURIDAD Y GESTIÓN MINERA"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "option",
+                                                  { attrs: { value: "39" } },
+                                                  [
+                                                    _vm._v(
+                                                      "TEXTIL Y DE CONFECCIONES"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        : _vm._e()
+                                    ],
+                                    2
                                   )
-                                ]),
-                                _vm._v(" "),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Institución:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-7" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.info.idInstitucion,
+                                            expression: "info.idInstitucion"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "form-control input-circle",
+                                        attrs: {
+                                          disabled: _vm.edit,
+                                          "data-placeholder":
+                                            "Choose a Category"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.info,
+                                              "idInstitucion",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      _vm._l(_vm.uni, function(item) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: item.codigo,
+                                            domProps: { value: item.codigo }
+                                          },
+                                          [_vm._v(_vm._s(item.valor))]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Incorporación:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaIncorporacion,
+                                          expression: "info.fechaIncorporacion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaIncorporacion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaIncorporacion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Promoción:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaPromocion,
+                                          expression: "info.fechaPromocion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaPromocion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaPromocion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Graduación:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaGraduacion,
+                                          expression: "info.fechaGraduacion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaGraduacion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaGraduacion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Título Profesional:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.tituloProfesional,
+                                          expression: "info.tituloProfesional"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "text",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.tituloProfesional
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "tituloProfesional",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Número de Resolución:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.numeroResolucion,
+                                          expression: "info.numeroResolucion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "text",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.numeroResolucion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "numeroResolucion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Folio de Resolución:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.folioResolucion,
+                                          expression: "info.folioResolucion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "text",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.folioResolucion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "folioResolucion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Hoja de Resolución:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.hojaResolucion,
+                                          expression: "info.hojaResolucion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "text",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.hojaResolucion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "hojaResolucion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Revalidación:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaRevalidacion,
+                                          expression: "info.fechaRevalidacion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaRevalidacion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaRevalidacion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Núm. Resolución Revalidación:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.info.resolucionRevalidacion,
+                                          expression:
+                                            "info.resolucionRevalidacion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "text",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.resolucionRevalidacion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "resolucionRevalidacion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Inscripción:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaInscripcion,
+                                          expression: "info.fechaInscripcion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaInscripcion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaInscripcion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group input-sm" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-md-4 control-label" },
+                                    [_vm._v("Fecha de Juramentación:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-5" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.info.fechaJuramentacion,
+                                          expression: "info.fechaJuramentacion"
+                                        }
+                                      ],
+                                      staticClass: "form-control input-circle",
+                                      attrs: {
+                                        type: "date",
+                                        disabled: _vm.edit
+                                      },
+                                      domProps: {
+                                        value: _vm.info.fechaJuramentacion
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.info,
+                                            "fechaJuramentacion",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-actions" }, [
+                              _c("div", { staticClass: "row" }, [
                                 _c(
-                                  "td",
+                                  "div",
+                                  { staticClass: "col-md-offset-3 col-md-9" },
                                   [
-                                    especialidad.idEspecialidad == "1"
+                                    !_vm.edit
                                       ? [
-                                          _vm._v(
-                                            "\n                                                        AGRICOLAS\n                                                    "
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-circle  green",
+                                              attrs: { type: "submit" }
+                                            },
+                                            [_vm._v("Submit")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-circle grey-salsa btn-outline",
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.edit = true
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Cancel")]
                                           )
                                         ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "2"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        AGROINDUSTRIALES\n                                                    "
+                                      : [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass: "btn btn-circle red",
+                                              staticStyle: {},
+                                              attrs: { type: "submit" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.eliminarEspecialidad(
+                                                    _vm.info.id
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Eliminar")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-circle grey-salsa btn",
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.edit = false
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(" Editar")]
                                           )
                                         ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "3"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        AGRONOMÍA\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "4"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        CIVILES\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "5"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        ECONOMISTAS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "6"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        ELECTRICISTAS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "7"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        ELECTRONICA\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "8"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        ESTADISTICOS \n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "9"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        GEOLOGOS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "10"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        MECANICOS ELECTRICISTAS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "11"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        METALURGISTAS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "12"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        MINAS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "13"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        PESQUEROS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "14"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                         QUIMICOS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "15"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        SISTEMAS\n                                                     "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "16"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        TOPOGRAFOS\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "17"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        AMBIENTAL Y FORESTAL\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    especialidad.idEspecialidad == "18"
-                                      ? [
-                                          _vm._v(
-                                            "\n                                                        CAP. TEMPORAL\n                                                    "
-                                          )
-                                        ]
-                                      : _vm._e()
                                   ],
                                   2
-                                ),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    " " + _vm._s(especialidad.codigoCIP) + " "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "label label-sm label-success"
-                                    },
-                                    [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            especialidad.fechaIncorporacion
-                                          ) +
-                                          " "
-                                      )
-                                    ]
-                                  )
-                                ])
+                                )
                               ])
-                            }),
-                            0
-                          )
-                        ])
+                            ])
+                          ]
+                        )
                       ])
                     ])
                   ])
-                ]
-              )
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -40686,7 +42864,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { staticClass: "control-label" }, [
-                    _vm._v("Capitulo")
+                    _vm._v("Capitulo " + _vm._s(_vm.espe.capitulo))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -40696,14 +42874,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.capitulo,
-                          expression: "capitulo"
+                          value: _vm.espe.capitulo,
+                          expression: "espe.capitulo"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: {
                         "data-placeholder": "Choose a Category",
-                        tabindex: "1",
                         required: ""
                       },
                       on: {
@@ -40716,82 +42893,90 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.capitulo = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
+                          _vm.$set(
+                            _vm.espe,
+                            "capitulo",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
                         }
                       }
                     },
                     [
-                      _c("option", { attrs: { value: "1" } }, [
+                      _c("option", { attrs: { value: "AGRICOLAS" } }, [
                         _vm._v("AGRICOLAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
+                      _c("option", { attrs: { value: "AGROINDUSTRIALES" } }, [
                         _vm._v("AGROINDUSTRIALES")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "3" } }, [
+                      _c("option", { attrs: { value: "AGRONOMÍA" } }, [
                         _vm._v("AGRONOMÍA")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "4" } }, [
+                      _c("option", { attrs: { value: "CIVILES" } }, [
                         _vm._v("CIVILES")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "5" } }, [
+                      _c("option", { attrs: { value: "ECONOMISTAS" } }, [
                         _vm._v("ECONOMISTAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "6" } }, [
+                      _c("option", { attrs: { value: "ELECTRICISTAS" } }, [
                         _vm._v("ELECTRICISTAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "7" } }, [
+                      _c("option", { attrs: { value: "ELECTRONICA" } }, [
                         _vm._v("ELECTRONICA")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "8" } }, [
+                      _c("option", { attrs: { value: "ESTADISTICOS" } }, [
                         _vm._v("ESTADISTICOS ")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "9" } }, [
+                      _c("option", { attrs: { value: "GEOLOGOS" } }, [
                         _vm._v("GEOLOGOS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "10" } }, [
-                        _vm._v("MECANICOS ELECTRICISTAS")
-                      ]),
+                      _c(
+                        "option",
+                        { attrs: { value: "MECANICOS ELECTRICISTAS" } },
+                        [_vm._v("MECANICOS ELECTRICISTAS")]
+                      ),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "11" } }, [
+                      _c("option", { attrs: { value: "METALURGISTAS" } }, [
                         _vm._v("METALURGISTAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "12" } }, [
+                      _c("option", { attrs: { value: "MINAS" } }, [
                         _vm._v("MINAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "13" } }, [
+                      _c("option", { attrs: { value: "PESQUEROS" } }, [
                         _vm._v("PESQUEROS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "14" } }, [
+                      _c("option", { attrs: { value: "QUIMICOS" } }, [
                         _vm._v("QUIMICOS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "15" } }, [
+                      _c("option", { attrs: { value: "SISTEMAS" } }, [
                         _vm._v("SISTEMAS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "16" } }, [
+                      _c("option", { attrs: { value: "TOPOGRAFOS" } }, [
                         _vm._v("TOPOGRAFOS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "17" } }, [
-                        _vm._v("AMBIENTAL Y FORESTAL")
-                      ]),
+                      _c(
+                        "option",
+                        { attrs: { value: "AMBIENTAL Y FORESTAL" } },
+                        [_vm._v("AMBIENTAL Y FORESTAL")]
+                      ),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "18" } }, [
+                      _c("option", { attrs: { value: "CAP. TEMPORAL" } }, [
                         _vm._v("CAP. TEMPORAL")
                       ])
                     ]
@@ -40802,60 +42987,1306 @@ var render = function() {
                   "div",
                   { staticClass: "form-group" },
                   [
+                    _vm._v(
+                      "    \n                            " +
+                        _vm._s(_vm.espe.idEspecialidad) +
+                        "\n\n                            "
+                    ),
                     _c("label", { staticClass: "control-label" }, [
                       _vm._v("Especialidad")
                     ]),
                     _vm._v(" "),
-                    _vm.capitulo == "1" ? [_vm._m(2)] : _vm._e(),
+                    _vm.espe.capitulo == ""
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("NINGUNO")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "2" ? [_vm._m(3)] : _vm._e(),
+                    _vm.espe.capitulo == "AGRICOLAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "6" } }, [
+                                _vm._v("AGRICOLA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "34" } }, [
+                                _vm._v("SANITARIO")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "32" } }, [
+                                _vm._v("SANITARIO Y AMBIENTAL")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "3" ? [_vm._m(4)] : _vm._e(),
+                    _vm.espe.capitulo == "AGROINDUSTRIALES"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "13" } }, [
+                                _vm._v("AGROINDUSTRIAL")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "29" } }, [
+                                _vm._v("ALIMENTOS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "15" } }, [
+                                _vm._v("INDUSTRIAS ALIMENTARIAS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "4" ? [_vm._m(5)] : _vm._e(),
+                    _vm.espe.capitulo == "AGRONOMÍA"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("AGRONOMÍA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "25" } }, [
+                                _vm._v("AMBIENTAL")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("ZOOTECNIA")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "5" ? [_vm._m(6)] : _vm._e(),
+                    _vm.espe.capitulo == "CIVILES"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("CIVIL")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "6" ? [_vm._m(7)] : _vm._e(),
+                    _vm.espe.capitulo == "ECONOMISTAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "7" } }, [
+                                _vm._v("ECONOMIA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "35" } }, [
+                                _vm._v("COMERCIAL")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "7" ? [_vm._m(8)] : _vm._e(),
+                    _vm.espe.capitulo == "ELECTRICISTAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "9" } }, [
+                                _vm._v("ELECTRICISTAS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "8" ? [_vm._m(9)] : _vm._e(),
+                    _vm.espe.capitulo == "ELECTRONICA"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "8" } }, [
+                                _vm._v("ELECTRONICOS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "9" ? [_vm._m(10)] : _vm._e(),
+                    _vm.espe.capitulo == "ESTADISTICOS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "4" } }, [
+                                _vm._v("ESTADISTICA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "24" } }, [
+                                _vm._v("ESTADISTICA E INFORMATICA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "5" } }, [
+                                _vm._v("INFORMATICA")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "10" ? [_vm._m(11)] : _vm._e(),
+                    _vm.espe.capitulo == "GEOLOGOS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "12" } }, [
+                                _vm._v("GEOLOGOS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "11" ? [_vm._m(12)] : _vm._e(),
+                    _vm.espe.capitulo == "MECANICOS ELECTRICISTAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "10" } }, [
+                                _vm._v("MECANICOS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "11" } }, [
+                                _vm._v("MECANICOS ELECTRICISTAS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "30" } }, [
+                                _vm._v("MECATRONICOS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "12" ? [_vm._m(13)] : _vm._e(),
+                    _vm.espe.capitulo == "METALURGISTAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "17" } }, [
+                                _vm._v("METALURGISTAS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "13" ? [_vm._m(14)] : _vm._e(),
+                    _vm.espe.capitulo == "MINAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "21" } }, [
+                                _vm._v("MINAS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "14" ? [_vm._m(15)] : _vm._e(),
+                    _vm.espe.capitulo == "PESQUEROS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "28" } }, [
+                                _vm._v("PESQUERIA ACUICULTOR")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "18" } }, [
+                                _vm._v("PESQUEROS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "15" ? [_vm._m(16)] : _vm._e(),
+                    _vm.espe.capitulo == "QUIMICOS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "16" } }, [
+                                _vm._v("QUIMICOS")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "16" ? [_vm._m(17)] : _vm._e(),
+                    _vm.espe.capitulo == "SISTEMAS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "33" } }, [
+                                _vm._v("EMPRESARIAL Y DE SISTEMAS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "14" } }, [
+                                _vm._v("INDUSTRIALES")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "31" } }, [
+                                _vm._v("INDUSTRIAS ALIMENTARIAS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "23" } }, [
+                                _vm._v("SISTEMAS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "27" } }, [
+                                _vm._v("SISTEMAS COMPUTACIONALES")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "26" } }, [
+                                _vm._v("SISTEMAS E INFORMATICA")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "17" ? [_vm._m(18)] : _vm._e(),
+                    _vm.espe.capitulo == "TOPOGRAFOS"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "20" } }, [
+                                _vm._v("TOPÓGRAFO Y AGRIMENSOR")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.capitulo == "18" ? [_vm._m(19)] : _vm._e()
+                    _vm.espe.capitulo == "CAP. TEMPORAL"
+                      ? [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.espe.idEspecialidad,
+                                  expression: "espe.idEspecialidad"
+                                }
+                              ],
+                              staticClass: "form-control ",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.espe,
+                                    "idEspecialidad",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "37" } }, [
+                                _vm._v("EMPRESARIAL E INFORMÁTICA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "38" } }, [
+                                _vm._v("ENERGÍAS RENOVABLES")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "19" } }, [
+                                _vm._v("FORESTALES")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "22" } }, [
+                                _vm._v("GEÓGRAFOS")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "36" } }, [
+                                _vm._v("SEGURIDAD Y GESTIÓN MINERA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "39" } }, [
+                                _vm._v("TEXTIL Y DE CONFECCIONES")
+                              ])
+                            ]
+                          )
+                        ]
+                      : _vm._e()
                   ],
                   2
                 ),
                 _vm._v(" "),
-                _vm._m(20),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Institucion")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.espe.institucion,
+                          expression: "espe.institucion"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { "data-placeholder": "Choose a Category" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.espe,
+                            "institucion",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.uni, function(item) {
+                      return _c(
+                        "option",
+                        { key: item.codigo, domProps: { value: item.codigo } },
+                        [_vm._v(_vm._s(item.valor))]
+                      )
+                    }),
+                    0
+                  )
+                ]),
                 _vm._v(" "),
-                _vm._m(21),
+                _c("div", { staticClass: " row" }, [
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Fecha de Incorporación")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.fechaIncorporacion,
+                            expression: "espe.fechaIncorporacion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.espe.fechaIncorporacion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "fechaIncorporacion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Fecha de Promoción")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.fechaPromocion,
+                            expression: "espe.fechaPromocion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.espe.fechaPromocion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "fechaPromocion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Fecha de Graduación")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.fechaGraduacion,
+                            expression: "espe.fechaGraduacion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.espe.fechaGraduacion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "fechaGraduacion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Fecha de Revalidación")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.fechaRevalidacion,
+                            expression: "espe.fechaRevalidacion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.espe.fechaRevalidacion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "fechaRevalidacion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Título Profesional")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.tituloProfesional,
+                            expression: "espe.tituloProfesional"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.espe.tituloProfesional },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "tituloProfesional",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Número de Resolución")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.numeroResolucion,
+                            expression: "espe.numeroResolucion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.espe.numeroResolucion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "numeroResolucion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Folio de Resolución")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.folioResolucion,
+                            expression: "espe.folioResolucion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.espe.folioResolucion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "folioResolucion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Hoja de Resolución")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.espe.hojaResolucion,
+                            expression: "espe.hojaResolucion"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.espe.hojaResolucion },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.espe,
+                              "hojaResolucion",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(22),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Núm. Resolución Revalidación")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.espe.resolucionRevalidacion,
+                        expression: "espe.resolucionRevalidacion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.espe.resolucionRevalidacion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.espe,
+                          "resolucionRevalidacion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(23),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Fecha de Inscripción")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.espe.fechaInscripcion,
+                        expression: "espe.fechaInscripcion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.espe.fechaInscripcion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.espe,
+                          "fechaInscripcion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(24),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Fecha de Juramentación")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.espe.fechaJuramentacion,
+                        expression: "espe.fechaJuramentacion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.espe.fechaJuramentacion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.espe,
+                          "fechaJuramentacion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(25)
+                _vm._m(2)
               ]
             )
           ])
@@ -40880,479 +44311,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v(" # ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Titulo Profecional ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" Especialidad")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" codigoCIP ")]),
-        _vm._v(" "),
-        _c("th", [_vm._v(" fecha Incorporacion ")])
+    return _c("div", { staticClass: "portlet-title" }, [
+      _c("div", { staticClass: "caption" }, [
+        _c("i", { staticClass: "fa fa-gift" }),
+        _vm._v("ESPECIALIDAD\n                                ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "Category 1" } }, [_vm._v("AGRICOLA")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("AGROINDUSTRIAL")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("INDUSTRIAS ALIMENTARIAS")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("ALIMENTOS")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("AGRONOMÍA")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("ZOOTECNIA")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("CIVIL")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("ECONOMIA")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("COMERCIAL")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("ELECTRICISTAS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("ELECTRONICOS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("ESTADISTICA")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("ESTADISTICA E INFORMATICA")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("INFORMATICA")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("GEOLOGOS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("MECANICOS")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("MECANICOS ELECTRICISTAS")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("MECATRONICOS")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("METALURGISTAS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("MINAS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("PESQUERIA ACUICULTOR")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("PESQUEROS")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [_c("option", { attrs: { value: "" } }, [_vm._v("QUIMICOS")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("EMPRESARIAL Y DE SISTEMAS")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("INDUSTRIALES")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("SISTEMAS")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("SISTEMAS COMPUTACIONALES")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("SISTEMAS E INFORMATICA")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("TOPOGRAFO Y AGRIMENSOR")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [_vm._v("AMBIENTAL")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("SANITARIO")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("SANITARIO Y AMBIENTAL")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("FORESTAL")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control",
-        attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-      },
-      [
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("EMPRESARIAL E INFORMATICA")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("ENERGIAS RENOVABLES")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("GEOGRAFOS")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("SEGURIDAD Y GESTION MINERA")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [
-          _vm._v("TEXTIL Y DE CONFECCIONES")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [_vm._v("Institucion")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "form-control",
-          attrs: { "data-placeholder": "Choose a Category", tabindex: "1" }
-        },
-        [
-          _c("option", { attrs: { value: "Category 1" } }, [
-            _vm._v("Category 1")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Category 2" } }, [
-            _vm._v("Category 2")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Category 3" } }, [
-            _vm._v("Category 5")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Category 4" } }, [
-            _vm._v("Category 4")
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " row" }, [
-      _c("div", { staticClass: "col-md-5" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Fecha de Incorporación")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Fecha de Promoción")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Fecha de Graduación")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Fecha de Revalidación")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-5" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Título Profesional")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Número de Resolución")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Folio de Resolución")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Hoja de Resolución")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v("Núm. Resolución Revalidación")
-      ]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v("Fecha de Inscripción")
-      ]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [
-        _vm._v("Fecha de Juramentación")
-      ]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "date" } })
     ])
   },
   function() {
@@ -54231,7 +57194,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cip-constancia', __webpack
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('PerfilComponent', __webpack_require__(/*! ./components/PerfilComponent.vue */ "./resources/js/components/PerfilComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditComponent', __webpack_require__(/*! ./components/EditComponent.vue */ "./resources/js/components/EditComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EspecialidadComponent', __webpack_require__(/*! ./components/EspecialidadComponent.vue */ "./resources/js/components/EspecialidadComponent.vue").default);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EliminarComponent', __webpack_require__(/*! ./components/EliminarComponent.vue */ "./resources/js/components/EliminarComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54437,75 +57399,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComponent_vue_vue_type_template_id_ad065790___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComponent_vue_vue_type_template_id_ad065790___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarComponent.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/EliminarComponent.vue ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EliminarComponent.vue?vue&type=template&id=4c8d22fe& */ "./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe&");
-/* harmony import */ var _EliminarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EliminarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EliminarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/EliminarComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe& ***!
-  \**************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarComponent.vue?vue&type=template&id=4c8d22fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarComponent.vue?vue&type=template&id=4c8d22fe&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarComponent_vue_vue_type_template_id_4c8d22fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

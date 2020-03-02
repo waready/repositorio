@@ -37,7 +37,11 @@
                                     <div class="form-group">
                                         <label class="control-label">Ruc:</label>
                                         <input type="text" v-model="ruc"  class="form-control" placeholder="Nombres" required autofocus>
-                                    </div>  
+                                    </div> 
+                                     <div class="form-group">
+                                        <label class="control-label">Firma:</label>
+                                        <input type="file"   class="form-control" placeholder="Nombres"  >
+                                    </div>   
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
@@ -63,6 +67,10 @@
                                         <label class="control-label">Dirección:</label>
                                         <input type="text" v-model="direccion"  class="form-control" placeholder="Direccion">
                                     </div> 
+                                    <div class="form-group">
+                                        <label class="control-label">Foto:</label>
+                                        <input type="file"   class="form-control" placeholder="Nombres"  >
+                                    </div>  
                                 </div>
                                 <!--/span-->
                             </div>
@@ -309,7 +317,7 @@ export default {
 		tipoColegiado:'1',			
         usuarioCreador:'admin',
         lugarNacimiento:'puno',
-        fechaNacimiento:""
+        fechaNacimiento:"aaaaaaaa"
 		
        }
    },

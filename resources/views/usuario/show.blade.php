@@ -35,14 +35,11 @@
                     <!--end tab-pane-->
                     <div class="tab-pane" id="tab_1_6">
                         
-                        <especialidad-component :especialidad=" {{$especialidad}}"  :datos="{{$message}}" ></especialidad-component>
+                    <especialidad-component :especialidad=" {{$especialidad}}"  :datos="{{$message}}"  :uni="{{$univercidad}}"></especialidad-component>
                     </div>
                     <!--end tab-pane-->
                 </div>
             </div>
         </div>
-    </div>
-                
-        
-           
+    </div>   
 @endsection   

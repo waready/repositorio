@@ -55,7 +55,7 @@
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                <a  class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                     <span></span>
                 </a>
                 <!-- END RESPONSIVE MENU TOGGLER -->
@@ -65,7 +65,7 @@
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
                                 <span class="badge badge-default"> 7 </span>
                             </a>
@@ -78,7 +78,7 @@
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">just now</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-success">
@@ -87,7 +87,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">3 mins</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-danger">
@@ -96,7 +96,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">10 mins</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-warning">
@@ -105,7 +105,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">14 hrs</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-info">
@@ -114,7 +114,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">2 days</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-danger">
@@ -123,7 +123,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">3 days</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-danger">
@@ -132,7 +132,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">4 days</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-warning">
@@ -141,7 +141,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">5 days</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-info">
@@ -150,7 +150,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="time">9 days</span>
                                                 <span class="details">
                                                     <span class="label label-sm label-icon label-danger">
@@ -166,7 +166,7 @@
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
                                 <span class="badge badge-default"> 4 </span>
                             </a>
@@ -241,7 +241,7 @@
                         <!-- BEGIN TODO DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-calendar"></i>
                                 <span class="badge badge-default"> 3 </span>
                             </a>
@@ -254,7 +254,7 @@
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">New release v1.2 </span>
                                                     <span class="percent">30%</span>
@@ -267,7 +267,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">Application deployment</span>
                                                     <span class="percent">65%</span>
@@ -280,7 +280,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">Mobile app release</span>
                                                     <span class="percent">98%</span>
@@ -293,7 +293,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">Database migration</span>
                                                     <span class="percent">10%</span>
@@ -306,7 +306,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">Web server upgrade</span>
                                                     <span class="percent">58%</span>
@@ -319,7 +319,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">Mobile development</span>
                                                     <span class="percent">85%</span>
@@ -332,7 +332,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">
+                                            <a >
                                                 <span class="task">
                                                     <span class="desc">New UI release</span>
                                                     <span class="percent">38%</span>
@@ -352,7 +352,7 @@
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
                                 <span class="username username-hide-on-mobile"> Nick </span>
                                 <i class="fa fa-angle-down"></i>
@@ -393,7 +393,7 @@
                         <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-quick-sidebar-toggler">
-                            <a href="javascript:;" class="dropdown-toggle">
+                            <a  class="dropdown-toggle">
                                 <i class="icon-logout"></i>
                             </a>
                         </li>
@@ -417,17 +417,106 @@
                    
                     <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                         <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-                        <li class="sidebar-toggler-wrapper hide">
-                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                            <div class="sidebar-toggler">
-                                <span></span>
-                            </div>
-                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                         
+                       
+                        <li class="heading">
+                            <h3 class="uppercase">Modulos</h3>
                         </li>
-                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-                        <li class="sidebar-search-wrapper">
-                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+    
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggle">
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Colegiados</span>
+                                <span class="arrow"></span>
+                            </a>
+                           
+                                <li class="nav-item  ">
+                                    <a href="/user/create" class="nav-link ">
+                                        <span class="title">Registro</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Busqueda</span>
+                                        <span class="badge badge-danger">2</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Actualización</span>
+                                    </a>
+                                </li>
+                               
+                         
+                        </li>
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Pago</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="/pagos" class="nav-link ">
+                                        <span class="title">Registro
+                                            </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            
+                            
+                        </li>
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Facturacion</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
+                                        <span class="title">Ingreso
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">Resumen Diario
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                         <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Reporte</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="form_controls.html" class="nav-link ">
+                                        <span class="title">bUsqueda
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">General
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                       <li> 
+                           </li>
+                            </ul>
                         </li>
                       
                     </ul>
@@ -553,7 +642,7 @@
 
             <!-- END CONTENT -->
             <!-- BEGIN QUICK SIDEBAR -->
-            <a href="javascript:;" class="page-quick-sidebar-toggler">
+            <a  class="page-quick-sidebar-toggler">
                 <i class="icon-login"></i>
             </a>
             

@@ -19,33 +19,63 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Metronic | Typography</title>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+        
+        <title>SISTEMA DE ADMINISTRACION FINANCIERA</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="favicon.ico" /> 
+		<style type="text/css">
+            .my-custom-scrollbar {
+            position: relative;
+            height: 200px;
+            overflow: auto;
+            }
+            .table-wrapper-scroll-y {
+            display: block;
+            }
+
+            .lbinformacion {
+                color: orange; 
+                font-weight: bold;                
+            }
+
+            .colorTab { 
+
+                color: blue;
+
+            }
+
+        </style>
+		
+		</head>
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -53,7 +83,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <img src="../assets/layouts/layout/img/logocip1.png" width="170"/> </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
                     </div>
@@ -186,7 +216,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">Just Now </span>
@@ -197,7 +227,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">16 mins </span>
@@ -208,7 +238,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
                                                     <span class="time">2 hrs </span>
@@ -219,7 +249,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">40 mins </span>
@@ -230,7 +260,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">46 mins </span>
@@ -358,7 +388,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
                                 <span class="username username-hide-on-mobile"> Nick </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -457,37 +487,39 @@ License: You must have a valid license purchased only from themeforest(the above
                             </form>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start ">
+                        
+                        <li class="heading">
+                            <h3 class="uppercase">Modulos</h3>
+                        </li>
+                       
+                        <li class="nav-item  start">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-home"></i>
-                                <span class="title">Dashboard</span>
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Colegiados</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item start ">
-                                    <a href="index.html" class="nav-link ">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="title">Dashboard 1</span>
+                                <li class="nav-item  ">
+                                    <a href="/user/create" class="nav-link ">
+                                        <span class="title">Registro</span>
                                     </a>
                                 </li>
-                                <li class="nav-item start ">
-                                    <a href="dashboard_2.html" class="nav-link ">
-                                        <i class="icon-bulb"></i>
-                                        <span class="title">Dashboard 2</span>
-                                        <span class="badge badge-success">1</span>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Busqueda</span>
+                                        <span class="badge badge-danger">2</span>
                                     </a>
                                 </li>
-                                <li class="nav-item start ">
-                                    <a href="dashboard_3.html" class="nav-link ">
-                                        <i class="icon-graph"></i>
-                                        <span class="title">Dashboard 3</span>
-                                        <span class="badge badge-danger">5</span>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Actualización</span>
                                     </a>
                                 </li>
+                               
                             </ul>
                         </li>
-                        
-                        <li class="nav-item  active open">
+
+                        <li class="nav-item active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-diamond"></i>
                                 <span class="title">Pagos</span>
@@ -495,12 +527,69 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="ui_colors.html" class="nav-link ">
+                                <li class="nav-item ">
+                                    <a href="/pagos" class="nav-link ">
                                         <span class="title">Pagos</span>
                                     </a>
                                 </li>
+                                <li class="nav-item ">
+                                    <a href="/fraccionamiento" class="nav-link ">
+                                        <span class="title">Fraccionamiento</span>
+                                    </a>
+                                </li>
                             </ul>    
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Facturacion</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
+                                        <span class="title">Ingreso
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">Resumen Diario
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                         <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Reporte</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="form_controls.html" class="nav-link ">
+                                        <span class="title">bUsqueda
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">General
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                       <li> 
+                           </li>
+                            </ul>
                         </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
@@ -513,46 +602,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    <!-- BEGIN PAGE HEADER-->
-                    
-                    <!-- BEGIN PAGE BAR -->
-                    <div class="page-bar">
-                        
-                        <div class="page-toolbar">
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                                    <i class="fa fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-bell"></i> Action</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-shield"></i> Another action</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-user"></i> Something else here</a>
-                                    </li>
-                                    <li class="divider"> </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-bag"></i> Separated link</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END PAGE BAR -->
-                    <!-- BEGIN PAGE TITLE-->
-                    <!--h3 class="page-title"> Typography
-                        <small>texts, headings, lists and more</small>
-                    </h3-->
-                    <br>
-                    <!-- END PAGE TITLE-->
-                    <!-- END PAGE HEADER-->
                     <div class="row">
                         <div class="col-md-12">
                             <div>
@@ -584,25 +633,27 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="form-group">
                                                 
                                                 <div class="col-md-2">
-													<select class="form-control input-sm" name="tipoBusqueda">
-														
-														<option value="1" selected="" >Código CIP</option>
-														<option value="2">DNI</option>
-														<option value="3">Nombre</option>
-														
-													</select> <i></i> 
-												</div>
+                                                    <select class="form-control input-sm" name="tipoBusqueda" id="tipoBusqueda">
+                                                        
+                                                        <option value="1">Código CIP</option>
+                                                        <option value="2">DNI</option>
+                                                        <option value="3">Nombre</option>
+                                                        
+                                                    </select> <i></i> 
+                                                </div>
                                                 <div class="col-md-3">
                                                 
                                                     
-                                                    <input type="text" class="form-control input-sm"  name="textoBusqueda"placeholder="Datos de Búsqueda"> </div>
+                                                    <input type="text" class="form-control input-sm"  name="textoBusqueda" id="textoBusqueda" placeholder="Datos de Búsqueda"> </div>
                                                     
                                                 
                                                 <div class="col-md-1">
                                                     <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Buscar</button>
                                                 </div>
 
-                                                <!--label class="control-label col-md-1" style="color: orange"><b>Fraccionamiento</b></label-->
+                                                <div class="col-md-3" class="alert alert-info" id="lbinformacion" >
+                                                    
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -703,13 +754,51 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                         <div class="row" id="dDetallePago" style="visibility: hidden">
 
-                                        <h4 class="form-section">Detalles del Pago</h4>
+                                        <div class="portlet-body">
+                                        <div class="tabbable-line">
+                                        <ul class="nav nav-tabs nav-tabs-lg" style="background: #f0f0f0">
+                                            <li class="active colorTab"  >
+                                                <a href="#tab_1" data-toggle="tab"><b>
+                                                <i class="fa fa-money"></i>
+                                                Detalles del Pago </b></a>
+                                            </li>
+                                            <li class="colorTab">
+                                                <a href="#tab_2" data-toggle="tab" class="colorTab" > Por Fecha
+                                                </a>
+                                            </li>
+                                            <li class="colorTab" class="colorTab">
+                                                <a href="#tab_3" data-toggle="tab" > Certificados
+                                                </a>
+                                            </li>
+                                            <li class="colorTab" class="colorTab">
+                                                <a href="#tab_4" data-toggle="tab" id="tabMultas"> Multas
+                                                </a>
+                                            </li>
+                                            <li class="colorTab">
+                                                <a href="#tab_5" data-toggle="tab" id="tabFraccionamiento"> Fraccionamiento
+                                                </a>
+                                            </li>
+                                            <li class="colorTab">
+                                                <a href="#tab_6" data-toggle="tab" >
+                                                Deudas
+                                                <span class="badge badge-success"> 2 </span>
+                                                </a>
+                                            </li>
+                                            <li class="colorTab">
+                                                <a href="#tab_7" data-toggle="tab" > Presentes
+                                                </a>
+                                            </li>
+                                        </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tab_1">
+
                                         
                                         <input type="hidden" id="token" value="{{ csrf_token() }}">
                                         
                                         <input type="hidden" name="dtCodigoCIP" id="dtCodigoCIP" >
 
-                                            <div class="col-md-1">
+
+                                        <div class="col-md-1">
                                                 <label class="control-label">Periodo</label>
                                                 <select name="periodo" id="periodo" class="form-control input-sm">
                                                     
@@ -746,88 +835,137 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </select> <i></i> 
 
                                             </div>
-
-                                            <div class="col-md-11">
+                                                    <div class="col-md-11">
                                             <div class="row">
                                             
                                                 <label class="control-label col-md-2">Concepto de pago</label>
                                                 <div class="col-md-3">
                                                 <select name="conceptoPago" id="conceptoPago" class="form-control input-sm">
-											
+                                            
 
-												
-													
-												</select>
+                                                
+                                                    
+                                                </select>
 
                                                 </div>
 
                                                  <label class="control-label col-md-1">Total concepto</label>
                                                 <div class="col-md-2">
                                                 <input type="text" name="totalConcepto" id="totalConcepto" placeholder="Total Concepto" value="" class="form-control input-sm">
-                                            	</div>
+                                                </div>
                                             </div>
                                             <div class="row">
-                                            	<label class="control-label col-md-2">Otro concepto / Institución</label>
+                                                <label class="control-label col-md-2">Otro concepto / Institución</label>
                                                 <div class="col-md-3">
                                                 <input type="text" name="otroConcepto" class="form-control input-sm">
-                                            	</div>
+                                                </div>
 
-                                            	<label class="control-label col-md-1">Total a Pagar</label>
+                                                <label class="control-label col-md-1">Total a Pagar</label>
                                                 <div class="col-md-2">
                                                 <input type="text" name="totalPago" id="totalPago" placeholder="Pago Total"  style="font-weight: bold; background: #ebffeb" class="form-control input-sm">
-                                            	</div>
+                                                </div>
+
+                                                <label class="control-label col-md-1">Monto Recibido</label>
+                                                <div class="col-md-1">
+                                                    <input type="text" name="montoRecibido" id="montoRecibido" placeholder="0.00" value="" class="form-control input-sm">
+                                                </div>
+                                                <div class="col-md-2">
+                                                <div id="dTotalCambio">
+                                                    <h4>Cambio: <b>S/ 00.00</b></h4>    
+                                                </div>
+                                                    
+                                                </div>
+
 
                                             </div><br>
                                             <div class="row">
-	                                            <div class="col-md-5">
-	                                            	
-	                                            </div>
-	                                            <div class="col-md-4">
-	                                            	<a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
-													<a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a>
+                                                <div class="col-md-5">
+                                                    
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <a class="btn btn-circle green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
+                                                    <a class="btn btn-circle red btn-sm " href="javascript:void(0);" onclick="fnQuitar()">Quitar</a>
 
-                                                    <a class="btn green-meadow btn-sm" href="javascript:void(0);" onclick="fnCalculadora()">Calculadora</a>
+                                                    <a class="btn btn-circle green-meadow btn-sm " href="javascript:void(0);" onclick="fnHabilitar()">Habilitar</a>
                                                     <button type="submit" class="btn btn-circle blue btn-sm " href="javascript:void(0);">Grabar</button>
 
                                                     
-	                                            </div>
-                                            	
+                                                </div>
+                                                
                                             </div>
 
                                             <div class="row">
-                                            	<div class="table-responsive">
-												
-												<table class="table table-hover" id="tablePagos">
-													<thead>
-														<tr>
-															
-															<th width="10%">Periodo</th>
-															<th width="40%">Concepto</th>
-															<th width="10%">Total</th>
-															<th width="10%">Quitar</th>
-														</tr>
-													</thead>
-													<tbody>
-														
-														
-														
-													</tbody>
-												</table>
-											
-												</div>
+                                                <div class="table-responsive" style="margin-top: 5px">
+                                                
+                                                <table class="table table-hover" id="tablePagos">
+                                                    <thead>
+                                                        <tr style="background-color: #cddc39">
+                                                            
+                                                            <th width="10%">Periodo</th>
+                                                            <th width="40%">Concepto</th>
+                                                            <th width="10%">Total</th>
+                                                            <th width="10%">Quitar</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody id="tablePagosBody">
+                                                        
+                                                    </tbody>
+
+                                                </table>
+                                            
+                                                </div>
                                             </div>
 
 
                                         </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_2">
+                                                        <div id="ctabPorFecha">
+                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_3">
+                                                        <div id="ctabCertificado">
+                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_4">
+                                                        <div id="ctabMultas">
+                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_5">
+                                                        <div id="ctabFracc">
+                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_6">
+                                                        <div id="ctabDeuda">
+                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        
+
+                                            
+
+                                            
                                         </form>
 
                                         <?php 
-					                        //print_r($integrantes);
-					                        
-		                          foreach ($conceptoPago as $val) {
-		                            echo "<input type='hidden' id='".$val->idConceptoPago."' name ='".$val->idConceptoPago."' value='".$val->montoPago."'> ";
-		                          }
-		                        ?>
+                                            //print_r($integrantes);
+                                            
+                                  foreach ($conceptoPago as $val) {
+                                    echo "<input type='hidden' id='".$val->idConceptoPago."' name ='".$val->idConceptoPago."' value='".$val->montoPago."'> ";
+                                  }
+                                ?>
                                         
                                         
                                     </div>
@@ -839,6 +977,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         
                     </div>
+
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -849,14 +988,11 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
             <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
                 <div class="page-quick-sidebar">
-                    
-                    
                 </div>
             </div>
             <!-- END QUICK SIDEBAR -->
         </div>
-        <!-- END CONTAINER -->
-        <!-- BEGIN FOOTER -->
+
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
             
@@ -887,6 +1023,46 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
         </div>
 
+        <div class="modal fade bs-modal-lg in" id="modalColegiados" role="dialog">
+            <div class="modal-dialog modal-lg">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Colegio de Ingenieros del Perú - Consejo Departamental Puno
+</h4>
+                </div>
+                <div class="modal-body">
+                  
+                <div class="table-scrollable table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Apellidos y Nombres </th>
+                                <th> DNI</th>
+                                <th> Codigo CIP </th>
+                                <th> Acción </th>
+                            </tr>
+                        </thead>
+                        <tbody id = "tableColegiados">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+
         <div class="modal fade" id="modalCalculadora" role="dialog">
             <div class="modal-dialog">
             
@@ -906,7 +1082,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     
                 </div>
-                <div class="row">
+                <!--div class="row">
                     <div class="col-md-4">
                         <h5><b>Ingrese monto recibido:</b></h5>
                     </div>
@@ -919,7 +1095,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                         
                     </div>   
-                </div>
+                </div-->
                 
                 </div>
                 <div class="modal-footer">
@@ -930,7 +1106,8 @@ License: You must have a valid license purchased only from themeforest(the above
               
             </div>
         </div>
-
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
                 <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
@@ -941,10 +1118,11 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <!--script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script-->
@@ -962,10 +1140,28 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
 
+
+
+        <!--script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script-->
 
         <script type="text/javascript">
+
+            var bitacoraPago;
+
+            var e = new Array();
+            e['01']='00';
+            e['02']='01';
+            e['03']='02';
+            e['04']='03';
+            e['05']='04';
+            e['06']='05';
+            e['07']='06';
+            e['08']='07';
+            e['09']='08';
+            e['10']='09';
+            e['11']='10';
+            e['12']='11';
 
             var mes_Print = new Array();
 
@@ -982,34 +1178,93 @@ License: You must have a valid license purchased only from themeforest(the above
             mes_Print['11']= "Noviembre";
             mes_Print['12']= "Diciembre";
 
+            var monthJ_mN = new Array();
+            monthJ_mN[0] = "01";
+            monthJ_mN[1] = "02";
+            monthJ_mN[2] = "03";
+            monthJ_mN[3] = "04";
+            monthJ_mN[4] = "05";
+            monthJ_mN[5] = "06";
+            monthJ_mN[6] = "07";
+            monthJ_mN[7] = "08";
+            monthJ_mN[8] = "09";
+            monthJ_mN[9] = "10";
+            monthJ_mN[10] = "11";
+            monthJ_mN[11] = "12";
+
             var selecPOption = new Array();
-			var mapOption = new Array();
+            var mapOption = new Array();
 
-			$(document).ready(function() {
-				
-    		$('#frmBusqueda').submit(function(event) { //Trigger on form submit
-    			
-			       var token = $("#token").val();
+            var ind_tr = 0;
 
-			        $.ajax({ //Process the form using $.ajax()
-			            type      : 'POST', //Method type
-			            url       : 'busquedaColegiados', //Your form processing file URL
-			            headers   : {'X-CSRF-TOKEN':token},
-			            data      : $('#frmBusqueda').serialize(), //Forms name
-			            dataType  : 'json',
-			            success   : function(data) {
-			                            if (data.success) { //If fails
+            function busquedaNombre()
+            {
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'busquedaColegiadosNombre', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmBusqueda').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            $("#tableColegiados").html("");                                            
+                                            
+                                            datos = data.data;
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                markup = "<tr>"+
+                                                    "<td> "+(i+1)+" </td>"+
+                                                    "<td> "+datos[i].nombres+"</td>"+
+                                                    "<td> "+datos[i].dni+"</td>"+
+                                                    "<td> "+datos[i].codigoCIP+"</td>"+
+                                                    "<td>"+
+                                                        "<button type='button' class='btn btn-transparent green btn-outline btn-circle btn-sm active'  onclick='callActionName("+datos[i].codigoCIP+");'> Aceptar </button>"+
+                                                    "</td>"+
+                                                "</tr>";
+
+                                                $("#tableColegiados").append(markup);
+                                            }
+
+                                            
+                                            $('#modalColegiados').modal('show');
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                        }
+
+                                    }
+                    });
+            }
+
+            function busquedaColegiado()
+            {
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'busquedaColegiados', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmBusqueda').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
 
                                             $("#dDetallePago").css('visibility', 'visible');
 
-			                            	var datos=data.mensaje;
+                                            var datos=data.mensaje;
                                             var fdata=data.fpdata;
-			                                
-			                                $("#nombreColegiado").val(datos[0].nombres);
+                                            var especialidad = data.especialidad;
 
-			                                $("#codigoColegiado").val(datos[0].codigoCIP);
-			                                
-			                                $("#condicionColegiado").val(datos[0].estadoHabil);
+                                            bitacoraPago = data.bitacoraPago;
+                                            
+                                            $("#nombreColegiado").val(datos[0].nombres);
+
+                                            $("#codigoColegiado").val(datos[0].codigoCIP);
+                                            
+                                            $("#condicionColegiado").val(datos[0].estadoHabil);
 
                                             $("#dataFecha").val(datos[0].fechaActual);
 
@@ -1022,12 +1277,37 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                             $("#dtCodigoCIP").val(datos[0].codigoCIP);
 
-			                                 var conceptoPFrac = data.conceptoPagoFrac;
+                                            espacio="";
+                                            especialidadPrint = "";
+                                            for(var i = 0; i < especialidad.length; i++)
+                                            {
+                                                
+                                                if(i>0){espacio = ", ";}
+                                                especialidadPrint += espacio+especialidad[i].valor;
+                                            }
 
-                                            readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago);
+                                            $("#especialidadColegiado").val(especialidadPrint);
 
-			                            }
-			                            else {
+
+                                            var conceptoPFrac = data.conceptoPagoFrac;
+
+                                            fnPrintInformacion(data.conceptoPagoDeuda,conceptoPFrac, datos[0].estadoHabil);
+
+                                            fnReportFecha(data.reportFecha);
+                                            fnReportCertificado(data.reportCertificado);
+                                            fnReportMultas(data.reportMultas);
+                                            fnReportFracc(data.reportFracc);
+                                            fnReportDeudas(data.conceptoPagoDeuda,data.conceptoPagoFrac)
+
+                                            readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago,datos[0].estadoHabil);
+
+                                            cleanTablePagos();
+
+                                            //
+
+
+                                        }
+                                        else {
 
                                             $("#nombreColegiado").val('');
 
@@ -1047,28 +1327,463 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                                 $("#dDetallePago").css('visibility', 'hidden');
 
-			                                    alert(data.mensaje);
-			                                }
-			                            }
-			        });
-			        event.preventDefault(); //Prevent the default submit
 
-			        
-			    });
+                                            cleanTablePagos();
 
-    		
-    		$("#conceptoPago" ).change( function() {
-				    console.log($(this).val());
-				    //var datoMonto = $("#"+$(this).val()).val();
-				    
-				    $("#totalConcepto").val(mapOption[$(this).val()]);
 
-				});
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+            }
+            function fnReportDeudas(data_deuda, data_fracc)
+            {
+                $("#ctabDeuda").html('');
+                var ind = 1;
+                cad = " <div class = 'col-md-6'>"+
+                        "<table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th > # </th>"+
+                                "<th > Concepto de Pago </th>"+
+                                "<th > Monto </th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < data_deuda.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(ind++)+
+                                "</td>"+
+                                "<td>"+data_deuda[i].conceptoPago+
+                                "</td>"+
+                                "<td>"+data_deuda[i].montoPago+
+                                "</td>"+
 
-    		
+                                "</tr>";
 
-    		$('#frmPagos').submit(function(event) { //Trigger on form submit
-    			
+                }
+                var fechaUltPago ='';
+                for(var i = 0 ; i < data_fracc.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(ind++)+
+                                "</td>"+
+                                "<td>"+data_fracc[i].conceptoPago+
+                                "</td>"+
+                                "<td>"+data_fracc[i].montoPago+
+                                "</td>"+
+
+                                "</tr>";
+                    fechaUltPago = data_fracc[i].fecha;
+
+                }
+
+                var ultimoPago = $("#ultimoPago").val();
+                var dataFecha = $("#dataFecha").val();
+
+                var tamDataFracc = data_fracc.length;
+
+                if(data_fracc.length >0)
+                {
+                    ultimoPago = data_fracc[tamDataFracc-1].fecha.substr(0,4) + data_fracc[tamDataFracc-1].fecha.substr(5,2);
+                }
+
+                console.log("---->"+ultimoPago);
+                var fechaComparacion = new Date(ultimoPago.substr(0,4), e[ultimoPago.substr(4,2)], '01');
+
+                var fechaActual = new Date(dataFecha.substr(0,4),e[dataFecha.substr(5,2)],dataFecha.substr(8,2));
+                
+                var totalDeudaAp = 0;
+                for(var k = 1 ; ; k++)
+                {
+
+                    fechaComparacion.setMonth( fechaComparacion.getMonth() + 1 );
+
+                    if(fechaComparacion <= fechaActual){}
+                    else{ break;}
+
+                    var montoBitacora = 0;
+                    for(var i=bitacoraPago.length-1; i >=0 ; i--)
+                    {
+                        var fechaBitacora = new Date(bitacoraPago[i].dFechaIni.substr(0,4),e[bitacoraPago[i].dFechaIni.substr(5,2)],bitacoraPago[i].dFechaIni.substr(8,2));
+                        if(fechaComparacion >= fechaBitacora)
+                        {
+                            montoBitacora=bitacoraPago[i].nMonto;
+                            
+                            break;
+                        }
+                        
+                    }
+                    
+                    totalDeudaAp += montoBitacora;                            
+                    //ind_tr++;
+                
+                }
+
+                datTabla +=  "<tr>"+
+                                
+                                "<td>"+(ind++)+
+                                "</td>"+
+                                "<td>"+"Aportaciones"+
+                                "</td>"+
+                                "<td>"+totalDeudaAp+
+                                "</td>"+
+
+                                "</tr>";
+
+                cad += datTabla + "<tbody></table></div>";
+                
+                $("#ctabDeuda").html(cad);
+            }
+            function fnReportFracc(dataReport)
+            {
+                $("#ctabFracc").html('');
+                cad = " <table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Nro. Documento </th>"+
+                                "<th> Fecha </th>"+
+                                "<th> Deuda Total </th>"+
+                                "<th> Nro. Cuotas </th>"+
+                                "<th> Usuario</th>"+
+                                "<th> Estado</th>"+
+                                "<th> Imprimir</th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < dataReport.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataReport[i].nroDocumento+
+                                "</td>"+
+                                "<td>"+dataReport[i].fechaCreacion+
+                                "</td>"+
+                                "<td>"+dataReport[i].totalDeuda+
+                                "</td>"+
+                                "<td>"+dataReport[i].nroCuotas+
+                                "</td>"+
+                                "<td>"+dataReport[i].name+
+                                "</td>"+
+                                "<td>"+dataReport[i].estado+
+                                "</td>"+
+                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
+                                "</td>"+
+                                "</tr>";
+
+                }
+
+                cad += datTabla + "<tbody></table>";
+                
+                $("#ctabFracc").html(cad);
+            }
+            function fnReportMultas(dataReport)
+            {
+                $("#ctabMultas").html('');
+                cad = " <table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Descripción </th>"+
+                                "<th> Periodo </th>"+
+                                "<th> Monto </th>"+
+                                "<th> Resolución </th>"+
+                                "<th> Usuario</th>"+
+                                "<th> Fecha</th>"+
+                                "<th> Estado</th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < dataReport.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataReport[i].descripcion+
+                                "</td>"+
+                                "<td>"+dataReport[i].periodoPago+
+                                "</td>"+
+                                "<td>"+dataReport[i].montoPago+
+                                "</td>"+
+                                "<td>"+dataReport[i].resTipoPago+
+                                "</td>"+
+                                "<td>"+dataReport[i].name+
+                                "</td>"+
+                                "<td>"+dataReport[i].fechaCreacion+
+                                "</td>"+
+                                "<td>"+dataReport[i].estado+
+                                "</td>"+
+                                "</tr>";
+
+                }
+
+                cad += datTabla + "<tbody></table>";
+                
+                $("#ctabMultas").html(cad);
+            }
+            function fnReportCertificado(dataReport)
+            {
+                $("#ctabCertificado").html('');
+                cad = " <table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Tipo de Certificado </th>"+
+                                "<th> Especialidad</th>"+
+                                "<th> Asunto</th>"+
+                                "<th> Nro. Recibo </th>"+
+                                "<th> Fecha</th>"+
+                                "<th> Nro.</th>"+
+                                "<th> Imprimir</th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < dataReport.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataReport[i].conceptoPago+
+                                "</td>"+
+                                "<td>"+dataReport[i].valor+
+                                "</td>"+
+                                "<td>"+dataReport[i].asunto+
+                                "</td>"+
+                                "<td>"+dataReport[i].recibo+
+                                "</td>"+
+                                "<td>"+dataReport[i].fecha+
+                                "</td>"+
+                                "<td>"+dataReport[i].nroConstancia+
+                                "</td>"+
+                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
+                                "</td>"+
+                                "</tr>";
+
+                }
+
+                cad += datTabla + "<tbody></table>";
+                
+                $("#ctabCertificado").html(cad);
+            }
+            function fnReportFecha(dataReport)
+            {
+                $("#ctabPorFecha").html('');
+                cad = " <table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Nro. Recibo </th>"+
+                                "<th> Fecha </th>"+
+                                "<th> Total </th>"+
+                                "<th> Usuario </th>"+
+                                "<th> Imprimir </th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < dataReport.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataReport[i].recibo+
+                                "</td>"+
+                                "<td>"+dataReport[i].fechaPago+
+                                "</td>"+
+                                "<td>"+dataReport[i].total+
+                                "</td>"+
+                                "<td>"+dataReport[i].name+
+                                "</td>"+
+                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
+                                "</td>"+
+                                "</tr>";
+
+                }
+
+                cad += datTabla + "<tbody></table>";
+                
+                $("#ctabPorFecha").html(cad);
+            }
+
+            function fnPrintInformacion(deuda,fraccionamiento,habilidad)
+            {
+                informacion = "";
+                console.log("habilidad->"+habilidad);   
+                
+                    infoHabilidad ='<label class="control-label" style="color: #05c3d9; font-weight: bold"> ('+habilidad+') </label>';
+                if(habilidad == 'NO HABIL')
+                {
+                    infoHabilidad ='<label class="control-label" style="color: red; font-weight: bold"> ('+habilidad+') </label>';
+                }
+                
+                    informacion+=infoHabilidad;
+                if(fnTieneDeuda(deuda))
+                {
+                    informacion+='<label class="control-label lbinformacion" > (Multa) </label>';
+                }
+                if(fnTieneFracc(fraccionamiento))
+                {
+                    informacion+='<label class="control-label lbinformacion" > (Fraccionamiento)</label>';
+                }
+
+                $("#lbinformacion").html("Condición: "+informacion);
+
+
+                var contMultas = deuda.length;
+
+                if(contMultas>0)
+                {
+                    
+                    $("#tabMultas").html("Multas<span class='badge badge-danger'> "+contMultas+" </span>");
+                }
+                else
+                {
+                    $("#tabMultas").html("Multas");   
+                }
+
+                var contFracc = fraccionamiento.length;
+
+                if(contFracc > 0)
+                {
+                    $("#tabFraccionamiento").html("Fraccionamiento<span class='badge badge-blue'> 1 </span>");
+                }
+                else
+                {
+                    $("#tabFraccionamiento").html("Fraccionamiento");
+                }
+
+            }
+
+            function fnHabilitar()
+            {
+                var ultimoPago = $("#ultimoPago").val();
+                var dataFecha = $("#dataFecha").val();
+
+                var fechaComparacion = new Date(ultimoPago.substr(0,4), e[ultimoPago.substr(4,2)], '01');
+
+                var fechaActual = new Date(dataFecha.substr(0,4),e[dataFecha.substr(5,2)],dataFecha.substr(8,2));
+                console.log("fActual->"+fechaActual);
+                for(var k = 1 ; ; k++)
+                {
+
+                    fechaComparacion.setMonth( fechaComparacion.getMonth() + 1 );
+
+                    if(fechaComparacion <= fechaActual){}
+                    else{ break;}
+
+                    var montoBitacora = 0;
+                    for(var i=bitacoraPago.length-1; i >=0 ; i--)
+                    {
+                        var fechaBitacora = new Date(bitacoraPago[i].dFechaIni.substr(0,4),e[bitacoraPago[i].dFechaIni.substr(5,2)],bitacoraPago[i].dFechaIni.substr(8,2));
+                        if(fechaComparacion >= fechaBitacora)
+                        {
+                            montoBitacora=bitacoraPago[i].nMonto;
+                            
+                            break;
+                        }
+                        
+                    }
+                    periodoMesPrint = fechaComparacion.getFullYear()+''+monthJ_mN[fechaComparacion.getMonth()];
+                    console.log("Date->"+k+"->"+periodoMesPrint);
+
+                    var markup = "<tr id='tr_"+ind_tr+"'>"+
+                                    
+                                    "<td>"+periodoMesPrint+
+                                    "<input type='hidden' name='pMes[]' value='"+periodoMesPrint+"'>"+
+                                    "</td>"+
+                                    "<td>"+"Aportación"+
+                                    "<input type='hidden' name='idConceptoPago[]' value='"+"01"+"'>"+
+                                    "</td>"+
+                                    "<td>"+montoBitacora+
+                                    "<input type='hidden' name='individualPago[]' value='"+montoBitacora+"'>"+
+                                    "</td>"+
+                                    "<td><button type='button' class='btn btn-transparent red btn-outline btn-circle btn-sm active' onclick='deletePago("+ind_tr+");'> Quitar </button></td>"+
+                                "</tr>";
+                        ind_tr++;
+                        $("#tablePagos").append(markup);
+                }
+                calculaTotal();
+
+            }
+
+            function cleanTablePagos()
+            {
+                $("#tablePagosBody").html('');
+                $("#totalPago").val(0);
+                ind_tr = 0;
+                $("#montoRecibido").val('');
+                $("#dTotalCambio").html("<h4>Cambio: <b>S/ 0.00 </b></h4>");
+                
+            }
+
+            function cleanCalculadora()
+            {
+                $("#montoRecibido").val('');
+                $("#dTotalCambio").html("<h4>Cambio: <b>S/ 0.00 </b></h4>");
+            }
+
+            function callActionName(codigoCIP)
+            {
+
+                $('#modalColegiados').modal('hide');
+                $("#tipoBusqueda option:selected").removeAttr("selected");
+                $("#tipoBusqueda option[value=3]").attr('selected', 'selected');
+
+                $("#textoBusqueda").val(codigoCIP);
+                
+                busquedaColegiado();
+    
+            }
+
+            $(document).ready(function() {
+                
+            $('#frmBusqueda').submit(function(event) { //Trigger on form submit
+                     
+
+                    var tipoBusqueda = $("#tipoBusqueda").val();
+                    var textoBusqueda = $("#textoBusqueda").val();
+
+                    if(tipoBusqueda == '3')
+                    {
+                        busquedaNombre();
+                    }
+                    else
+                    {
+                        busquedaColegiado();
+                    }
+
+                   
+                    event.preventDefault(); //Prevent the default submit
+
+                    
+                });
+
+            
+            $("#conceptoPago" ).change( function() {
+                    console.log($(this).val());
+                    //var datoMonto = $("#"+$(this).val()).val();
+                    
+                    $("#totalConcepto").val(mapOption[$(this).val()]);
+
+                });
+
+            
+
+            $('#frmPagos').submit(function(event) { //Trigger on form submit
+                
                 var periodoMes = $("input[name='pMes[]']").map(function(){return $(this).val();}).get();
                 var conceptoPago = $("input[name='idConceptoPago[]']").map(function(){return $(this).val();}).get();
                 var ultimoPago = $("#ultimoPago").val();
@@ -1157,21 +1872,60 @@ License: You must have a valid license purchased only from themeforest(the above
                     alert("No se puede guardar una secuencia de meses incorrectos.");
                 }
                     /*
-			       
+                   
 
                     */
-			        event.preventDefault(); //Prevent the default submit
+                    event.preventDefault(); //Prevent the default submit
                     
-			        
-			    });
+                    
+                });
 
-			});
-            function readSelecOption(lista1, lista2, lista3)
+            });
+            
+            function fnTieneDeuda(dataDeuda)
+            {
+                flag = false;
+                console.log("tam->"+dataDeuda.length);
+                if(dataDeuda.length>0)
+                {
+                    flag = true;
+                }
+
+                return flag;
+            }
+
+            function fnTieneFracc(dataFracc)
+            {
+                flag = false;
+
+                if(dataFracc.length>0)
+                {
+                    flag = true;
+                }
+
+                return flag;
+            }
+
+
+            function readSelecOption(lista1, lista2, lista3, habilidad)
             {
                 $("#conceptoPago").html('');
                 selecPOption = lista1;
                 
-                var flagDeuda = false; 
+
+                var flagCondicion = false;
+                var flagDeuda = fnTieneDeuda(lista1);
+                var flagCondConstancia = false;
+
+                if(habilidad == 'NO HABIL' || flagDeuda == true)
+                {
+                    flagCondicion = true;
+                }
+
+                if(lista2.length > 0 || flagDeuda == true)
+                {
+                    flagCondConstancia = true;
+                }
 
                 Array.prototype.push.apply(selecPOption, lista2);
                 Array.prototype.push.apply(selecPOption, lista3);
@@ -1190,7 +1944,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         markup = '<option value="'+selecPOption[i].idConceptoPago+'" selected="selected">'+selecPOption[i].conceptoPago+'</option>';
                     }
 
-                    if((idFDeuda == '91' || idFDeuda == '92' || idFDeuda == '90') && flagDeuda == true)
+                    if((idFDeuda == '91' || idFDeuda == '92' || idFDeuda == '90') && flagCondicion == true)
+                    {
+                        markup = '';
+                    }
+
+                    if(idFDeuda == '17' && flagCondConstancia == true)
                     {
                         markup = '';
                     }
@@ -1203,51 +1962,51 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#totalConcepto").val(mapOption['01']);
 
             }
-		</script>
+        </script>
 
-		<script type="text/javascript">
-			function calculaTotal()
-        	{	var totalMonto = 0;
-        		
-        		var monto = $("input[name='individualPago[]']").map(function(){return $(this).val();}).get();
-        		monto.forEach(function(element) {
-        			totalMonto=totalMonto+parseFloat(element);
-        		});
-        		
+        <script type="text/javascript">
+            function calculaTotal()
+            {   var totalMonto = 0;
+                
+                var monto = $("input[name='individualPago[]']").map(function(){return $(this).val();}).get();
+                monto.forEach(function(element) {
+                    totalMonto=totalMonto+parseFloat(element);
+                });
+                
 
-        		console.log(totalMonto);
-        		$("#totalPago").val(totalMonto);
+                console.log(totalMonto);
+                $("#totalPago").val(totalMonto);
 
                 $("#dTotalPago").html("<h3>Total Pago <b>S/ "+totalMonto+"</b></h3>");
 
-        		//for (var i = 0; i <inps.length; i++) {
-        	}
+                //for (var i = 0; i <inps.length; i++) {
+            }
 
-			function fnAgregar()
-			{
-				var periodo = $("#periodo").val();
-				var periodoMes = $("#periodoMes").val();
-				var idConceptoPago = $("#conceptoPago").val();
-				var conceptoPago = $( "#conceptoPago option:selected" ).text();
-				var totalConcepto = $("#totalConcepto").val();
+            function fnAgregar()
+            {
+                var periodo = $("#periodo").val();
+                var periodoMes = $("#periodoMes").val();
+                var idConceptoPago = $("#conceptoPago").val();
+                var conceptoPago = $( "#conceptoPago option:selected" ).text();
+                var totalConcepto = $("#totalConcepto").val();
 
                 var ultimoPago = $("#ultimoPago").val();
 
 
                 var valCont = 0;
 
-				periodoMes.forEach(function(element) {
-				  
+                periodoMes.forEach(function(element) {
+                  
                   var pmes = periodo+element;
 
                     if(pmes <= ultimoPago )
                     {
-                        console.log('No puede ser menor');
+                        console.log('No puede ser menor.');
                         valCont ++;
                     }
                     else
                     {
-                        var markup = "<tr>"+
+                        var markup = "<tr id='tr_"+ind_tr+"'>"+
                                     
                                     "<td>"+pmes+
                                     "<input type='hidden' name='pMes[]' value='"+pmes+"'>"+
@@ -1258,33 +2017,42 @@ License: You must have a valid license purchased only from themeforest(the above
                                     "<td>"+totalConcepto+
                                     "<input type='hidden' name='individualPago[]' value='"+totalConcepto+"'>"+
                                     "</td>"+
-                                    "<td><input type='checkbox' name='record'></td>"+
+                                    "<td><button type='button' class='btn btn-transparent red btn-outline btn-circle btn-sm active' onclick='deletePago("+ind_tr+");'> Quitar </button></td>"+
                                 "</tr>";
-
+                        ind_tr++;
                         $("#tablePagos").append(markup);   
                     }
 
 
-				});
+                });
 
                 if(valCont > 0)
                 {
                     alert("El mes de pago no puede ser menor al Ultimo pago realizado");
                 }
 
-				calculaTotal();
-			}
-
-			function fnQuitar()
-			{
-				$("#tablePagos").find('input[name="record"]').each(function(){
-            	if($(this).is(":checked")){
+                calculaTotal();
+                cleanCalculadora();
+            }
+            function deletePago(ind)
+            {
+                $( "#tr_"+ind ).remove();
+                calculaTotal();
+                cleanCalculadora();
+            }
+            function fnQuitar()
+            {
+                cleanTablePagos();
+                /*
+                $("#tablePagos").find('input[name="record"]').each(function(){
+                if($(this).is(":checked")){
                     $(this).parents("tr").remove();
                 }
-            	});
+                });*/
 
-            	calculaTotal();
-			} 
+                calculaTotal();
+                cleanCalculadora();
+            } 
 
             function fnCalculadora()
             {
@@ -1300,17 +2068,17 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#dTotalCambio").html("<h4>Cambio: <b>S/ "+cambio+"</b></h4>");
               
             });
-			
+            
 
-		</script>
+        </script>
 
-		<script type="text/javascript">
-		
-		// DO NOT REMOVE : GLOBAL FUNCTIONS!
-		
-		$(document).ready(function() {
-			
-			//pageSetUp();
+        <script type="text/javascript">
+        
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        
+        $(document).ready(function() {
+            
+            //pageSetUp();
             $("#myModal").on('hidden.bs.modal', function () {
             
             location.reload();
@@ -1319,11 +2087,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
             $('.datepicker').datepicker();
 
-		})
+        })
 
 
 
-		</script>
+        </script>
+        <!-- END THEME LAYOUT SCRIPTS -->
     </body>
 
 </html>

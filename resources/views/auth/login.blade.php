@@ -67,7 +67,7 @@
 				</ul>
 			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
 				<h1 class="txt-color-red login-header-big">
-					Colegio de Ingenieros cede Puno
+					Colegio de Ingenieros CD Puno
 				</h1>
 				
 
@@ -116,7 +116,7 @@
 							<section>
 								<label class="label">{{ __('Correo electrónico') }}</label>
 								<label class="input"> <i class="icon-append fa fa-user"></i>
-									<input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+									<input id="email" type="email" name="email" value="admin@gmail.com" required autofocus>
 									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
 									@if ($errors->has('email'))
 										<span class="invalid-feedback" role="alert">
@@ -128,7 +128,7 @@
 							<section>
 								<label class="label">{{ __('Contraseña') }}</label>
 								<label class="input"> <i class="icon-append fa fa-lock"></i>
-									<input id="password" type="password" name="password" required>
+									<input id="password" type="password" value="123456789" name="password" required>
 									<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
 									@if ($errors->has('password'))
 										<span class="invalid-feedback" role="alert">

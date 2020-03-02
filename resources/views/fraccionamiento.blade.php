@@ -19,39 +19,58 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Metronic | Typography</title>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+        
+        <title>SISTEMA DE ADMINISTRACION FINANCIERA</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-
-
-        <link href="assets/global/plugins/datepicker/datepicker.css" rel="stylesheet" type="text/css" />
-        
-
-
+        <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="favicon.ico" /> 
+        <style type="text/css">
+            .my-custom-scrollbar {
+            position: relative;
+            height: 200px;
+            overflow: auto;
+            }
+            .table-wrapper-scroll-y {
+            display: block;
+            }
+
+            .lbinformacion {
+                color: orange; 
+                font-weight: bold;                
+            }
+
+
+        </style>
+        
+        </head>
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -59,7 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <img src="../assets/layouts/layout/img/logocip1.png" width="170"/> </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
                     </div>
@@ -192,7 +211,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">Just Now </span>
@@ -203,7 +222,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">16 mins </span>
@@ -214,7 +233,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
                                                     <span class="time">2 hrs </span>
@@ -225,7 +244,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">40 mins </span>
@@ -236,7 +255,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">46 mins </span>
@@ -251,13 +270,120 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- END INBOX DROPDOWN -->
                         <!-- BEGIN TODO DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        
+                        <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-calendar"></i>
+                                <span class="badge badge-default"> 3 </span>
+                            </a>
+                            <ul class="dropdown-menu extended tasks">
+                                <li class="external">
+                                    <h3>You have
+                                        <span class="bold">12 pending</span> tasks</h3>
+                                    <a href="app_todo.html">view all</a>
+                                </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">New release v1.2 </span>
+                                                    <span class="percent">30%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">40% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">Application deployment</span>
+                                                    <span class="percent">65%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">65% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">Mobile app release</span>
+                                                    <span class="percent">98%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">98% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">Database migration</span>
+                                                    <span class="percent">10%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">10% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">Web server upgrade</span>
+                                                    <span class="percent">58%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">58% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">Mobile development</span>
+                                                    <span class="percent">85%</span>
+                                                </span>
+                                                <span class="progress">
+                                                    <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">85% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="task">
+                                                    <span class="desc">New UI release</span>
+                                                    <span class="percent">38%</span>
+                                                </span>
+                                                <span class="progress progress-striped">
+                                                    <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">38% Complete</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                         <!-- END TODO DROPDOWN -->
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
                                 <span class="username username-hide-on-mobile"> Nick </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -356,50 +482,109 @@ License: You must have a valid license purchased only from themeforest(the above
                             </form>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start ">
+                        
+                        <li class="heading">
+                            <h3 class="uppercase">Modulos</h3>
+                        </li>
+                       
+                        <li class="nav-item  start">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-home"></i>
-                                <span class="title">Dashboard</span>
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Colegiados</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item start ">
-                                    <a href="index.html" class="nav-link ">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="title">Dashboard 1</span>
+                                <li class="nav-item  ">
+                                    <a href="/user/create" class="nav-link ">
+                                        <span class="title">Registro</span>
                                     </a>
                                 </li>
-                                <li class="nav-item start ">
-                                    <a href="dashboard_2.html" class="nav-link ">
-                                        <i class="icon-bulb"></i>
-                                        <span class="title">Dashboard 2</span>
-                                        <span class="badge badge-success">1</span>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Busqueda</span>
+                                        <span class="badge badge-danger">2</span>
                                     </a>
                                 </li>
-                                <li class="nav-item start ">
-                                    <a href="dashboard_3.html" class="nav-link ">
-                                        <i class="icon-graph"></i>
-                                        <span class="title">Dashboard 3</span>
-                                        <span class="badge badge-danger">5</span>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link ">
+                                        <span class="title">Actualización</span>
                                     </a>
                                 </li>
+                               
                             </ul>
                         </li>
-                        
-                        <li class="nav-item  active open">
+
+                        <li class="nav-item active open">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-diamond"></i>
-                                <span class="title">Fraccionamiento</span>
+                                <span class="title">Pagos</span>
                                 <span class="selected"></span>
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="ui_colors.html" class="nav-link ">
+                                <li class="nav-item ">
+                                    <a href="/pagos" class="nav-link ">
+                                        <span class="title">Pagos</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="/fraccionamiento" class="nav-link ">
                                         <span class="title">Fraccionamiento</span>
                                     </a>
                                 </li>
                             </ul>    
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Facturacion</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
+                                        <span class="title">Ingreso
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">Resumen Diario
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                         <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Reporte</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="form_controls.html" class="nav-link ">
+                                        <span class="title">bUsqueda
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">General
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                       <li> 
+                           </li>
+                            </ul>
                         </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
@@ -412,18 +597,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    <!-- BEGIN PAGE HEADER-->
-                    
-                    <!-- BEGIN PAGE BAR -->
-                    
-                    <!-- END PAGE BAR -->
-                    <!-- BEGIN PAGE TITLE-->
-                    <!--h3 class="page-title"> Typography
-                        <small>texts, headings, lists and more</small>
-                    </h3-->
-                    
-                    <!-- END PAGE TITLE-->
-                    <!-- END PAGE HEADER-->
                     <div class="row">
                         <div class="col-md-12">
                             <div>
@@ -432,7 +605,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-title">
                                         <div class="caption">
                                             <i class="icon-social-dribbble font-blue-sharp"></i>
-                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: aportaciones</span>
+                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Fraccionamiento</span>
                                         </div>
                                         <div class="actions">
                                             <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
@@ -447,6 +620,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="portlet-body">
+                                        
                                         <div class="row">
                                         <form id="frmBusqueda" class="form-horizontal" role="form">
 
@@ -455,23 +629,28 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="form-group">
                                                 
                                                 <div class="col-md-2">
-													<select class="form-control input-sm" name="tipoBusqueda">
-														
-														<option value="1" selected="" >Código CIP</option>
-														<option value="2">DNI</option>
-														<option value="3">Nombre</option>
-														
-													</select> <i></i> 
-												</div>
+                                                    <select class="form-control input-sm" name="tipoBusqueda" id="tipoBusqueda">
+                                                        
+                                                        <option value="1" selected="" >Código CIP</option>
+                                                        <option value="2">DNI</option>
+                                                        <option value="3">Nombre</option>
+                                                        
+                                                    </select> <i></i> 
+                                                </div>
                                                 <div class="col-md-3">
                                                 
                                                     
-                                                    <input type="text" class="form-control input-sm"  name="textoBusqueda"placeholder="Datos de Búsqueda"> </div>
+                                                    <input type="text" class="form-control input-sm"  name="textoBusqueda" id="textoBusqueda" placeholder="Datos de Búsqueda"> </div>
                                                     
                                                 
                                                 <div class="col-md-1">
                                                     <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Buscar</button>
                                                 </div>
+
+                                                <div class="col-md-3" class="alert alert-info" id="lbinformacion" >
+                                                    
+                                                </div>
+
                                             </div>
                                             
                                         </div>
@@ -564,19 +743,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                                  <label class="control-label col-md-2">Total Deuda S/.</label>
                                                 <div class="col-md-2">
                                                 <input type="text" name="deudaTotal" id="deudaTotal" placeholder="Total Deuda" value="" class="form-control input-sm">
-                                            	</div>
+                                                </div>
                                             </div>
                                             </br>
                                             <div class="row">
-                                            	<label class="control-label col-md-1">Nro. Documento</label>
+                                                <label class="control-label col-md-1">Nro. Documento</label>
                                                 <div class="col-md-1">
                                                 <input type="text" name="nroDocumento" id="nroDocumento" class="form-control input-sm">
-                                            	</div>
+                                                </div>
                                                 <div class="col-md-1">
                                                 <input type="text" name="anioNroDocumento" id="anioNroDocumento" class="form-control input-sm">
                                                 </div>
 
-                                            	<label class="control-label col-md-1">Observaciones</label>
+                                                <label class="control-label col-md-1">Observaciones</label>
                                                 <div class="col-md-2">
                                                 
                                                 <input type="text" name="Observaciones" class="form-control input-sm">
@@ -618,18 +797,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div><br>
                                             
                                             <div class="row">
-	                                            <div class="col-md-7">
-	                                            	
-	                                            </div>
-	                                            <div class="col-md-4">
-	                                            	<a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
-													<a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a>
+                                                <div class="col-md-7">
+                                                    
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
+                                                    <a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a>
 
                                                     <button type="submit" class="btn btn-circle blue btn-sm " href="javascript:void(0);">Grabar</button>
 
                                                     
-	                                            </div>
-                                            	
+                                                </div>
+                                                
                                             </div>
 
                                             <div class="row">
@@ -656,15 +835,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                             
                                                 </div>  
                                             </div>
-                                            	
+                                                
                                             </div>
 
 
                                         </div>
                                         </form>
-
-                                 
-                                        
                                         
                                     </div>
                                 </div>
@@ -675,6 +851,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         
                     </div>
+
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -685,14 +862,11 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
             <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
                 <div class="page-quick-sidebar">
-                    
-                    
                 </div>
             </div>
             <!-- END QUICK SIDEBAR -->
         </div>
-        <!-- END CONTAINER -->
-        <!-- BEGIN FOOTER -->
+
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
             
@@ -723,6 +897,46 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
         </div>
 
+        <div class="modal fade bs-modal-lg in" id="modalColegiados" role="dialog">
+            <div class="modal-dialog modal-lg">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Colegio de Ingenieros del Perú - Consejo Departamental Puno
+</h4>
+                </div>
+                <div class="modal-body">
+                  
+                <div class="table-scrollable table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Apellidos y Nombres </th>
+                                <th> DNI</th>
+                                <th> Codigo CIP </th>
+                                <th> Acción </th>
+                            </tr>
+                        </thead>
+                        <tbody id = "tableColegiados">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+
         <div class="modal fade" id="modalCalculadora" role="dialog">
             <div class="modal-dialog">
             
@@ -742,7 +956,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     
                 </div>
-                <div class="row">
+                <!--div class="row">
                     <div class="col-md-4">
                         <h5><b>Ingrese monto recibido:</b></h5>
                     </div>
@@ -755,7 +969,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                         
                     </div>   
-                </div>
+                </div-->
                 
                 </div>
                 <div class="modal-footer">
@@ -766,7 +980,8 @@ License: You must have a valid license purchased only from themeforest(the above
               
             </div>
         </div>
-
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
                 <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
@@ -777,10 +992,11 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
-<script src="assets/global/plugins/respond.min.js"></script>
-<script src="assets/global/plugins/excanvas.min.js"></script> 
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <!--script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script-->
@@ -807,8 +1023,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT SCRIPTS -->
 
 
+
+        <!--script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script-->
+
         <script type="text/javascript">
-			
+            
             var bitacoraPago;
             var mes = 0;
             var total_deuda = 0.0;
@@ -844,36 +1063,76 @@ License: You must have a valid license purchased only from themeforest(the above
             month[10] = "Noviembre";
             month[11] = "Diciembre";
 
-			$(document).ready(function() {
-				
-    		$('#frmBusqueda').submit(function(event) { //Trigger on form submit
-    			
-			       var token = $("#token").val();
+            function busquedaNombre()
+            {
+                var token = $("#token").val();
 
-			        $.ajax({ //Process the form using $.ajax()
-			            type      : 'POST', //Method type
-			            url       : 'busquedaColegiadosFrac', //Your form processing file URL
-			            headers   : {'X-CSRF-TOKEN':token},
-			            data      : $('#frmBusqueda').serialize(), //Forms name
-			            dataType  : 'json',
-			            success   : function(data) {
-			                            if (data.success) { //If fails
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'busquedaColegiadosNombre', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmBusqueda').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            $("#tableColegiados").html("");                                            
+                                            
+                                            datos = data.data;
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                markup = "<tr>"+
+                                                    "<td> "+(i+1)+" </td>"+
+                                                    "<td> "+datos[i].nombres+"</td>"+
+                                                    "<td> "+datos[i].dni+"</td>"+
+                                                    "<td> "+datos[i].codigoCIP+"</td>"+
+                                                    "<td>"+
+                                                        "<button type='button' class='btn btn-transparent green btn-outline btn-circle btn-sm active'  onclick='callActionName("+datos[i].codigoCIP+");'> Aceptar </button>"+
+                                                    "</td>"+
+                                                "</tr>";
+
+                                                $("#tableColegiados").append(markup);
+                                            }
+
+                                            
+                                            $('#modalColegiados').modal('show');
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                        }
+
+                                    }
+                    });
+            }
+
+            function busquedaColegiado()
+            {
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'busquedaColegiadosFrac', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmBusqueda').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
 
                                             $("#dDetallePago").css('visibility', 'visible');
 
-			                            	var datos=data.mensaje;
+                                            var datos=data.mensaje;
                                             var fdata=data.fpdata;
-			                                var nTotalDeuda= data.nTotalDeuda;
+                                            var nTotalDeuda= data.nTotalDeuda;
                                             var dataFrac = data.nroRecibo;
-			                                
+                                            
                                             bitacoraPago = data.bitacoraPago;
 
 
-			                                $("#nombreColegiado").val(datos[0].nombres);
+                                            $("#nombreColegiado").val(datos[0].nombres);
 
-			                                $("#codigoColegiado").val(datos[0].codigoCIP);
-			                                
-			                                $("#condicionColegiado").val(datos[0].estadoHabil);
+                                            $("#codigoColegiado").val(datos[0].codigoCIP);
+                                            
+                                            $("#condicionColegiado").val(datos[0].estadoHabil);
 
                                             $("#dataFecha").val(datos[0].fechaActual);
 
@@ -887,10 +1146,14 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                             $("#nroDocumento").val(dataFrac);
 
-                                            $("#anioNroDocumento").val(datos[0].fechaActual.substr(0,4));    
-			                                
-			                            }
-			                            else {
+                                            $("#anioNroDocumento").val(datos[0].fechaActual.substr(0,4));
+
+                                            var conceptoPFrac = data.conceptoPagoFrac;
+
+                                            fnPrintInformacion(data.conceptoPagoDeuda,conceptoPFrac, datos[0].estadoHabil);  
+                                            
+                                        }
+                                        else {
 
                                             $("#nombreColegiado").val('');
 
@@ -914,28 +1177,111 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                                 $("#dDetallePago").css('visibility', 'hidden');
 
-			                                    alert(data.mensaje);
-			                                }
-			                            }
-			        });
-			        event.preventDefault(); //Prevent the default submit
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+            }
 
-			        
-			    });
+            function fnPrintInformacion(deuda,fraccionamiento,habilidad)
+            {
+                informacion = "";
+                console.log("habilidad->"+habilidad);   
+                
+                    infoHabilidad ='<label class="control-label" style="color: #05c3d9; font-weight: bold"> ('+habilidad+') </label>';
+                if(habilidad == 'NO HABIL')
+                {
+                    infoHabilidad ='<label class="control-label" style="color: red; font-weight: bold"> ('+habilidad+') </label>';
+                }
+                
+                    informacion+=infoHabilidad;
+                if(fnTieneDeuda(deuda))
+                {
+                    informacion+='<label class="control-label lbinformacion" > (Multa) </label>';
+                }
+                if(fnTieneFracc(fraccionamiento))
+                {
+                    informacion+='<label class="control-label lbinformacion" > (Fraccionamiento)</label>';
+                }
 
-    		
-    		$("#conceptoPago" ).change( function() {
-				    console.log($(this).val());
-				    var datoMonto = $("#"+$(this).val()).val();
-				    
-				    $("#totalConcepto").val(datoMonto);
+                $("#lbinformacion").html("Condición: "+informacion);
+            }
 
-				});
+            function fnTieneDeuda(dataDeuda)
+            {
+                flag = false;
+                console.log("tam->"+dataDeuda.length);
+                if(dataDeuda.length>0)
+                {
+                    flag = true;
+                }
 
-    		
+                return flag;
+            }
 
-    		$('#frmPagos').submit(function(event) { //Trigger on form submit
-    			
+            function fnTieneFracc(dataFracc)
+            {
+                flag = false;
+
+                if(dataFracc.length>0)
+                {
+                    flag = true;
+                }
+
+                return flag;
+            }
+
+            function callActionName(codigoCIP)
+            {
+
+                $('#modalColegiados').modal('hide');
+                $("#tipoBusqueda option:selected").removeAttr("selected");
+                $("#tipoBusqueda option[value=3]").attr('selected', 'selected');
+
+                $("#textoBusqueda").val(codigoCIP);
+                
+                busquedaColegiado();
+    
+            }
+
+            $(document).ready(function() {
+                
+            $('#frmBusqueda').submit(function(event) { //Trigger on form submit
+                
+                    
+                    var tipoBusqueda = $("#tipoBusqueda").val();
+                    var textoBusqueda = $("#textoBusqueda").val();
+
+                    console.log("tipoBusqueda->"+ tipoBusqueda);
+
+                    if(tipoBusqueda == '3')
+                    {
+                        busquedaNombre();
+                        console.log("busquedaNombre");
+                    }
+                    else
+                    {
+                        console.log("busquedaOtro");
+                        busquedaColegiado();
+                    }
+
+                    event.preventDefault(); //Prevent the default submit
+                    
+                });
+
+            
+            $("#conceptoPago" ).change( function() {
+                    console.log($(this).val());
+                    var datoMonto = $("#"+$(this).val()).val();
+                    
+                    $("#totalConcepto").val(datoMonto);
+
+                });
+
+            
+
+            $('#frmPagos').submit(function(event) { //Trigger on form submit
+                
 
                 var formElement = document.getElementById("frmPagos");
                 var data = new FormData(formElement);
@@ -967,38 +1313,38 @@ License: You must have a valid license purchased only from themeforest(the above
                     });
                 
                     /*
-			       
+                   
 
                     */
-			        event.preventDefault(); //Prevent the default submit
+                    event.preventDefault(); //Prevent the default submit
                     
-			        
-			    });
+                    
+                });
 
-			});
+            });
 
-		</script>
+        </script>
 
-		<script type="text/javascript">
-			function calculaTotal()
-        	{	var totalMonto = 0;
-        		
-        		var monto = $("input[name='individualPago[]']").map(function(){return $(this).val();}).get();
-        		monto.forEach(function(element) {
-        			totalMonto=totalMonto+parseFloat(element);
-        		});
-        		
+        <script type="text/javascript">
+            function calculaTotal()
+            {   var totalMonto = 0;
+                
+                var monto = $("input[name='individualPago[]']").map(function(){return $(this).val();}).get();
+                monto.forEach(function(element) {
+                    totalMonto=totalMonto+parseFloat(element);
+                });
+                
 
-        		console.log(totalMonto);
-        		$("#totalPago").val(totalMonto);
+                console.log(totalMonto);
+                $("#totalPago").val(totalMonto);
 
                 $("#dTotalPago").html("<h3>Total Pago <b>S/ "+totalMonto+"</b></h3>");
 
-        		//for (var i = 0; i <inps.length; i++) {
-        	}
+                //for (var i = 0; i <inps.length; i++) {
+            }
 
-			function fnAgregar()
-			{
+            function fnAgregar()
+            {
                 mes++;
 
                 var selectCuota = $( "#selectCuota").val();
@@ -1013,7 +1359,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 fechaComparacion.setMonth( fechaComparacion.getMonth() + mes );
 
                 console.log('->'+mes);
-				for(var i=bitacoraPago.length-1; i >=0 ; i--)
+                for(var i=bitacoraPago.length-1; i >=0 ; i--)
                 {
                     var fechaBitacora = new Date(bitacoraPago[i].dFechaIni.substr(0,4),e[bitacoraPago[i].dFechaIni.substr(5,2)],bitacoraPago[i].dFechaIni.substr(8,2));
                     if(fechaComparacion >= fechaBitacora)
@@ -1098,11 +1444,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     $box.prop("checked", false);
                   }
                 });
-				//calculaTotal();
-			}
+                //calculaTotal();
+            }
 
-			function fnQuitar()
-			{
+            function fnQuitar()
+            {
                 var indice = 999;
                 indice = $('input:checkbox[name=record]:checked').val();
                 
@@ -1162,16 +1508,16 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                 /*
-				$("#tablePagos").find('input[name="record"]').each(function(){
-            	if($(this).is(":checked")){
+                $("#tablePagos").find('input[name="record"]').each(function(){
+                if($(this).is(":checked")){
 
                     $(this).parents("tr").remove();
                 }
-            	});
+                });
                 */
 
-            	//calculaTotal();
-			} 
+                //calculaTotal();
+            } 
 
             function fnCalculadora()
             {
@@ -1274,17 +1620,17 @@ License: You must have a valid license purchased only from themeforest(the above
             });
 
 
-			
+            
 
-		</script>
+        </script>
 
-		<script type="text/javascript">
-		
-		// DO NOT REMOVE : GLOBAL FUNCTIONS!
-		
-		$(document).ready(function() {
-			
-			//pageSetUp();
+        <script type="text/javascript">
+        
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        
+        $(document).ready(function() {
+            
+            //pageSetUp();
             $("#myModal").on('hidden.bs.modal', function () {
             
             location.reload();
@@ -1296,11 +1642,12 @@ License: You must have a valid license purchased only from themeforest(the above
     
 });
 
-		})
+        })
 
 
 
-		</script>
+        </script>
+        <!-- END THEME LAYOUT SCRIPTS -->
     </body>
 
 </html>

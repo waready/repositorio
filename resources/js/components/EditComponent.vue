@@ -10,13 +10,14 @@
                         <span class="after"> </span>
                     </li>
                     <li>
+                        <a data-toggle="tab" href="#tab_3-3">
+                            <i class="fa fa-lock"></i> Datos colegiado </a>
+                    </li>
+                    <li>
                         <a data-toggle="tab" href="#tab_2-2">
                             <i class="fa fa-picture-o"></i> Foto de Perfil </a>
                     </li>
-                    <li>
-                        <a data-toggle="tab" href="#tab_3-3">
-                            <i class="fa fa-lock"></i> Cambio de contraseña </a>
-                    </li>
+                    
                     <li>
                         <a data-toggle="tab" href="#tab_4-4">
                             <i class="fa fa-eye"></i> Privacidad Y Roles </a>
@@ -40,17 +41,36 @@
                                 <label class="control-label">DNI:</label>
                                 <input type="text" v-model="respuesta.dni" class="form-control" /> </div>
                             <div class="form-group">
-                                <label class="control-label">Numero de Celular:</label>
+                                <label class="control-label">Género:</label>
+                                <input type="text" v-model="respuesta.genero" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Estado Civil:</label>
+                                <input type="text" v-model="respuesta.estadoCivil" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Celular:</label>
                                 <input type="text" v-model="respuesta.celular" class="form-control" /> </div>
-                            <div class="form-group">
-                                <label class="control-label">Codigo Cip:</label>
-                                <input type="text" v-model="respuesta.codigoCIP" class="form-control" /> </div>
-                            <div class="form-group">
-                                <label class="control-label">Email:</label>
-                                <input type="text" v-model="respuesta.email" class="form-control" /> </div>
                             <div class="form-group">
                                 <label class="control-label">Direccion:</label>
                                 <input type="text" v-model="respuesta.direccion" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Fecha de Nacimiento:</label>
+                                <input type="text" v-model="respuesta.fechaNacimiento" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Lugar de Nacimiento:</label>
+                                <input type="text" v-model="respuesta.lugarNacimiento" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">País:</label>
+                                <input type="text" v-model="respuesta.paisNacimiento" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Departamento:</label>
+                                <input type="text" v-model="respuesta.ruc" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Provincia:</label>
+                                <input type="text" v-model="respuesta.ruc" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Distrito:</label>
+                                <input type="text" v-model="respuesta.ubigeoNacimiento" class="form-control" /> </div>
+
                             <div class="form-group">
                                 <label class="control-label">Usuario : (Cambios)</label>
                                 <input type="text" placeholder="admin" class="form-control" disabled /> </div>
@@ -93,6 +113,21 @@
                     <div id="tab_3-3" class="tab-pane">
                         
                         <form action="#"  v-on:submit.prevent="enviarEdit()">
+                            <div class="form-group">
+                                <label class="control-label">Código CIP/Usuario:</label>
+                                <input type="text" v-model="respuesta.codigoCIP" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Sede</label>
+                                <input type="text" v-model="respuesta.ubigeoSede" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Estado:</label>
+                                <input type="text" v-model="respuesta.estadoUsuario" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Condición:</label>
+                                <input type="text" v-model="respuesta.tipoColegiado" class="form-control" /> </div>
+                            <div class="form-group">
+                                <label class="control-label">Email:</label>
+                                <input type="text" v-model="respuesta.email" class="form-control" /> </div>
                             <!-- <div class="form-group">
                                 <label class="control-label">Cambia tu Password</label>
                                 <input type="password" class="form-control" /> </div> -->
@@ -219,18 +254,34 @@ export default {
         },
         enviarEdit(){
 			  const params ={
-
+                name:(this.respuesta.nombres +' '+this.respuesta.paterno +' '+ this.respuesta.materno).toUpperCase(),
+                nombres:this.respuesta.nombres,
 				paterno:this.respuesta.paterno ,
-				materno:this.respuesta.materno ,
-				name:this.respuesta.name ,
-				username:this.respuesta.username ,
+                materno:this.respuesta.materno ,
+                
+                username:this.respuesta.username,
+                estadoCivil:this.respuesta.estadoCivil,
+                genero:this.respuesta.genero,
+                estadoCivil: this.estadoCivil,
+                
+                lugarNacimiento:this.respuesta.lugarNacimiento, 
+                fechaNacimiento:this.respuesta.fechaNacimiento, 
+                paisNacimiento:this.respuesta.paisNacimiento, 
+
+
 				email:this.respuesta.email ,
 				celular:this.respuesta.celular ,
-				dni:this.respuesta.dni ,
+                dni:this.respuesta.dni ,
+                
 				codigoCIP:this.respuesta.codigoCIP ,
 				usuarioCreador:this.respuesta.usuarioCreador ,
                 direccion:this.respuesta.direccion ,
                 password:this.password,
+
+                ubigeoSede:this.respuesta.ubigeoSede,
+                estadoUsuario:10,
+                tipoColegiado:1
+
 				
             };
             axios.put(`/user/${this.respuesta.id}`,params).then((response)=>{
