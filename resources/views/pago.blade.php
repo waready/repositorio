@@ -1106,6 +1106,173 @@ License: You must have a valid license purchased only from themeforest(the above
               
             </div>
         </div>
+
+
+        <div class="modal fade" id="modalCertificadoHE" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Certificado de Habilidad Específico
+</h4>
+                </div>
+                <div class="modal-body">
+                  
+                  <div class="form-body">
+                  <div class="row">
+                      <div class="form-group">
+                                                
+                        <label class="control-label col-md-4">Apellidos y Nombres:</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mApNombres" id="mApNombres" placeholder="Datos de Búsqueda" class="form-control input-sm">
+                        </div>
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="form-group">
+                                                
+                        <table class="table table-condensed table-hover"> 
+                        <thead>
+                            <tr><th> # </th>
+                                <th> Fecha Incorporación</th>
+                                <th> Especialidad</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbEspecialidad">
+                            <tr>
+                                <td>1</td>
+                                <td>Especialidad.</td>
+                                <td>Fecha inc</td>
+                            </tr>
+                            </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                <form id="frmCertificadoHabilidad" role="form">
+
+                  <div class="row">
+                        <input type="hidden" name="mIdConstancia" id="mIdConstancia" value="">
+                        <input type="hidden" name="mTipoConstancia" id="mTipoConstancia" value="">
+
+                      <div class="form-group">
+                                                
+                        <label class="control-label col-md-4">Número de Certificado</label>
+                        <div class="col-md-4">
+                        <input type="text" name="mHCENumCert" id="mHCENumCert" placeholder="Datos de Búsqueda" class="form-control input-sm">
+                        </div>
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4">Especialidad</label>
+
+                        <div class="col-md-4">
+                            <select class="form-control input-sm" name="mHCEEsp" id="mHCEEsp">
+                                
+                                <option value="1">Agronomia</option>
+                                <option value="2">Agronomia2</option>
+                                
+                            </select> <i></i> 
+                        </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4">Asunto/Proyecto</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mHCEAsunto" id="mHCEAsunto" placeholder="Datos de Búsqueda" class="form-control input-sm">
+                        </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4">Entidad o Propietario</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mHCEEntidad" id="mHCEEntidad" placeholder="Datos de Búsqueda" class="form-control input-sm">
+                        </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-2">Departamento</label>
+                        <div class="col-md-6">
+                        <select class="form-control input-sm" name="mHCEDepartamento" id="mHCEDepartamento">
+                                
+                                <option value="00">-Seleccione-</option>
+                                
+                        </select>
+                        </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-2">Provincia</label>
+                        <div class="col-md-6">
+                        <select class="form-control input-sm" name="mHCEProvincia" id="mHCEProvincia">
+                                
+                                <option value="00">-Seleccione-</option>
+                                
+                        </select>
+
+                        </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-2">Distrito</label>
+                        <div class="col-md-6">
+                        <select class="form-control input-sm" name="mHCEDistrito" id="mHCEDistrito">
+                                
+                                <option value="00">-Seleccione-</option>
+                                
+                                
+                        </select>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    </form>
+
+
+                  </div>
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="saveCertificado()">Guardar Cambios</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
@@ -1544,6 +1711,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "<th> Nro. Recibo </th>"+
                                 "<th> Fecha</th>"+
                                 "<th> Nro.</th>"+
+                                "<th> Editar</th>"+
                                 "<th> Imprimir</th>"+
                             "</tr>"+
                         "</thead>"+
@@ -1567,6 +1735,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+dataReport[i].nroConstancia+
                                 "</td>"+
+                                "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].codigoCIP+","+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
+                                "</td>"+
                                 "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
                                 "</td>"+
                                 "</tr>";
@@ -1577,6 +1747,180 @@ License: You must have a valid license purchased only from themeforest(the above
                 
                 $("#ctabCertificado").html(cad);
             }
+
+            function modalCHE(cip, nroRecibo, tipo)
+            {
+
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'rptCertificadoData', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        //data      : $('#frmPagos').serialize(), //Forms name
+                        data      : 'codigoCIP='+cip+'&nroRecibo='+nroRecibo+'&tipo='+tipo, //Forms name
+
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            console.log("->>>"+data.selecDist);
+                                            var datos=data.data;
+                                            var datosF=data.dataForm;
+
+                                            $("#mIdConstancia").val(datosF[0].id);
+                                            $("#mTipoConstancia").val(datosF[0].tipo);
+
+                                            $("#mApNombres").val(datos[0].nombres);
+
+                                            var datTabla = "";
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                datTabla +=  "<tr>"+
+                                                            
+                                                            "<td>"+(i+1)+
+                                                            "</td>"+
+                                                            "<td>"+datos[i].fechaIncorporacion+
+                                                            "</td>"+
+                                                            "<td>"+datos[i].valor+
+                                                            "</td>"+
+                                                            "</tr>";
+
+                                            }
+
+                                            $("#tbEspecialidad").html(datTabla);
+                                                                                        
+                                            $("#mHCENumCert").val(datosF[0].nroConstancia);
+
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                if(datosF[0].idEspecialidad == datos[i].idEspecialidad)
+                                                {
+
+                                                datTabla +=  "<option value='"+datos[i].idEspecialidad+"' selected='selected'>"+datos[i].valor+"</op>";
+                                                }
+                                                else
+                                                {
+
+                                                datTabla +=  "<option value='"+datos[i].idEspecialidad+"'>"+datos[i].valor+"</op>";
+                                                }
+
+                                            }
+
+                                            $("#mHCEEsp").html(datTabla);
+
+                                            
+                                            $("#mHCEAsunto").val(datosF[0].asunto);
+                                            $("#mHCEEntidad").val(datosF[0].institucion);
+
+                                            if(tipo == '91')
+                                            {
+                                            var datosDep = data.dataDepartamento;
+                                            var selecDep = data.selecDep;
+                                            
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datosDep.length; i++)
+                                            {
+                                                if(selecDep == datosDep[i].codigo)
+                                                {
+                                                    datTabla +=  "<option value='"+datosDep[i].codigo+"' selected='selected'>"+datosDep[i].valor+"</op>";
+                                                }
+                                                else
+                                                {
+
+                                                datTabla +=  "<option value='"+datosDep[i].codigo+"'>"+datosDep[i].valor+"</op>";
+                                                }
+
+                                            }
+
+                                            $("#mHCEDepartamento").html(datTabla);                                            
+                                            var datosProv=data.dataProvincia;
+                                            var selecProv=data.selecProv;
+                                            
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datosProv.length; i++)
+                                            {
+                                                if(selecProv == datosProv[i].codigo)
+                                                {
+                                                    datTabla +=  "<option value='"+datosProv[i].codigo+"' selected='selected'>"+datosProv[i].valor+"</op>";
+                                                }
+                                                else
+                                                {
+
+                                                datTabla +=  "<option value='"+datosProv[i].codigo+"'>"+datosProv[i].valor+"</op>";
+                                                }
+
+                                            }
+
+                                            $("#mHCEProvincia").html(datTabla);
+
+                                            var datosDist=data.dataDistrito;
+                                            var selecDist=data.selecDist;
+
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datosDist.length; i++)
+                                            {
+                                                if(selecDist == datosDist[i].codigo)
+                                                {
+                                                    datTabla +=  "<option value='"+datosDist[i].codigo+"' selected='selected'>"+datosDist[i].valor+"</op>";
+                                                }
+                                                else
+                                                {
+
+                                                datTabla +=  "<option value='"+datosDist[i].codigo+"'>"+datosDist[i].valor+"</op>";
+                                                }
+
+                                            }
+
+                                            $("#mHCEDistrito").html(datTabla);
+                                            }
+                                            else
+                                            {   
+                                                datTabla = "<option value='0' selected='selected'>Seleccione</op>";
+                                                $("#mHCEDepartamento").html(datTabla);
+                                                $("#mHCEProvincia").html(datTabla);
+                                                $("#mHCEDistrito").html(datTabla);   
+                                            }
+                                            console.log("->>>"+data.selecDist);
+                                            
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+
+                $('#modalCertificadoHE').modal('show');
+            }
+
+            function saveCertificado()
+            {
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'saveCertificadoHabilidad', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmCertificadoHabilidad').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            alert("Datos Actualizados Correctamente!!!");
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                        }
+
+                                    }
+                    });
+            }
+
             function fnReportFecha(dataReport)
             {
                 $("#ctabPorFecha").html('');
@@ -1879,6 +2223,92 @@ License: You must have a valid license purchased only from themeforest(the above
                     
                     
                 });
+
+
+                $("#mHCEDepartamento" ).change( function() {
+                    console.log(">>>"+$(this).val());
+                    //var datoMonto = $("#"+$(this).val()).val();
+                    
+                    //$("#totalConcepto").val(mapOption[$(this).val()]);
+
+                    var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'extraeProvincia', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : 'departamento='+$(this).val(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+
+                                        if (data.success) { //If fails
+
+                                            var datos=data.data;
+
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                datTabla +=  "<option value='"+datos[i].codigo+"'>"+datos[i].valor+"</op>";
+                                                
+                                                if(i == 0)
+                                                {
+                                                    fnExtraeDistrito(datos[i].codigo);
+                                                }                            
+                                            }
+
+                                            $("#mHCEProvincia").html(datTabla);
+
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+
+                });
+
+
+                $("#mHCEProvincia" ).change( function() {
+                    
+                    console.log(">>>"+$(this).val());
+                                        
+                    fnExtraeDistrito($(this).val());
+                });
+
+                function fnExtraeDistrito(val)
+                {
+                    var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'extraeDistrito', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : 'provincia='+val, //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+
+                                        if (data.success) { //If fails
+
+                                            var datos=data.data;
+
+                                            datTabla = "";
+
+                                            for(var i = 0 ; i < datos.length; i++)
+                                            {
+                                                datTabla +=  "<option value='"+datos[i].codigo+"'>"+datos[i].valor+"</op>";
+                                                
+                                            }
+
+                                            $("#mHCEDistrito").html(datTabla);
+
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+                }
 
             });
             

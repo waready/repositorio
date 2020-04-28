@@ -10,6 +10,7 @@ use App\cip_fraccionamiento;
 use App\cip_fraccionamientodetalle;
 use App\cip_fraccionamientomeses;
 use App\cip_pagodetalle;
+use App\cip_constancias;
 
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
@@ -23,8 +24,13 @@ class ColegiadoController extends Controller
     $sql = 'SELECT idConceptoPago, conceptoPago, montoPago FROM cip_pagosconfig where lVigente =1 '; 
     $conceptoPago = DB::select($sql);
 
+    $sql = "SELECT codigo, valor, extra FROM cip_param where grupo = '003';";
+    $departamento = DB::select($sql);
+
     $user = "usuarioggg";
-    return view('pago')->with('user',$user)->with('conceptoPago', $conceptoPago);
+    return view('pago')->with('user',$user)
+                      ->with('conceptoPago', $conceptoPago)
+                      ->with('departamento', $departamento);
   }
 
   public function busquedaColegiadosNombre(Request $request) {
@@ -147,7 +153,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           $reportFecha = DB::select($sql);
 
-          $sql = "SELECT B.conceptoPago, C.valor, A.asunto, 
+          $sql = "SELECT A.codigoCIP, A.nroRecibo, A.tipo, B.conceptoPago, C.valor, A.asunto, 
                       concat(A.serieRecibo,'-',A.nroRecibo) as recibo, 
                       A.fecha, concat('A-',LPAD(A.nroConstancia,7,'0')) as nroConstancia 
                   FROM cip_constancias A
@@ -299,8 +305,66 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
         $sqlInsert = 'INSERT INTO cip_pagodetalle (idPago, idConceptoPago, otroConcepto, periodoPago, montoPago) values ('.$idTransaccion.', \''.$conceptoPago[$i].'\',  \''.$desc_otroConcepto.'\', '.$periodoMes[$i].','.$individualPago[$i].')';  
 
-        //$cippagod->save();
         DB::insert($sqlInsert);
+
+        if($conceptoPago[$i] == '90' || $conceptoPago[$i] == '91' || $conceptoPago[$i] == '92' || $conceptoPago[$i] == '93')
+          {
+          if($conceptoPago[$i] == '90')
+            {
+              $cipConstancias = new cip_constancias();
+
+              $cipConstancias->idPago = $idTransaccion;
+              $cipConstancias->codigoCIP = $codigoCIP;
+              $cipConstancias->idEspecialidad = '0';
+              $cipConstancias->serieRecibo = $serieRecibo;
+              $cipConstancias->nroRecibo = $reciboNuevo;
+              $cipConstancias->estado = 1;
+              $cipConstancias->habilHasta = '';
+              $cipConstancias->fecha = date("Y/m/d H:i:s");
+              $cipConstancias->tipo = $conceptoPago[$i];
+              $cipConstancias->institucion = '-';
+              $cipConstancias->asunto = 'CERTIFICADO DE HABILIDAD GENÉRICO';
+              $cipConstancias->modalidad = '';
+              $cipConstancias->monto = 0.00;
+
+              $cipConstancias->save();
+            }
+
+          if($conceptoPago[$i] == '91')
+            {
+              $cipConstancias = new cip_constancias();
+
+              $cipConstancias->idPago = $idTransaccion;
+              $cipConstancias->codigoCIP = $codigoCIP;
+              $cipConstancias->idEspecialidad = '0';
+              $cipConstancias->serieRecibo = $serieRecibo;
+              $cipConstancias->nroRecibo = $reciboNuevo;
+              $cipConstancias->estado = 1;
+              $cipConstancias->habilHasta = '';
+              $cipConstancias->fecha = date("Y/m/d H:i:s");
+              $cipConstancias->tipo = $conceptoPago[$i];
+              $cipConstancias->ubigeo = '210101';
+              $cipConstancias->institucion = '-';
+              $cipConstancias->asunto = 'CERTIFICADO DE HABILIDAD ESPECÍFICO';
+              $cipConstancias->modalidad = '';
+              $cipConstancias->monto = 0.00;
+
+              $cipConstancias->save();
+            }
+
+            $sqlUpdate = "UPDATE  cip_constancias 
+                              set habilHasta = 
+                                  (select habilHasta 
+                                  from cip_users B 
+                                  where B.codigoCIP = '".$codigoCIP."' LIMIT 1) 
+                          where codigoCIP = '".$codigoCIP."' and idPago = '".$idTransaccion."';";
+
+          DB::update($sqlUpdate); 
+
+          }
+
+        //$cippagod->save();
+        
         if($caseCad == 'FR')
         {
           $idFraccionamiento_ = substr($conceptoPago[$i], 4, strlen($conceptoPago[$i])-4);
@@ -321,6 +385,10 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
           $sqlUpdate = 'UPDATE cip_users SET habilHasta =\''.$fHabilidad[0]->fHabil.'\',  ultimoPago = \''.$fHabilidad[0]->fechaPago.'\' WHERE codigoCIP =\''.$codigoCIP.'\' ';
 
           DB::update($sqlUpdate);
+
+          $sqlUpdate = 'UPDATE cip_constancias SET habilHasta =\''.$fHabilidad[0]->fHabil.'\' WHERE codigoCIP =\''.$codigoCIP.'\' and idPago =\''.$idTransaccion.'\' ';
+
+          DB::update($sqlUpdate);          
 
         }
 
@@ -366,6 +434,9 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
 
         DB::update($sqlUpdate);
 
+        $sqlUpdate = 'UPDATE cip_constancias SET habilHasta =\''.$fHabilidad[0]->fHabil.'\' WHERE codigoCIP =\''.$codigoCIP.'\' and idPago =\''.$idTransaccion.'\' ';
+
+          DB::update($sqlUpdate); 
       }
 
       $resultadoView = array(
@@ -670,6 +741,150 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
       return json_encode($resultadoView);
 
+  }
+
+  public function rptCertificadoData(Request $request)
+  {
+      $codigoCIP = $_POST['codigoCIP'];
+      $nroRecibo = $_POST['nroRecibo'];
+      $tipo = $_POST['tipo'];
+
+      $sql = "SELECT A.codigoCIP, concat(A.paterno,' ',A.materno,', ',A.nombres) as nombres,
+    B.idEspecialidad, C.valor, B.fechaIncorporacion 
+      from cip_users A 
+      left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+      left join cip_param C on C.grupo = '053' and codigo = B.idEspecialidad
+      where A.codigoCIP = '".$codigoCIP."' order by B.fechaIncorporacion desc";
+
+      $dataCert = DB::select($sql);
+
+      $sql = "SELECT id, idPago, codigoCIP, idEspecialidad, 
+              nroConstancia, tipo, institucion, asunto, ubigeo
+      FROM cip_db.cip_constancias 
+      where codigoCIP = '".$codigoCIP."' and nroRecibo = ".$nroRecibo." and tipo = ".$tipo." limit 1;";
+
+      $dataformCert = DB::select($sql);
+
+      if($tipo == '91')
+      {
+
+      $sql = "SELECT extra 
+              from cip_param 
+              where grupo = '001' and codigo = '".$dataformCert[0]->ubigeo."' limit 1;";
+
+      $dataUbigeo = DB::select($sql);
+
+      $sql = "SELECT codigo, valor, extra 
+              from cip_param where grupo = '001' and extra = '".$dataUbigeo[0]->extra."';";
+
+      $dataDistrito = DB::select($sql);
+
+
+      $sql = "SELECT codigo, valor, extra 
+              from cip_param where grupo = '002' and codigo = '".$dataDistrito[0]->extra."';";
+
+      $dataProvUbigeo = DB::select($sql);
+
+      $sql = "SELECT codigo, valor, extra 
+              from cip_param where grupo = '002' and extra = '".$dataProvUbigeo[0]->extra."';";
+
+      $dataProvincia = DB::select($sql);
+
+      $sql = "SELECT codigo, valor, extra 
+              from cip_param where grupo = '003' and codigo = '".$dataProvincia[0]->extra."';";
+
+      $dataDepUbigeo = DB::select($sql);
+
+      $sql = "SELECT codigo, valor
+              from cip_param where grupo = '003';";
+
+      $dataDepartamento = DB::select($sql);
+
+    $resultadoView = array(
+                      "success" => true,
+                      "data" => $dataCert,
+                      "dataForm" => $dataformCert,
+                      "dataDepartamento" => $dataDepartamento,
+                      "dataProvincia" => $dataProvincia,
+                      "dataDistrito" => $dataDistrito,
+                      "selecDep" => $dataProvUbigeo[0]->extra,
+                      "selecProv" => $dataUbigeo[0]->extra,
+                      "selecDist" => $dataformCert[0]->ubigeo,
+                    );
+      }
+
+      if($tipo == '90')
+      {
+           $resultadoView = array(
+                      "success" => true,
+                      "data" => $dataCert,
+                      "dataForm" => $dataformCert,
+                    ); 
+      }
+
+      return json_encode($resultadoView);
+  }
+
+  public function extraeProvincia(Request $request)
+  {
+    $departamento = $_POST['departamento'];
+
+    $sql = "select codigo, valor, extra from cip_param where grupo = '002' and extra = '".$departamento."';";
+
+    $dataProvincia = DB::select($sql);
+
+    $resultadoView = array(
+                      "success" => true,
+                      "data" => $dataProvincia,
+                    );
+    return json_encode($resultadoView); 
+
+  }
+
+  public function extraeDistrito(Request $request)
+  {
+    $provincia = $_POST['provincia'];
+
+    $sql = "select codigo, valor, extra from cip_param where grupo = '001' and extra = '".$provincia."';";
+
+    $dataDistrito = DB::select($sql);
+
+    $resultadoView = array(
+                      "success" => true,
+                      "data" => $dataDistrito,
+                    );
+    return json_encode($resultadoView); 
+
+  }
+
+  public function saveCertificadoHabilidad(Request $request)
+  {
+    $idConstancia = $_POST['mIdConstancia'];    
+    $tipoConstancia = $_POST['mTipoConstancia'];
+    $idEspecialidad = $_POST['mHCEEsp'];
+    $nroConstancia = $_POST['mHCENumCert'];
+    $institucion = $_POST['mHCEEntidad'];
+    $ubigeo = $_POST['mHCEDistrito'];
+    $asunto = $_POST['mHCEAsunto'];
+
+
+    if($tipoConstancia == '90')
+    {
+      $sqlUpdate = "UPDATE cip_constancias SET idEspecialidad = '".$idEspecialidad."', nroConstancia = ".$nroConstancia.", institucion = '".$institucion."', asunto='".$asunto."' where id = ".$idConstancia." and tipo ='".$tipoConstancia."'"; 
+    }
+
+    if($tipoConstancia == '91')
+    {
+      $sqlUpdate = "UPDATE cip_constancias SET idEspecialidad = '".$idEspecialidad."', nroConstancia = ".$nroConstancia.", institucion = '".$institucion."', ubigeo = '".$ubigeo."', asunto='".$asunto."' where id = ".$idConstancia." and tipo ='".$tipoConstancia."'"; 
+    }
+
+    DB::update($sqlUpdate);
+
+    $resultadoView = array(
+                      "success" => true,
+                      "data" => "Datos actualizados correctamente.",
+                    );
+    return json_encode($resultadoView);     
   }
 
   public function fpdf()
