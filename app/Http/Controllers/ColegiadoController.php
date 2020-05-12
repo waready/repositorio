@@ -153,7 +153,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           $reportFecha = DB::select($sql);
 
-          $sql = "SELECT A.codigoCIP, A.nroRecibo, A.tipo, B.conceptoPago, C.valor, A.asunto, 
+          $sql = "SELECT A.id, A.codigoCIP, A.nroRecibo, A.tipo, B.conceptoPago, C.valor, A.asunto, 
                       concat(A.serieRecibo,'-',A.nroRecibo) as recibo, 
                       A.fecha, concat('A-',LPAD(A.nroConstancia,7,'0')) as nroConstancia 
                   FROM cip_constancias A
@@ -351,6 +351,53 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
               $cipConstancias->save();
             }
+
+            if($conceptoPago[$i] == '92')
+            {
+              $cipConstancias = new cip_constancias();
+
+              $cipConstancias->idPago = $idTransaccion;
+              $cipConstancias->codigoCIP = $codigoCIP;
+              $cipConstancias->idEspecialidad = '0';
+              $cipConstancias->serieRecibo = $serieRecibo;
+              $cipConstancias->nroRecibo = $reciboNuevo;
+              $cipConstancias->estado = 1;
+              $cipConstancias->habilHasta = '';
+              $cipConstancias->fecha = date("Y/m/d H:i:s");
+              $cipConstancias->tipo = $conceptoPago[$i];
+              $cipConstancias->ubigeo = '210101';
+              $cipConstancias->institucion = '-';
+              $cipConstancias->asunto = '';
+              $cipConstancias->zona = '';
+              $cipConstancias->direccion = '';
+              $cipConstancias->modalidad = '';
+              $cipConstancias->monto = 0.00;
+
+              $cipConstancias->save();
+            }
+
+            if($conceptoPago[$i] == '93')
+            {
+              $cipConstancias = new cip_constancias();
+
+              $cipConstancias->idPago = $idTransaccion;
+              $cipConstancias->codigoCIP = $codigoCIP;
+              $cipConstancias->idEspecialidad = '0';
+              $cipConstancias->serieRecibo = $serieRecibo;
+              $cipConstancias->nroRecibo = $reciboNuevo;
+              $cipConstancias->estado = 1;
+              $cipConstancias->habilHasta = '';
+              $cipConstancias->fecha = date("Y/m/d H:i:s");
+              $cipConstancias->tipo = $conceptoPago[$i];
+              $cipConstancias->ubigeo = '210101';
+              $cipConstancias->institucion = '-';
+              $cipConstancias->asunto = '';
+              $cipConstancias->modalidad = '01';
+              $cipConstancias->monto = 0.00;
+
+              $cipConstancias->save();
+            }
+
 
             $sqlUpdate = "UPDATE  cip_constancias 
                               set habilHasta = 
@@ -745,6 +792,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
   public function rptCertificadoData(Request $request)
   {
+      $id = $_POST['id'];
       $codigoCIP = $_POST['codigoCIP'];
       $nroRecibo = $_POST['nroRecibo'];
       $tipo = $_POST['tipo'];
@@ -759,13 +807,14 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       $dataCert = DB::select($sql);
 
       $sql = "SELECT id, idPago, codigoCIP, idEspecialidad, 
-              nroConstancia, tipo, institucion, asunto, ubigeo
+              nroConstancia, tipo, institucion, asunto, ubigeo,
+              zona, direccion, modalidad, monto
       FROM cip_db.cip_constancias 
-      where codigoCIP = '".$codigoCIP."' and nroRecibo = ".$nroRecibo." and tipo = ".$tipo." limit 1;";
+      where id = ".$id." and codigoCIP = '".$codigoCIP."' and nroRecibo = ".$nroRecibo." and tipo = ".$tipo." limit 1;";
 
       $dataformCert = DB::select($sql);
 
-      if($tipo == '91')
+      if($tipo == '91' || $tipo == '92' || $tipo == '93')
       {
 
       $sql = "SELECT extra 
@@ -876,6 +925,22 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     if($tipoConstancia == '91')
     {
       $sqlUpdate = "UPDATE cip_constancias SET idEspecialidad = '".$idEspecialidad."', nroConstancia = ".$nroConstancia.", institucion = '".$institucion."', ubigeo = '".$ubigeo."', asunto='".$asunto."' where id = ".$idConstancia." and tipo ='".$tipoConstancia."'"; 
+    }
+
+    if($tipoConstancia == '92')
+    {
+      $zona = $_POST['mHPPZona'];
+      $direccion = $_POST['mHPPDireccion'];
+
+      $sqlUpdate = "UPDATE cip_constancias SET idEspecialidad = '".$idEspecialidad."', nroConstancia = ".$nroConstancia.", institucion = '".$institucion."', ubigeo = '".$ubigeo."', asunto='".$asunto."', zona='".$zona."', direccion = '".$direccion."' where id = ".$idConstancia." and tipo ='".$tipoConstancia."'"; 
+    }
+
+    if($tipoConstancia == '93')
+    {
+      $modalidad = $_POST['mHFCModContrato'];
+      $monto = $_POST['mHFCMontoContrato'];
+
+      $sqlUpdate = "UPDATE cip_constancias SET idEspecialidad = '".$idEspecialidad."', nroConstancia = ".$nroConstancia.", institucion = '".$institucion."', ubigeo = '".$ubigeo."', asunto='".$asunto."', modalidad='".$modalidad."', monto = '".$monto."' where id = ".$idConstancia." and tipo ='".$tipoConstancia."'"; 
     }
 
     DB::update($sqlUpdate);

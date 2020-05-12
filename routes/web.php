@@ -101,7 +101,7 @@ Route::get('fa', function () {
 
 });
 
-Route::get('f', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+Route::get('f', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
 
     $fpdf->AddPage();
     $fpdf->SetFont('Courier', 'B', 18);

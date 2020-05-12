@@ -837,8 +837,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                                     <div class="col-md-11">
                                             <div class="row">
-                                            
-                                                <label class="control-label col-md-2">Concepto de pago</label>
+                                                <div class="col-md-1">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox mt-checkbox-outline">
+                                                            <input type="checkbox" name="checkExcepcion" id="checkExcepcion"> Excepción
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <label class="control-label col-md-1">Concepto de pago</label>
                                                 <div class="col-md-3">
                                                 <select name="conceptoPago" id="conceptoPago" class="form-control input-sm">
                                             
@@ -852,6 +859,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                                  <label class="control-label col-md-1">Total concepto</label>
                                                 <div class="col-md-2">
                                                 <input type="text" name="totalConcepto" id="totalConcepto" placeholder="Total Concepto" value="" class="form-control input-sm">
+                                                </div>
+
+                                                <div class="col-md-1">
+                                                    <div class="mt-checkbox-list">
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" name="checkExonerado" id="checkExonerado"> Exonerado
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -1115,7 +1131,7 @@ License: You must have a valid license purchased only from themeforest(the above
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Certificado de Habilidad Específico
+                  <h4 class="modal-title" id="mCHTitle">Certificado de Habilidad Específico
 </h4>
                 </div>
                 <div class="modal-body">
@@ -1258,7 +1274,59 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         </div>
                     </div>
+                    <div id="mHabilidadProyecto" style="display: none">
+                    <br>
+                        <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4"> Urb./A.A.H.H./P.P.J.J./A</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mHPPZona" id="mHPPZona" placeholder="Zona" class="form-control input-sm">
+                        </div>
 
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4"> Jr./Av./Calle/Pasaje</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mHPPDireccion" id="mHPPDireccion" placeholder="Dirección" class="form-control input-sm">
+                        </div>
+
+                        </div>
+                        </div>    
+                    </div>
+
+                    <div id="mHabilidadProyFirmaC" style="display: none">
+                    <br>
+                        <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4"> Modalidad Contrato</label>
+                        <div class="col-md-8">
+                        <select class="form-control input-sm" name="mHFCModContrato" id="mHFCModContrato">
+                            <option value="01">Firma de Contrato de Obra Pública</option>
+                            <option value="02">Residencia</option>
+                        </select>
+                        </div>
+
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="form-group">
+                                                
+                        <label class="control-label col-md-4"> Monto Contrato</label>
+                        <div class="col-md-8">
+                        <input type="text" name="mHFCMontoContrato" id="mHFCMontoContrato" placeholder="Dirección" class="form-control input-sm">
+                        </div>
+
+                        </div>
+                        </div>    
+                    </div>
+                    
                     </form>
 
 
@@ -1467,6 +1535,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             fnReportDeudas(data.conceptoPagoDeuda,data.conceptoPagoFrac)
 
                                             readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago,datos[0].estadoHabil);
+
+                                            $("#checkExcepcion"). prop("checked", false);
 
                                             cleanTablePagos();
 
@@ -1735,7 +1805,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+dataReport[i].nroConstancia+
                                 "</td>"+
-                                "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].codigoCIP+","+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
+                                "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].id+", "+dataReport[i].codigoCIP+", "+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
                                 "</td>"+
                                 "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
                                 "</td>"+
@@ -1748,8 +1818,26 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#ctabCertificado").html(cad);
             }
 
-            function modalCHE(cip, nroRecibo, tipo)
-            {
+            function modalCHE(id,cip, nroRecibo, tipo)
+            {   
+                
+                if(tipo == '90')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad Genérico');
+                }
+                if(tipo == '91')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad Específico');
+                }
+                if(tipo == '92')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad por Proyecto');
+                }
+                if(tipo == '93')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad para Firma Contrato');
+                }
+
 
                 var token = $("#token").val();
 
@@ -1758,7 +1846,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         url       : 'rptCertificadoData', //Your form processing file URL
                         headers   : {'X-CSRF-TOKEN':token},
                         //data      : $('#frmPagos').serialize(), //Forms name
-                        data      : 'codigoCIP='+cip+'&nroRecibo='+nroRecibo+'&tipo='+tipo, //Forms name
+                        data      : 'id='+id+'&codigoCIP='+cip+'&nroRecibo='+nroRecibo+'&tipo='+tipo, //Forms name
 
                         dataType  : 'json',
                         success   : function(data) {
@@ -1815,8 +1903,49 @@ License: You must have a valid license purchased only from themeforest(the above
                                             $("#mHCEAsunto").val(datosF[0].asunto);
                                             $("#mHCEEntidad").val(datosF[0].institucion);
 
-                                            if(tipo == '91')
+                                            if(tipo == '92')
                                             {
+                                                $("#mHPPZona").val(datosF[0].zona);
+                                                $("#mHPPDireccion").val(datosF[0].direccion);
+
+                                                $("#mHabilidadProyecto").show();
+                                                //$("#mHabilidadProyecto").hide();
+                                            }
+                                            else
+                                            {
+                                                $("#mHabilidadProyecto").hide();
+                                            }
+
+                                            if(tipo == '93')
+                                            {
+                                                
+                                                datTabla = "";
+                                                if(datosF[0].modalidad == '01')
+                                                {
+                                                    datTabla =  "<option value='01' selected='selected'>Firma de Contrato de Obra Pública</option>"+
+                                                            "<option value='02'>Residencia</option>";
+                                                }
+                                                else
+                                                {
+                                                
+                                                    datTabla =  "<option value='01'>Firma de Contrato de Obra Pública</option>"+
+                                                            "<option value='02' selected='selected'>Residencia</option>";
+                                                }
+
+                                                $("#mHFCModContrato").html(datTabla);
+
+                                                $("#mHFCMontoContrato").val(datosF[0].monto);
+
+                                                $("#mHabilidadProyFirmaC").show();        
+                                            }
+                                            else
+                                            {
+                                                $("#mHabilidadProyFirmaC").hide();
+                                            }
+
+                                            if(tipo == '91' || tipo == '92' || tipo == '93')
+                                            {
+
                                             var datosDep = data.dataDepartamento;
                                             var selecDep = data.selecDep;
                                             
@@ -1878,6 +2007,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             }
 
                                             $("#mHCEDistrito").html(datTabla);
+
                                             }
                                             else
                                             {   
@@ -2124,6 +2254,20 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 });
 
+            $('input[name="checkExonerado"]'). click(function(){
+                if($(this). is(":checked")){
+                    
+                    $("#totalConcepto").val('0.00');
+
+                }
+                else if($(this). is(":not(:checked)")){
+                    
+                    console.log("->>>>>>"+$("#conceptoPago").val());
+                    
+                    $("#totalConcepto").val(mapOption[$("#conceptoPago").val()]);                    
+
+                }
+            });
             
 
             $('#frmPagos').submit(function(event) { //Trigger on form submit
@@ -2226,7 +2370,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                 $("#mHCEDepartamento" ).change( function() {
-                    console.log(">>>"+$(this).val());
+                    //console.log(">>>"+$(this).val());
                     //var datoMonto = $("#"+$(this).val()).val();
                     
                     //$("#totalConcepto").val(mapOption[$(this).val()]);
@@ -2271,7 +2415,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 $("#mHCEProvincia" ).change( function() {
                     
-                    console.log(">>>"+$(this).val());
+                    //console.log(">>>"+$(this).val());
                                         
                     fnExtraeDistrito($(this).val());
                 });
@@ -2374,7 +2518,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         markup = '<option value="'+selecPOption[i].idConceptoPago+'" selected="selected">'+selecPOption[i].conceptoPago+'</option>';
                     }
 
-                    if((idFDeuda == '91' || idFDeuda == '92' || idFDeuda == '90') && flagCondicion == true)
+                    if((idFDeuda == '90' || idFDeuda == '91' || idFDeuda == '92' || idFDeuda == '93') && flagCondicion == true)
                     {
                         markup = '';
                     }
@@ -2391,6 +2535,29 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 $("#totalConcepto").val(mapOption['01']);
 
+            }
+
+            function readSelecOption2()
+            {
+                $("#conceptoPago").html('');
+
+                for(var i = 0; i<selecPOption.length; i++)
+                {
+                    
+                    idFDeuda = selecPOption[i].idConceptoPago;
+                    //nArray[selecPOption[i].idConceptoPago] = selecPOption[i].montoPago;
+
+                    markup = '<option value="'+selecPOption[i].idConceptoPago+'">'+selecPOption[i].conceptoPago+'</option>';
+
+                    if(idFDeuda == '01')
+                    {
+                        markup = '<option value="'+selecPOption[i].idConceptoPago+'" selected="selected">'+selecPOption[i].conceptoPago+'</option>';
+                    }
+                    
+                    $("#conceptoPago").append(markup);
+                }
+
+                $("#totalConcepto").val(mapOption['01']);
             }
         </script>
 
@@ -2516,6 +2683,17 @@ License: You must have a valid license purchased only from themeforest(the above
             });
 
             $('.datepicker').datepicker();
+
+            $('input[name="checkExcepcion"]'). click(function(){
+                if($(this). is(":checked")){
+                console.log("Checkbox is checked." );
+
+                readSelecOption2();
+                }
+                else if($(this). is(":not(:checked)")){
+                console.log("Checkbox is unchecked." );
+                }
+            });
 
         })
 
