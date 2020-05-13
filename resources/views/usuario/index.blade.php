@@ -34,36 +34,61 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <div class="form-inline">
-                                    <form class="form-group" action="/searchName" method="get">
+                                    <form class="form-group" action="{{ url('searchDni')}}"  method="POST">
+                                        {{ csrf_field() }}
+                                        
                                         <div class="form-group">
-                                            <label>Nombres o Apellidos</label>
-                                            <input type="search" name="search" class="form-control">
-                                            <span class="form-group-btn">
-                                                <button type="submit" class="btn bg-green-meadow bg-font-green-meadow"><i class="glyphicon glyphicon-search"></i></button>
-                                            </span>
+                                            <select class="form-control " name="tipoBusqueda" id="tipoBusqueda">
+                                                        
+                                                <option value="1">Código CIP</option>
+                                                <option value="2">DNI</option>
+                                                <option value="3">Nombre</option>
+                                                
+                                            </select> <i></i> 
+                                            <input type="search" name="search" class="form-control" placeholder="busqueda">
+                                            
+                                            <select class="form-control " name="mes" id="tipoBusqueda">
+                                                        
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febreo</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Septiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+
+                                                
+                                            </select> <i></i> 
+                                            <input type="number" name="dia" min="1" max="31" class="form-control">
+
+                                            <select class="form-control " name="tipoColegiado" id="tipoBusqueda">
+                                                        
+                                                <option value="">- Tipo de Colegiado -</option>
+                                                <option value="0">FALLECIDO</option>
+                                                <option value="1">INCORPORADO</option>
+                                                <option value="2">TRANSFERIDO NACIONAL</option>
+                                                <option value="3">VITALICIO</option>
+                                                <option value="4">TEMPORAL</option>
+                                                <option value="5">EN TRAMITE</option>
+                                                <option value="6">NACIONAL</option>
+                                                <option value="7">INCORPORADO NACIONAL</option>
+
+                                                
+                                            </select> <i></i> 
+                                            <select class="form-control " name="condicion" id="tipoBusqueda">
+                                                <option value="">- Condicion -</option>        
+                                                <option value="10">Habil</option>
+                                                <option value="11">No Habil</option> 
+                                            </select> <i></i> 
+                                            <button type="submit" class="btn btn-circle green" >Buscar <i class="glyphicon glyphicon-search"></i></button>
+                                            
                                         </div>
-                                    </form>
-                                
-                                
-                                    <form class="form-group" action="/searchDni" method="get">
-                                        <div class="form-group">
-                                            <label> Busqueda dni</label>
-                                            <input type="search" name="search" class="form-control">
-                                            <span class="form-group-btn">
-                                                <button type="submit" class="btn bg-green-meadow bg-font-green-meadow"><i class="glyphicon glyphicon-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                
-                                
-                                    <form class="form-group" action="/searchCodigo" method="get">
-                                        <div class="form-group">
-                                            <label> Busqueda codigo Cip</label>
-                                            <input type="search" name="search" class="form-control">
-                                            <span class="form-group-btn">
-                                                <button type="submit" class="btn bg-green-meadow bg-font-green-meadow"><i class="glyphicon glyphicon-search"></i></button>
-                                            </span>
-                                        </div>
+
                                     </form>
                                     
                                 </div>

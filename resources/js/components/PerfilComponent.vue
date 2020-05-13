@@ -4,7 +4,7 @@
         <div class="col-md-3">
             <ul class="list-unstyled profile-nav">
                 <li>
-                    <img :src="'http://localhost:8000/img/'+datos.nombreFoto" class="img-responsive pic-bordered" alt="" />
+                    <img :src="'/img/'+datos.nombreFoto" class="img-responsive pic-bordered" alt="" />
                     <a  class="profile-edit"> {{datos.id}} </a>
                 </li>
                 <li>
