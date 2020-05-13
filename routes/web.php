@@ -1,7 +1,11 @@
 <?php
 
+use App\Exports\reportExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getUsers;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+
+
 Route::get('/set_language/{lang}', 'Controller@setLanguage')->name( 'set_language');
 
 /*
@@ -19,6 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+
+Route::get('/ggwp','HomeController@excel');
+   
+
+
 Route::get('login', function () {
     return view ('seed.login');
 });
@@ -30,19 +42,24 @@ Route::get('forgotpassword', function () {
     return view('seed.forgotpassword');
 });
 Route::get('lock', function () {
-    return view('index');
+    return view('reporte');
 });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/user', 'getUsers');
-Route::get('/searchName', 'getUsers@searchName');
-Route::get('/searchDni', 'getUsers@searchDni');
+
+Route::post('/searchName', 'getUsers@searchName');
+
+Route::post('/searchDni', 'getUsers@searchDni');
 Route::get('/searchCodigo', 'getUsers@searchCodigo');
 
 Route::get('/searchAbil', 'getUsers@searchAbil');
 Route::get('/searchTipo', 'getUsers@searchTipo');
+
+
+Route::get('/reporte', 'getUsers@reporte');
 
 //imagen
 Route::post('imagen','getUsers@EditarImagen');
@@ -110,3 +127,5 @@ Route::get('api/params','getUsers@param');
 // Route::post('especilidad', 'EspecialidadController@store'){
 
 // };
+
+Route::post('/dashboard/avatar', 'getUsers@upload');

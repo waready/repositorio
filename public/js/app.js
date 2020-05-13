@@ -2024,6 +2024,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pais'],
   mounted: function mounted() {
@@ -2037,6 +2043,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      imagen: null,
       //id:"7857",
       departamentos: [],
       provincias: [],
@@ -2047,18 +2054,20 @@ __webpack_require__.r(__webpack_exports__);
       departamentoTraba: null,
       provinciaTraba: null,
       distritoTraba: null,
+      ubigeoSede: null,
       nombres: 'juan andres',
       paterno: 'quispe',
       materno: 'mamani',
       dni: '0121444',
       celular: '93658412',
       direccion: 'Jr Nestor Molina',
-      estadoCivil: "Soltero",
-      genero: "Masculino",
+      estadoCivil: null,
+      genero: null,
       codigoCIP: '101012',
       email: 'juan@gmail.com',
       password: '123456789',
       password_confirmation: "123456789",
+      estadoUsuario: null,
       usertype: 'deprecated',
       block: '0',
       sendEmail: '0',
@@ -2067,11 +2076,11 @@ __webpack_require__.r(__webpack_exports__);
       activation: 0,
       params: '{}',
       ruc: '20932658',
-      paisNacimiento: 'Peru',
-      tipoColegiado: '1',
+      paisNacimiento: null,
+      tipoColegiado: null,
       usuarioCreador: 'admin',
       lugarNacimiento: 'puno',
-      fechaNacimiento: "aaaaaaaa"
+      fechaNacimiento: null
     };
   },
   methods: {
@@ -2092,14 +2101,14 @@ __webpack_require__.r(__webpack_exports__);
         activation: this.activation,
         params: this.params,
         codigoCIP: this.codigoCIP,
-        paterno: this.paterno,
-        materno: this.materno,
-        nombres: this.nombres,
+        paterno: this.paterno.toUpperCase(),
+        materno: this.materno.toUpperCase(),
+        nombres: this.nombres.toUpperCase(),
         ruc: this.ruc,
-        estadoUsuario: 10,
+        estadoUsuario: this.estadoUsuario,
         lugarNacimiento: this.lugarNacimiento,
         fechaNacimiento: this.fechaNacimiento,
-        //ubigeoNacimiento:'', 
+        ubigeoNacimiento: this.distrito,
         paisNacimiento: this.paisNacimiento,
         //ubigeoDomicilio:'', 
         direccion: this.direccion,
@@ -2120,10 +2129,10 @@ __webpack_require__.r(__webpack_exports__);
         //habilHasta: '000000', 
         usuarioCreador: this.usuarioCreador,
         //usuarioModificador:'', 
-        fechaModificacion: null //nombreFoto:null, 
+        fechaModificacion: null,
+        //nombreFoto:null, 
         //oferta:'', 
-        //ubigeoSede:'', 
-        //nombreFirma:'', 
+        ubigeoSede: this.ubigeoSede //nombreFirma:'', 
         //tipoTarjeta:'0'
 
       };
@@ -2134,16 +2143,22 @@ __webpack_require__.r(__webpack_exports__);
         } else {}
       });
     },
-    destroyDatos: function destroyDatos() {
-      var _this3 = this;
-
-      axios.delete("api/cip/".concat(this.id)).then(function () {
-        console.log("se elimino", _this3.id);
-      });
+    getImage: function getImage(event) {
+      //Asignamos la imagen a  nuestra data
+      this.imagen = event.target.files[0];
     },
-    date: function date() {
-      var a = new Date();
-      console.log('tag', a.getFullYear() + "-" + a.getMonth() + "-" + a.getDate() + " " + a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds());
+    updateAvatar: function updateAvatar() {
+      //Creamos el formData
+      var data = new FormData(); //Añadimos la imagen seleccionada
+
+      data.append('avatar', this.imagen); //Añadimos el método PUT dentro del formData
+      // Como lo hacíamos desde un formulario simple _(no ajax)_
+
+      data.append('_method', 'POST'); //Enviamos la petición
+
+      axios.post('/dashboard/avatar', data).then(function (response) {
+        console.log('tag', response);
+      });
     }
   },
   computed: {
@@ -2444,13 +2459,347 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['datos', 'csrfToken'],
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/params").then(function (response) {
+      _this.departamentos = response.data.departamento;
+      _this.provincias = response.data.provincia;
+      _this.distritos = response.data.distrito;
+      var codigoD = _this.respuesta.ubigeoNacimiento;
+      var codigoP;
+      var codigo_depa;
+
+      for (var j = 0; j < _this.distritos.length; j++) {
+        if (codigoD == _this.distritos[j].codigo) {
+          codigoP = _this.distritos[j].extra;
+        }
+      }
+
+      for (var j = 0; j < _this.provincias.length; j++) {
+        if (codigoP == _this.provincias[j].codigo) {
+          _this.provincia = _this.provincias[j].valor;
+          codigo_depa = _this.provincias[j].extra;
+        }
+      }
+
+      for (var j = 0; j < _this.departamentos.length; j++) {
+        if (codigo_depa == _this.departamentos[j].codigo) {
+          _this.departamento = _this.departamentos[j].valor;
+        }
+      }
+    });
+  },
   data: function data() {
     return {
       respuesta: this.datos,
       password: null,
-      imagen: []
+      imagen: [],
+      departamentos: [],
+      provincias: [],
+      distritos: [],
+      departamento: null,
+      provincia: null,
+      distrito: null
     };
   },
   methods: {
@@ -2473,7 +2822,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     enviarEdit: function enviarEdit() {
       var _params,
-          _this = this;
+          _this2 = this;
 
       var params = (_params = {
         name: (this.respuesta.nombres + ' ' + this.respuesta.paterno + ' ' + this.respuesta.materno).toUpperCase(),
@@ -2486,9 +2835,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, _defineProperty(_params, "estadoCivil", this.estadoCivil), _defineProperty(_params, "lugarNacimiento", this.respuesta.lugarNacimiento), _defineProperty(_params, "fechaNacimiento", this.respuesta.fechaNacimiento), _defineProperty(_params, "paisNacimiento", this.respuesta.paisNacimiento), _defineProperty(_params, "email", this.respuesta.email), _defineProperty(_params, "celular", this.respuesta.celular), _defineProperty(_params, "dni", this.respuesta.dni), _defineProperty(_params, "codigoCIP", this.respuesta.codigoCIP), _defineProperty(_params, "usuarioCreador", this.respuesta.usuarioCreador), _defineProperty(_params, "direccion", this.respuesta.direccion), _defineProperty(_params, "password", this.password), _defineProperty(_params, "ubigeoSede", this.respuesta.ubigeoSede), _defineProperty(_params, "estadoUsuario", 10), _defineProperty(_params, "tipoColegiado", 1), _params);
       axios.put("/user/".concat(this.respuesta.id), params).then(function (response) {
         console.log('tag', response);
-        document.location.href = "../../user/" + _this.respuesta.id;
+        document.location.href = "../../user/" + _this2.respuesta.id;
       });
     }
+  },
+  computed: {
+    filtroProvincia: function filtroProvincia() {
+      var numero = [];
+
+      for (var i = 0; i < this.departamentos.length; i++) {
+        if (this.departamento == this.departamentos[i].valor) {
+          numero.push(this.departamentos[i].codigo);
+        }
+      }
+
+      return this.provincias.filter(function (juego) {
+        return juego.extra == numero;
+      });
+    },
+    filtroDistrito: function filtroDistrito() {
+      var numero = [];
+
+      for (var i = 0; i < this.provincias.length; i++) {
+        if (this.provincia == this.provincias[i].valor) {
+          numero.push(this.provincias[i].codigo);
+        }
+      }
+
+      return this.distritos.filter(function (juego) {
+        return juego.extra == numero;
+      });
+    },
+    obtenerDistrito: function obtenerDistrito() {}
   }
 });
 
@@ -38677,11 +39055,11 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { value: "Masculino" } }, [
+                          _c("option", { attrs: { value: "M" } }, [
                             _vm._v("Masculino")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Femenino" } }, [
+                          _c("option", { attrs: { value: "F" } }, [
                             _vm._v("Femenino")
                           ])
                         ]
@@ -38719,9 +39097,7 @@ var render = function() {
                           }
                         }
                       })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1)
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -38787,24 +39163,28 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { value: "Soltero" } }, [
+                          _c("option", { attrs: { value: "1" } }, [
                             _vm._v("Soltero")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Casado" } }, [
+                          _c("option", { attrs: { value: "2" } }, [
                             _vm._v("Casado")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Conviviente" } }, [
+                          _c("option", { attrs: { value: "5" } }, [
                             _vm._v("Conviviente")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Divorciado" } }, [
+                          _c("option", { attrs: { value: "4" } }, [
                             _vm._v("Divorciado")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "Viudo(a)" } }, [
+                          _c("option", { attrs: { value: "3" } }, [
                             _vm._v("Viudo(a)")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "6" } }, [
+                            _vm._v("No Consigna")
                           ])
                         ]
                       )
@@ -38864,9 +39244,7 @@ var render = function() {
                           }
                         }
                       })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2)
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -39005,7 +39383,171 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Sede:")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.ubigeoSede,
+                              expression: "ubigeoSede"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "data-placeholder": "Choose a Category" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.ubigeoSede = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "210101" } }, [
+                            _vm._v("Puno")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "211101" } }, [
+                            _vm._v("Juliaca")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Estado: ")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.estadoUsuario,
+                              expression: "estadoUsuario"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "data-placeholder": "Choose a Category" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.estadoUsuario = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "10" } }, [
+                            _vm._v("Habil")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "11" } }, [
+                            _vm._v("No Habil")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "control-label" }, [
+                        _vm._v("Condición: ")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.tipoColegiado,
+                              expression: "tipoColegiado"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "data-placeholder": "Choose a Category" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.tipoColegiado = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "5" } }, [
+                            _vm._v("En Tramite")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "0" } }, [
+                            _vm._v("Fallecido")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Incorporado")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "7" } }, [
+                            _vm._v("Incorporado Nacional")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "6" } }, [
+                            _vm._v("Nacional")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "4" } }, [
+                            _vm._v("Temporal")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Transferido Nacional")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("Vitali")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("hr"),
@@ -39093,7 +39635,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _vm._m(4),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39146,7 +39688,7 @@ var render = function() {
                   _c("div", { staticClass: "col-md-4" }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
-                        _vm._v("País:")
+                        _vm._v("País: " + _vm._s(_vm.paisNacimiento))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -39179,9 +39721,14 @@ var render = function() {
                           }
                         },
                         _vm._l(_vm.pais, function(item) {
-                          return _c("option", { key: item.codigo }, [
-                            _vm._v(_vm._s(item.valor))
-                          ])
+                          return _c(
+                            "option",
+                            {
+                              key: item.codigo,
+                              domProps: { value: item.codigo }
+                            },
+                            [_vm._v(_vm._s(item.valor))]
+                          )
                         }),
                         0
                       )
@@ -39189,7 +39736,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Distrito:")
+                        _vm._v("Distrito: " + _vm._s(_vm.distrito))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -39222,9 +39769,14 @@ var render = function() {
                           }
                         },
                         _vm._l(_vm.filtroDistrito, function(item) {
-                          return _c("option", { key: item.codigo }, [
-                            _vm._v(_vm._s(item.valor))
-                          ])
+                          return _c(
+                            "option",
+                            {
+                              key: item.codigo,
+                              domProps: { value: item.codigo }
+                            },
+                            [_vm._v(_vm._s(item.valor))]
+                          )
                         }),
                         0
                       )
@@ -39236,11 +39788,11 @@ var render = function() {
                 _vm._v(" "),
                 _c("hr", { staticStyle: { border: "1px solid red" } }),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._m(6),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39291,7 +39843,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
-                        _vm._v("Distrito:")
+                        _vm._v("Distrito: " + _vm._s(_vm.distritoTraba))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -39324,9 +39876,14 @@ var render = function() {
                           }
                         },
                         _vm._l(_vm.filtroDistritoTraba, function(item) {
-                          return _c("option", { key: item.codigo }, [
-                            _vm._v(_vm._s(item.valor))
-                          ])
+                          return _c(
+                            "option",
+                            {
+                              key: item.codigo,
+                              domProps: { value: item.codigo }
+                            },
+                            [_vm._v(_vm._s(item.valor))]
+                          )
                         }),
                         0
                       )
@@ -39334,7 +39891,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._m(7),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -39383,7 +39940,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(8)
+                    _vm._m(6)
                   ])
                 ])
               ]),
@@ -39406,7 +39963,7 @@ var render = function() {
                     [_vm._v("Cancel")]
                   ),
                   _vm._v(" "),
-                  !_vm.validator ? [_vm._m(9)] : [_vm._m(10)]
+                  !_vm.validator ? [_vm._m(7)] : [_vm._m(8)]
                 ],
                 2
               )
@@ -39434,139 +39991,34 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [_vm._v("Firma:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "file", placeholder: "Nombres" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "control-label" }, [_vm._v("Foto:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "file", placeholder: "Nombres" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "control-label" }, [_vm._v("Sede:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { "data-placeholder": "Choose a Category" }
-          },
-          [
-            _c("option", { attrs: { value: "Puno" } }, [_vm._v("Puno")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Juliaca" } }, [_vm._v("Juliaca")])
-          ]
-        )
+      _c("label", { staticClass: "control-label" }, [
+        _vm._v("Enviar E-mail a este Usuario")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "control-label" }, [_vm._v("Estado:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { "data-placeholder": "Choose a Category" }
-          },
-          [
-            _c("option", { attrs: { value: "Habil" } }, [_vm._v("Habil")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "No Habil" } }, [_vm._v("No Habil")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "control-label" }, [_vm._v("Condición:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { "data-placeholder": "Choose a Category" }
-          },
-          [
-            _c("option", { attrs: { value: "En Tramite" } }, [
-              _vm._v("En Tramite")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Fallecido" } }, [
-              _vm._v("Fallecido")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Incorporado" } }, [
-              _vm._v("Incorporado")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Incorporado Nacional" } }, [
-              _vm._v("Incorporado Nacional")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Nacional" } }, [
-              _vm._v("Nacional")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Temporal" } }, [
-              _vm._v("Temporal")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Transferido Nacional" } }, [
-              _vm._v("Transferido Nacional")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Vitalicio" } }, [_vm._v("Vitali")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "control-label" }, [
-          _vm._v("Enviar E-mail a este Usuario")
+      _c("div", { staticClass: "radio-list" }, [
+        _c("label", { staticClass: "radio-inline" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              name: "optionsRadios",
+              id: "optionsRadios1",
+              value: "option1",
+              checked: ""
+            }
+          }),
+          _vm._v("SI ")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "radio-list" }, [
-          _c("label", { staticClass: "radio-inline" }, [
-            _c("input", {
-              attrs: {
-                type: "radio",
-                name: "optionsRadios",
-                id: "optionsRadios1",
-                value: "option1",
-                checked: ""
-              }
-            }),
-            _vm._v("SI ")
-          ]),
-          _vm._v(" "),
-          _c("label", { staticClass: "radio-inline" }, [
-            _c("input", {
-              attrs: {
-                type: "radio",
-                name: "optionsRadios",
-                id: "optionsRadios2",
-                value: "option2"
-              }
-            }),
-            _vm._v(" NO ")
-          ])
+        _c("label", { staticClass: "radio-inline" }, [
+          _c("input", {
+            attrs: {
+              type: "radio",
+              name: "optionsRadios",
+              id: "optionsRadios2",
+              value: "option2"
+            }
+          }),
+          _vm._v(" NO ")
         ])
       ])
     ])
@@ -39832,27 +40284,49 @@ var render = function() {
                       _vm._v("Género:")
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.genero,
-                          expression: "respuesta.genero"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.genero },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.respuesta.genero,
+                            expression: "respuesta.genero"
                           }
-                          _vm.$set(_vm.respuesta, "genero", $event.target.value)
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.respuesta,
+                              "genero",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      [
+                        _c("option", { attrs: { value: "F" } }, [
+                          _vm._v("Femenino")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "M" } }, [
+                          _vm._v("Masculino")
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -39860,31 +40334,65 @@ var render = function() {
                       _vm._v("Estado Civil:")
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.estadoCivil,
-                          expression: "respuesta.estadoCivil"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.estadoCivil },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.respuesta.estadoCivil,
+                            expression: "respuesta.estadoCivil"
                           }
-                          _vm.$set(
-                            _vm.respuesta,
-                            "estadoCivil",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.respuesta,
+                              "estadoCivil",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      [
+                        _c("option", { attrs: { value: "1" } }, [
+                          _vm._v("Soltero")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2" } }, [
+                          _vm._v("Casado")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "5" } }, [
+                          _vm._v("Conviviente")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "4" } }, [
+                          _vm._v("Divorciado")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "3" } }, [
+                          _vm._v("Viudo(a)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "6" } }, [
+                          _vm._v("No Consigna")
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -39966,7 +40474,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text" },
+                      attrs: { type: "date" },
                       domProps: { value: _vm.respuesta.fechaNacimiento },
                       on: {
                         input: function($event) {
@@ -40020,119 +40528,1141 @@ var render = function() {
                       _vm._v("País:")
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.paisNacimiento,
-                          expression: "respuesta.paisNacimiento"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.paisNacimiento },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.respuesta.paisNacimiento,
+                            expression: "respuesta.paisNacimiento"
                           }
-                          _vm.$set(
-                            _vm.respuesta,
-                            "paisNacimiento",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.respuesta,
+                              "paisNacimiento",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      [
+                        _c("option", { attrs: { value: "AFG" } }, [
+                          _vm._v("Afghanistan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ALB" } }, [
+                          _vm._v("Albania")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DZA" } }, [
+                          _vm._v("Algeria")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ASM" } }, [
+                          _vm._v("American Samoa")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AND" } }, [
+                          _vm._v("Andorra")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AGO" } }, [
+                          _vm._v("Angola")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AIA" } }, [
+                          _vm._v("Anguilla")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ATA" } }, [
+                          _vm._v("Antarctica")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ATG" } }, [
+                          _vm._v("Antigua and Barbuda")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ARG" } }, [
+                          _vm._v("Argentina")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ARM" } }, [
+                          _vm._v("Armenia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ABW" } }, [
+                          _vm._v("Aruba")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AUS" } }, [
+                          _vm._v("Australia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AUT" } }, [
+                          _vm._v("Austria")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AZE" } }, [
+                          _vm._v("Azerbaijan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BHS" } }, [
+                          _vm._v("Bahamas")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BHR" } }, [
+                          _vm._v("Bahrain")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BGD" } }, [
+                          _vm._v("Bangladesh")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BRB" } }, [
+                          _vm._v("Barbados")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BLR" } }, [
+                          _vm._v("Belarus")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BEL" } }, [
+                          _vm._v("Belgium")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BLZ" } }, [
+                          _vm._v("Belize")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BEN" } }, [
+                          _vm._v("Benin")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BMU" } }, [
+                          _vm._v("Bermuda")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BTN" } }, [
+                          _vm._v("Bhutan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BOL" } }, [
+                          _vm._v("Bolivia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BIH" } }, [
+                          _vm._v("Bosnia and Herzegovina")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BWA" } }, [
+                          _vm._v("Botswana")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BVT" } }, [
+                          _vm._v("Bouvet Island")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BRA" } }, [
+                          _vm._v("Brazil")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IOT" } }, [
+                          _vm._v("British Indian Ocean Territory")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BRN" } }, [
+                          _vm._v("Brunei")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BGR" } }, [
+                          _vm._v("Bulgaria")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BFA" } }, [
+                          _vm._v("Burkina Faso")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BDI" } }, [
+                          _vm._v("Burundi")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KHM" } }, [
+                          _vm._v("Cambodia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CMR" } }, [
+                          _vm._v("Cameroon")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CAN" } }, [
+                          _vm._v("Canada")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CPV" } }, [
+                          _vm._v("Cape Verde")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CYM" } }, [
+                          _vm._v("Cayman Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CAF" } }, [
+                          _vm._v("Central African Republic")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TCD" } }, [
+                          _vm._v("Chad")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CHL" } }, [
+                          _vm._v("Chile")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CHN" } }, [
+                          _vm._v("China")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CXR" } }, [
+                          _vm._v("Christmas Island")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CCK" } }, [
+                          _vm._v("Cocos (Keeling) Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "COL" } }, [
+                          _vm._v("Colombia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "COM" } }, [
+                          _vm._v("Comoros")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "COG" } }, [
+                          _vm._v("Congo")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "COD" } }, [
+                          _vm._v("Congo, The Democratic Republic of the")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "COK" } }, [
+                          _vm._v("Cook Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CRI" } }, [
+                          _vm._v("Costa Rica")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HRV" } }, [
+                          _vm._v("Croatia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CIV" } }, [
+                          _vm._v("Cte dIvoire")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CUB" } }, [
+                          _vm._v("Cuba")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CYP" } }, [
+                          _vm._v("Cyprus")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CZE" } }, [
+                          _vm._v("Czech Republic")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DNK" } }, [
+                          _vm._v("Denmark")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DJI" } }, [
+                          _vm._v("Djibouti")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DMA" } }, [
+                          _vm._v("Dominica")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DOM" } }, [
+                          _vm._v("Dominican Republic")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TMP" } }, [
+                          _vm._v("East Timor")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ECU" } }, [
+                          _vm._v("Ecuador")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "EGY" } }, [
+                          _vm._v("Egypt")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SLV" } }, [
+                          _vm._v("El Salvador")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GNQ" } }, [
+                          _vm._v("Equatorial Guinea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ERI" } }, [
+                          _vm._v("Eritrea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "EST" } }, [
+                          _vm._v("Estonia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ETH" } }, [
+                          _vm._v("Ethiopia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FLK" } }, [
+                          _vm._v("Falkland Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FRO" } }, [
+                          _vm._v("Faroe Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FJI" } }, [
+                          _vm._v("Fiji Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FIN" } }, [
+                          _vm._v("Finland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FRA" } }, [
+                          _vm._v("France")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GUF" } }, [
+                          _vm._v("French Guiana")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PYF" } }, [
+                          _vm._v("French Polynesia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ATF" } }, [
+                          _vm._v("French Southern territories")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GAB" } }, [
+                          _vm._v("Gabon")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GMB" } }, [
+                          _vm._v("Gambia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GEO" } }, [
+                          _vm._v("Georgia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "DEU" } }, [
+                          _vm._v("Germany")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GHA" } }, [
+                          _vm._v("Ghana")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GIB" } }, [
+                          _vm._v("Gibraltar")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GRC" } }, [
+                          _vm._v("Greece")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GRL" } }, [
+                          _vm._v("Greenland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GRD" } }, [
+                          _vm._v("Grenada")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GLP" } }, [
+                          _vm._v("Guadeloupe")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GUM" } }, [
+                          _vm._v("Guam")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GTM" } }, [
+                          _vm._v("Guatemala")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GIN" } }, [
+                          _vm._v("Guinea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GNB" } }, [
+                          _vm._v("Guinea-Bissau")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GUY" } }, [
+                          _vm._v("Guyana")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HTI" } }, [
+                          _vm._v("Haiti")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HMD" } }, [
+                          _vm._v("Heard Island and McDonald Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VAT" } }, [
+                          _vm._v("Holy See (Vatican City State)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HND" } }, [
+                          _vm._v("Honduras")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HKG" } }, [
+                          _vm._v("Hong Kong")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "HUN" } }, [
+                          _vm._v("Hungary")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ISL" } }, [
+                          _vm._v("Iceland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IND" } }, [
+                          _vm._v("India")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IDN" } }, [
+                          _vm._v("Indonesia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IRN" } }, [
+                          _vm._v("Iran")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IRQ" } }, [
+                          _vm._v("Iraq")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IRL" } }, [
+                          _vm._v("Ireland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ISR" } }, [
+                          _vm._v("Israel")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ITA" } }, [
+                          _vm._v("Italy")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "JAM" } }, [
+                          _vm._v("Jamaica")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "JPN" } }, [
+                          _vm._v("Japan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "JOR" } }, [
+                          _vm._v("Jordan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KAZ" } }, [
+                          _vm._v("Kazakstan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KEN" } }, [
+                          _vm._v("Kenya")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KIR" } }, [
+                          _vm._v("Kiribati")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KWT" } }, [
+                          _vm._v("Kuwait")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KGZ" } }, [
+                          _vm._v("Kyrgyzstan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LAO" } }, [
+                          _vm._v("Laos")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LVA" } }, [
+                          _vm._v("Latvia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LBN" } }, [
+                          _vm._v("Lebanon")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LSO" } }, [
+                          _vm._v("Lesotho")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LBR" } }, [
+                          _vm._v("Liberia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LBY" } }, [
+                          _vm._v("Libyan Arab Jamahiriya")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LIE" } }, [
+                          _vm._v("Liechtenstein")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LTU" } }, [
+                          _vm._v("Lithuania")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LUX" } }, [
+                          _vm._v("Luxembourg")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MAC" } }, [
+                          _vm._v("Macao")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MKD" } }, [
+                          _vm._v("Macedonia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MDG" } }, [
+                          _vm._v("Madagascar")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MWI" } }, [
+                          _vm._v("Malawi")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MYS" } }, [
+                          _vm._v("Malaysia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MDV" } }, [
+                          _vm._v("Maldives")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MLI" } }, [
+                          _vm._v("Mali")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MLT" } }, [
+                          _vm._v("Malta")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MHL" } }, [
+                          _vm._v("Marshall Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MTQ" } }, [
+                          _vm._v("Martinique")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MRT" } }, [
+                          _vm._v("Mauritania")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MUS" } }, [
+                          _vm._v("Mauritius")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MYT" } }, [
+                          _vm._v("Mayotte")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MEX" } }, [
+                          _vm._v("Mexico")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "FSM" } }, [
+                          _vm._v("Micronesia, Federated States of")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MDA" } }, [
+                          _vm._v("Moldova")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MCO" } }, [
+                          _vm._v("Monaco")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MNG" } }, [
+                          _vm._v("Mongolia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MSR" } }, [
+                          _vm._v("Montserrat")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MAR" } }, [
+                          _vm._v("Morocco")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MOZ" } }, [
+                          _vm._v("Mozambique")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MMR" } }, [
+                          _vm._v("Myanmar")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NAM" } }, [
+                          _vm._v("Namibia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NRU" } }, [
+                          _vm._v("Nauru")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NPL" } }, [
+                          _vm._v("Nepal")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NLD" } }, [
+                          _vm._v("Netherlands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ANT" } }, [
+                          _vm._v("Netherlands Antilles")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NCL" } }, [
+                          _vm._v("New Caledonia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NZL" } }, [
+                          _vm._v("New Zealand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NIC" } }, [
+                          _vm._v("Nicaragua")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NER" } }, [
+                          _vm._v("Niger")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NGA" } }, [
+                          _vm._v("Nigeria")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NIU" } }, [
+                          _vm._v("Niue")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NFK" } }, [
+                          _vm._v("Norfolk Island")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PRK" } }, [
+                          _vm._v("North Korea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MNP" } }, [
+                          _vm._v("Northern Mariana Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NOR" } }, [
+                          _vm._v("Norway")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "OMN" } }, [
+                          _vm._v("Oman")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PAK" } }, [
+                          _vm._v("Pakistan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PLW" } }, [
+                          _vm._v("Palau")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PSE" } }, [
+                          _vm._v("Palestine")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PAN" } }, [
+                          _vm._v("Panama")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PNG" } }, [
+                          _vm._v("Papua New Guinea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PRY" } }, [
+                          _vm._v("Paraguay")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PER" } }, [
+                          _vm._v("Peru")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PHL" } }, [
+                          _vm._v("Philippines")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PCN" } }, [
+                          _vm._v("Pitcairn")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "POL" } }, [
+                          _vm._v("Poland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PRT" } }, [
+                          _vm._v("Portugal")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "PRI" } }, [
+                          _vm._v("Puerto Rico")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "QAT" } }, [
+                          _vm._v("Qatar")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ROM" } }, [
+                          _vm._v("Romania")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "REU" } }, [
+                          _vm._v("Runion")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "RUS" } }, [
+                          _vm._v("Russian Federation")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "RWA" } }, [
+                          _vm._v("Rwanda")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SHN" } }, [
+                          _vm._v("Saint Helena")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KNA" } }, [
+                          _vm._v("Saint Kitts and Nevis")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LCA" } }, [
+                          _vm._v("Saint Lucia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SPM" } }, [
+                          _vm._v("Saint Pierre and Miquelon")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VCT" } }, [
+                          _vm._v("Saint Vincent and the Grenadines")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "WSM" } }, [
+                          _vm._v("Samoa")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SMR" } }, [
+                          _vm._v("San Marino")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "STP" } }, [
+                          _vm._v("Sao Tome and Principe")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SAU" } }, [
+                          _vm._v("Saudi Arabia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SEN" } }, [
+                          _vm._v("Senegal")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SYC" } }, [
+                          _vm._v("Seychelles")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SLE" } }, [
+                          _vm._v("Sierra Leone")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SGP" } }, [
+                          _vm._v("Singapore")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SVK" } }, [
+                          _vm._v("Slovakia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SVN" } }, [
+                          _vm._v("Slovenia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SLB" } }, [
+                          _vm._v("Solomon Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SOM" } }, [
+                          _vm._v("Somalia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ZAF" } }, [
+                          _vm._v("South Africa")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SGS" } }, [
+                          _vm._v("South Georgia and the South Sandwich Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "KOR" } }, [
+                          _vm._v("South Korea")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ESP" } }, [
+                          _vm._v("Spain")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "LKA" } }, [
+                          _vm._v("Sri Lanka")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SDN" } }, [
+                          _vm._v("Sudan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SUR" } }, [
+                          _vm._v("Suriname")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SJM" } }, [
+                          _vm._v("Svalbard and Jan Mayen")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SWZ" } }, [
+                          _vm._v("Swaziland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SWE" } }, [
+                          _vm._v("Sweden")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "CHE" } }, [
+                          _vm._v("Switzerland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SYR" } }, [
+                          _vm._v("Syria")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TWN" } }, [
+                          _vm._v("Taiwan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TJK" } }, [
+                          _vm._v("Tajikistan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TZA" } }, [
+                          _vm._v("Tanzania")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "THA" } }, [
+                          _vm._v("Thailand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TGO" } }, [
+                          _vm._v("Togo")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TKL" } }, [
+                          _vm._v("Tokelau")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TON" } }, [
+                          _vm._v("Tonga")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TTO" } }, [
+                          _vm._v("Trinidad and Tobago")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TUN" } }, [
+                          _vm._v("Tunisia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TUR" } }, [
+                          _vm._v("Turkey")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TKM" } }, [
+                          _vm._v("Turkmenistan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TCA" } }, [
+                          _vm._v("Turks and Caicos Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TUV" } }, [
+                          _vm._v("Tuvalu")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UGA" } }, [
+                          _vm._v("Uganda")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UKR" } }, [
+                          _vm._v("Ukraine")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ARE" } }, [
+                          _vm._v("United Arab Emirates")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "GBR" } }, [
+                          _vm._v("United Kingdom")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "USA" } }, [
+                          _vm._v("United States")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UMI" } }, [
+                          _vm._v("United States Minor Outlying Islands")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "URY" } }, [
+                          _vm._v("Uruguay")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UZB" } }, [
+                          _vm._v("Uzbekistan")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VUT" } }, [
+                          _vm._v("Vanuatu")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VEN" } }, [
+                          _vm._v("Venezuela")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VNM" } }, [
+                          _vm._v("Vietnam")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VGB" } }, [
+                          _vm._v("Virgin Islands, British")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "VIR" } }, [
+                          _vm._v("Virgin Islands, U.S.")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "WLF" } }, [
+                          _vm._v("Wallis and Futuna")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ESH" } }, [
+                          _vm._v("Western Sahara")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "YEM" } }, [
+                          _vm._v("Yemen")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "YUG" } }, [
+                          _vm._v("Yugoslavia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ZMB" } }, [
+                          _vm._v("Zambia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "ZWE" } }, [
+                          _vm._v("Zimbabwe")
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Departamento:")
+                      _vm._v("Departamento: " + _vm._s(_vm.departamento))
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.ruc,
-                          expression: "respuesta.ruc"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.ruc },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.departamento,
+                            expression: "departamento"
                           }
-                          _vm.$set(_vm.respuesta, "ruc", $event.target.value)
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.departamento = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.departamentos, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.codigo, domProps: { value: item.valor } },
+                          [_vm._v(_vm._s(item.valor))]
+                        )
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Provincia:")
+                      _vm._v("Provincia: " + _vm._s(_vm.provincia))
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.ruc,
-                          expression: "respuesta.ruc"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.ruc },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.provincia,
+                            expression: "provincia"
                           }
-                          _vm.$set(_vm.respuesta, "ruc", $event.target.value)
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.provincia = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.filtroProvincia, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.codigo, domProps: { value: item.valor } },
+                          [_vm._v(_vm._s(item.valor))]
+                        )
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { staticClass: "control-label" }, [
-                      _vm._v("Distrito:")
+                      _vm._v(
+                        "Distrito: " + _vm._s(_vm.respuesta.ubigeoNacimiento)
+                      )
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.respuesta.ubigeoNacimiento,
-                          expression: "respuesta.ubigeoNacimiento"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.respuesta.ubigeoNacimiento },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.respuesta.ubigeoNacimiento,
+                            expression: "respuesta.ubigeoNacimiento"
                           }
-                          _vm.$set(
-                            _vm.respuesta,
-                            "ubigeoNacimiento",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control",
+                        attrs: { "data-placeholder": "Choose a Category" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.respuesta,
+                              "ubigeoNacimiento",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.filtroDistrito, function(item) {
+                        return _c(
+                          "option",
+                          {
+                            key: item.codigo,
+                            domProps: { value: item.codigo }
+                          },
+                          [_vm._v(_vm._s(item.valor))]
+                        )
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
                   _vm._m(1),
@@ -40220,9 +41750,7 @@ var render = function() {
                         [
                           _c("img", {
                             attrs: {
-                              src:
-                                "http://localhost:8000/img/" +
-                                _vm.respuesta.nombreFoto,
+                              src: "/img/" + _vm.respuesta.nombreFoto,
                               alt: ""
                             }
                           })
@@ -40300,31 +41828,49 @@ var render = function() {
                     _vm._v("Sede")
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.respuesta.ubigeoSede,
-                        expression: "respuesta.ubigeoSede"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.respuesta.ubigeoSede },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.ubigeoSede,
+                          expression: "respuesta.ubigeoSede"
                         }
-                        _vm.$set(
-                          _vm.respuesta,
-                          "ubigeoSede",
-                          $event.target.value
-                        )
+                      ],
+                      staticClass: "form-control",
+                      attrs: { "data-placeholder": "Choose a Category" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.respuesta,
+                            "ubigeoSede",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", { attrs: { value: "210101" } }, [
+                        _vm._v("Puno")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "211101" } }, [
+                        _vm._v("Juliaca")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -40332,31 +41878,49 @@ var render = function() {
                     _vm._v("Estado:")
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.respuesta.estadoUsuario,
-                        expression: "respuesta.estadoUsuario"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.respuesta.estadoUsuario },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.estadoUsuario,
+                          expression: "respuesta.estadoUsuario"
                         }
-                        _vm.$set(
-                          _vm.respuesta,
-                          "estadoUsuario",
-                          $event.target.value
-                        )
+                      ],
+                      staticClass: "form-control",
+                      attrs: { "data-placeholder": "Choose a Category" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.respuesta,
+                            "estadoUsuario",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", { attrs: { value: "10" } }, [
+                        _vm._v("Habil")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "11" } }, [
+                        _vm._v("No Habil")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -40364,31 +41928,73 @@ var render = function() {
                     _vm._v("Condición:")
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.respuesta.tipoColegiado,
-                        expression: "respuesta.tipoColegiado"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.respuesta.tipoColegiado },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.respuesta.tipoColegiado,
+                          expression: "respuesta.tipoColegiado"
                         }
-                        _vm.$set(
-                          _vm.respuesta,
-                          "tipoColegiado",
-                          $event.target.value
-                        )
+                      ],
+                      staticClass: "form-control",
+                      attrs: { "data-placeholder": "Choose a Category" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.respuesta,
+                            "tipoColegiado",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", { attrs: { value: "5" } }, [
+                        _vm._v("En Tramite")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "0" } }, [
+                        _vm._v("Fallecido")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [
+                        _vm._v("Incorporado")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "7" } }, [
+                        _vm._v("Incorporado Nacional")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "6" } }, [
+                        _vm._v("Nacional")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "4" } }, [
+                        _vm._v("Temporal")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [
+                        _vm._v("Transferido Nacional")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [
+                        _vm._v("Vitali")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -40454,7 +42060,9 @@ var render = function() {
           _vm._v(" "),
           _vm._m(7)
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._v("\n        {{}}\n    ")
     ])
   ])
 }
@@ -44358,10 +45966,7 @@ var render = function() {
         _c("li", [
           _c("img", {
             staticClass: "img-responsive pic-bordered",
-            attrs: {
-              src: "http://localhost:8000/img/" + _vm.datos.nombreFoto,
-              alt: ""
-            }
+            attrs: { src: "/img/" + _vm.datos.nombreFoto, alt: "" }
           }),
           _vm._v(" "),
           _c("a", { staticClass: "profile-edit" }, [

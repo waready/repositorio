@@ -30,18 +30,18 @@
                                     <div class="form-group">
                                         <label class="control-label">Género:</label>
                                         <select class="form-control" v-model="genero">
-                                            <option value="Masculino">Masculino</option>
-                                            <option value="Femenino">Femenino</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Femenino</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Ruc:</label>
                                         <input type="text" v-model="ruc"  class="form-control" placeholder="Nombres" required autofocus>
                                     </div> 
-                                     <div class="form-group">
+                                     <!-- <div class="form-group">
                                         <label class="control-label">Firma:</label>
                                         <input type="file"   class="form-control" placeholder="Nombres"  >
-                                    </div>   
+                                    </div>    -->
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
@@ -52,11 +52,12 @@
                                     <div class="form-group">
                                         <label class="control-label">Estado Civil:</label>
                                         <select class="form-control" v-model="estadoCivil" >
-                                            <option value="Soltero">Soltero</option>
-                                            <option value="Casado">Casado</option>
-                                            <option value="Conviviente">Conviviente</option>
-                                            <option value="Divorciado">Divorciado</option>
-                                            <option value="Viudo(a)">Viudo(a)</option>
+                                            <option value="1">Soltero</option>
+                                            <option value="2">Casado</option>
+                                            <option value="5">Conviviente</option>
+                                            <option value="4">Divorciado</option>
+                                            <option value="3">Viudo(a)</option>
+                                            <option value="6">No Consigna</option>
                                         </select>
                                     </div> 
                                     <div class="form-group">
@@ -67,10 +68,10 @@
                                         <label class="control-label">Dirección:</label>
                                         <input type="text" v-model="direccion"  class="form-control" placeholder="Direccion">
                                     </div> 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="control-label">Foto:</label>
                                         <input type="file"   class="form-control" placeholder="Nombres"  >
-                                    </div>  
+                                    </div>   -->
                                 </div>
                                 <!--/span-->
                             </div>
@@ -101,29 +102,29 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Sede:</label>
-                                        <select class="form-control" data-placeholder="Choose a Category" >
-                                            <option value="Puno">Puno</option>
-                                            <option value="Juliaca">Juliaca</option>
+                                        <select class="form-control" data-placeholder="Choose a Category" v-model="ubigeoSede">
+                                            <option value="210101">Puno</option>
+                                            <option value="211101">Juliaca</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Estado:</label>
-                                        <select class="form-control" data-placeholder="Choose a Category" >
-                                            <option value="Habil">Habil</option>
-                                            <option value="No Habil">No Habil</option>
+                                        <label class="control-label">Estado: </label>
+                                        <select class="form-control" data-placeholder="Choose a Category" v-model="estadoUsuario" >
+                                            <option value="10">Habil</option>
+                                            <option value="11">No Habil</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Condición:</label>
-                                        <select class="form-control" data-placeholder="Choose a Category" >
-                                            <option value="En Tramite">En Tramite</option>
-                                            <option value="Fallecido">Fallecido</option>
-                                            <option value="Incorporado">Incorporado</option>
-                                            <option value="Incorporado Nacional">Incorporado Nacional</option>
-                                            <option value="Nacional">Nacional</option>
-                                            <option value="Temporal">Temporal</option>
-                                            <option value="Transferido Nacional">Transferido Nacional</option>
-                                            <option value="Vitalicio">Vitali</option>
+                                        <label class="control-label">Condición: </label>
+                                        <select class="form-control" data-placeholder="Choose a Category" v-model="tipoColegiado" >
+                                            <option value="5">En Tramite</option>
+                                            <option value="0">Fallecido</option>
+                                            <option value="1">Incorporado</option>
+                                            <option value="7">Incorporado Nacional</option>
+                                            <option value="6">Nacional</option>
+                                            <option value="4">Temporal</option>
+                                            <option value="2">Transferido Nacional</option>
+                                            <option value="3">Vitali</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -173,15 +174,15 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="control-label">País:</label>
+                                        <label class="control-label">País: {{paisNacimiento}}</label>
                                         <select class="form-control" data-placeholder="Choose a Category" v-model="paisNacimiento">
-                                            <option v-for="item in pais" :key="item.codigo" >{{item.valor}}</option>
+                                            <option v-for="item in pais" :key="item.codigo" :value="item.codigo">{{item.valor}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Distrito:</label>
+                                        <label class="control-label">Distrito: {{distrito}}</label>
                                         <select class="form-control" data-placeholder="Choose a Category" v-model="distrito">
-                                            <option v-for="item in filtroDistrito" :key="item.codigo" >{{item.valor}}</option>
+                                            <option v-for="item in filtroDistrito" :key="item.codigo" :value="item.codigo">{{item.valor}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -213,9 +214,9 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Distrito:</label>
+                                        <label class="control-label">Distrito: {{distritoTraba}}</label>
                                         <select class="form-control" data-placeholder="Choose a Category" v-model="distritoTraba" >
-                                            <option v-for="item in filtroDistritoTraba" :key="item.codigo" >{{item.valor}}</option>
+                                            <option v-for="item in filtroDistritoTraba" :key="item.codigo" :value="item.codigo" >{{item.valor}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -253,6 +254,11 @@
                             </template>
                         </div>
                     </form>
+                    <!-- <div>
+                        {{imagen}}
+                        <input type="file" name="image" @change="getImage" accept="image/*">
+                        <button @click="updateAvatar">Subir Imagen</button>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -271,7 +277,8 @@ export default {
     },
    data(){
        return{
-        
+        imagen : null,
+
 
 		//id:"7857",
         departamentos:[],
@@ -285,6 +292,7 @@ export default {
         departamentoTraba:null,
         provinciaTraba:null,
         distritoTraba:null,
+        ubigeoSede:null,
 
         nombres:'juan andres', 
         paterno:'quispe', 
@@ -292,13 +300,16 @@ export default {
         dni:'0121444',
         celular:'93658412',
         direccion:'Jr Nestor Molina',            
-        estadoCivil:"Soltero",
-        genero:"Masculino",         
+        estadoCivil:null,
+        genero:null,         
                  
 		codigoCIP:'101012', 		
 		email:'juan@gmail.com', 
         password:'123456789', 
         password_confirmation:"123456789",
+        estadoUsuario:null,
+
+
         usertype:'deprecated',
         
 		block:'0', 
@@ -307,17 +318,22 @@ export default {
 		registerDate:"2016-03-05 15:25:44", 
 		lastvisitDate:"2016-03-05 15:25:44", 
 		activation:0, 
-		params:'{}', 
+        
+        
+        params:'{}', 
 		
 
 
 		ruc:'20932658', 
-		paisNacimiento:'Peru',
+		paisNacimiento:null,
 
-		tipoColegiado:'1',			
+		tipoColegiado:null,
+
         usuarioCreador:'admin',
+
         lugarNacimiento:'puno',
-        fechaNacimiento:"aaaaaaaa"
+
+        fechaNacimiento:null
 		
        }
    },
@@ -337,15 +353,16 @@ export default {
                activation:this.activation, 
                params:this.params, 
                codigoCIP:this.codigoCIP, 
-               paterno:this.paterno, 
-               materno:this.materno, 
-               nombres:this.nombres,
+               paterno:this.paterno.toUpperCase(), 
+               materno:this.materno.toUpperCase(), 
+               nombres:this.nombres.toUpperCase(),
 
 			   ruc:this.ruc, 
-               estadoUsuario:10, 
+               estadoUsuario:this.estadoUsuario, 
                lugarNacimiento:this.lugarNacimiento, 
                fechaNacimiento:this.fechaNacimiento, 
-               //ubigeoNacimiento:'', 
+               ubigeoNacimiento:this.distrito,  
+               
                paisNacimiento:this.paisNacimiento, 
                //ubigeoDomicilio:'', 
                direccion:this.direccion, 
@@ -369,10 +386,13 @@ export default {
                 fechaModificacion:null, 
                 //nombreFoto:null, 
                 //oferta:'', 
-                //ubigeoSede:'', 
+                ubigeoSede:this.ubigeoSede, 
                 //nombreFirma:'', 
                 //tipoTarjeta:'0'
             };
+          
+            
+     
             axios.post('/user', params).then((response)=>{
                 
                 if(response.data.success){
@@ -385,15 +405,29 @@ export default {
             
             })
        },
-       destroyDatos(){
-           axios.delete(`api/cip/${this.id}`).then(()=>{
-               console.log("se elimino", this.id)
-           })
-       },
-       date(){
-           var a = new Date()
-           console.log('tag', a.getFullYear()+"-"+a.getMonth()+"-"+a.getDate()+" "+a.getHours()+":"+ a.getMinutes()+":"+a.getSeconds())
-       }
+
+
+
+        getImage(event){
+        //Asignamos la imagen a  nuestra data
+        this.imagen = event.target.files[0];
+        },
+        updateAvatar(){
+            //Creamos el formData
+            var data = new  FormData();
+            //Añadimos la imagen seleccionada
+            data.append('avatar', this.imagen);
+            //Añadimos el método PUT dentro del formData
+            // Como lo hacíamos desde un formulario simple _(no ajax)_
+            data.append('_method', 'POST');
+            //Enviamos la petición
+            axios.post('/dashboard/avatar',data)
+            .then(response => {
+                console.log('tag', response)
+            })
+        }
+
+
    },
    computed:{
        filtroProvincia(){

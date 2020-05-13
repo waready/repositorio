@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+
+use App\Exports\InvoicesExport;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\getUsers;
+
+
+use Maatwebsite\Excel\Facades\Excel;
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 class HomeController extends Controller
 {
@@ -24,5 +33,9 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public function excel(){
+        //return Excel::download(new reportExport, 'report.xlsx');
+        return Excel::download(new InvoicesExport, 'invoices.xlsx');
     }
 }

@@ -134,6 +134,7 @@ class EspecialidadController extends Controller
         $especialidad -> hojaResolucion  = $request ->hojaResolucion ;
         $especialidad -> resolucionRevalidacion  = $request ->resolucionRevalidacion ;
         $especialidad -> fechaJuramentacion  = $request ->fechaJuramentacion ;
+        $especialidad -> fechaInscripcion= $request ->fechaInscripcion;
 
 //fechaInscripcion: null
 
