@@ -15,11 +15,11 @@ class getUsers extends Controller
         $cip_user = cip_users::paginate(100);
         $hola = "select * from cip_users A
         left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
-        left join cip_param C on C.grupo = '053' and C.codigo = B.idEspecialidad limit 100";
+        left join cip_param C on C.grupo = '053' and C.codigo = B.idEspecialidad limit 10";
        // $especialidad = cip_users_especialidad::pagiante(100);
        $datoPersona = DB::select($hola);
-        //return $datoPersona;
-        return view('usuario.index',compact('cip_user'));
+        return $datoPersona;
+        //return view('usuario.index',compact('cip_user'));
     }
     public function create()
     {   
