@@ -809,7 +809,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       $sql = "SELECT id, idPago, codigoCIP, idEspecialidad, 
               nroConstancia, tipo, institucion, asunto, ubigeo,
               zona, direccion, modalidad, monto
-      FROM cip_db.cip_constancias 
+      FROM cip_constancias 
       where id = ".$id." and codigoCIP = '".$codigoCIP."' and nroRecibo = ".$nroRecibo." and tipo = ".$tipo." limit 1;";
 
       $dataformCert = DB::select($sql);
@@ -965,7 +965,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     return Response::make($fpdf->Output(),200,$headers);
   }
 
-  public function rptCertificadoGenerico(Request $request))
+  public function rptCertificadoGenerico(Request $request)
   {
     $fpdf = new Fpdf();
     $fpdf->AddPage();
