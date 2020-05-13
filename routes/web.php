@@ -83,6 +83,16 @@ Route::post('busquedaColegiadosFrac','ColegiadoController@busquedaColegiadosFrac
 
 Route::post('registroFracc','ColegiadoController@registroFraccionamiento');
 
+Route::post('rptCertificadoData','ColegiadoController@rptCertificadoData');
+
+Route::post('extraeProvincia','ColegiadoController@extraeProvincia');
+Route::post('extraeDistrito','ColegiadoController@extraeDistrito');
+
+Route::post('saveCertificadoHabilidad','ColegiadoController@saveCertificadoHabilidad');
+
+
+
+
 Route::get('fpdf','ColegiadoController@fpdf');
 
 Route::post('pdf', function () {
@@ -108,7 +118,7 @@ Route::get('fa', function () {
 
 });
 
-Route::get('f', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+Route::get('f', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
 
     $fpdf->AddPage();
     $fpdf->SetFont('Courier', 'B', 18);
