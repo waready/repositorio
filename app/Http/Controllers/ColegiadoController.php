@@ -140,7 +140,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
           $bitacoraPago = DB::select($sql);
 
-          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_db.cip_users_especialidads A
+          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_users_especialidads A
           left join cip_param B on B.grupo = '053' and B.codigo = A.idEspecialidad 
           where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id asc";
 
@@ -953,6 +953,19 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
   }
 
   public function fpdf()
+  {
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Arial', '', 12);
+    $fpdf->Cell(50, 25, 'Hello World!');
+    
+    
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+  }
+
+  public function rptCertificadoGenerico(Request $request))
   {
     $fpdf = new Fpdf();
     $fpdf->AddPage();
