@@ -1807,7 +1807,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].id+", "+dataReport[i].codigoCIP+", "+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
                                 "</td>"+
-                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
+                                "<td>"+"<a href='rptCertificados"+dataReport[i].tipo+"?idCert="+dataReport[i].id+"' target='_blank'><i class='fa fa-print'></i></a>"+
+
                                 "</td>"+
                                 "</tr>";
 
@@ -1817,6 +1818,49 @@ License: You must have a valid license purchased only from themeforest(the above
                 
                 $("#ctabCertificado").html(cad);
             }
+
+            function rptCertificados(id, cip, tipo)
+            {
+                var url = "";
+                if(tipo == '90')
+                {
+                    url = "rptCertificadoGenerico";
+                }
+                if(tipo == '91')
+                {
+                    url = "rptCertificadoEspecifico";
+                }
+                if(tipo == '92')
+                {
+                    url = "rptCertificadoHProyecto";
+                }
+                if(tipo == '93')
+                {
+                    url = "rptCertificadoGenerico";
+                }
+
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : url, //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : $('#frmCertificadoHabilidad').serialize(), //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            alert("Datos Actualizados Correctamente!!!");
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                        }
+
+                                    }
+                    });
+            }
+
+
 
             function modalCHE(id,cip, nroRecibo, tipo)
             {   
