@@ -458,7 +458,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                    <ul class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                         <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
                         <li class="sidebar-toggler-wrapper hide">
                             <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -472,19 +472,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                             <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                             <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                            <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
-                                <a href="javascript:;" class="remove">
-                                    <i class="icon-close"></i>
-                                </a>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <a href="javascript:;" class="btn submit">
-                                            <i class="icon-magnifier"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                            </form>
+                      
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
                         
@@ -492,69 +480,74 @@ License: You must have a valid license purchased only from themeforest(the above
                             <h3 class="uppercase">Modulos</h3>
                         </li>
                        
-                        <li class="nav-item  start">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle ">
                                 <i class="icon-puzzle"></i>
                                 <span class="title">Colegiados</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu "  >
                                 <li class="nav-item  ">
-                                    <a href="/user/create" class="nav-link ">
-                                        <span class="title">Registro</span>
+                                    <a href="/user/create" class="nav-link nav-toggle">
+                                        <span class="title">-Registro</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/user" class="nav-link ">
-                                        <span class="title">Busqueda</span>
-                                        <span class="badge badge-danger">2</span>
+                                    <a href="/user" class="nav-link nav-toggle">
+                                        <span class="title">-Busqueda</span>
+                               
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/user" class="nav-link ">
-                                        <span class="title">Actualización</span>
+                                    <a href="/reporte" class="nav-link nav-toggle">
+                                        <span class="title">-Reportes</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/cumple" class="nav-link nav-toggle">
+                                        <span class="title">-Cumpleaños</span>
                                     </a>
                                 </li>
                                
                             </ul>
                         </li>
 
-                        <li class="nav-item active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                        <li class="nav-item">
+                            <a  class="nav-link nav-toggle">
                                 <i class="icon-diamond"></i>
                                 <span class="title">Pagos</span>
                                 <span class="selected"></span>
-                                <span class="arrow open"></span>
+                            
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu ">
                                 <li class="nav-item ">
                                     <a href="/pagos" class="nav-link ">
-                                        <span class="title">Pagos</span>
+                                        <span class="title">-Pagos</span>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
                                     <a href="/fraccionamiento" class="nav-link ">
-                                        <span class="title">Fraccionamiento</span>
+                                        <span class="title">-Fraccionamiento</span>
                                     </a>
                                 </li>
                             </ul>    
                         </li>
                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a  class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Facturacion</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu ">
                                 <li class="nav-item  ">
                                     <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
-                                        <span class="title">Ingreso
+                                        <span class="title"> -Ingreso
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">Resumen Diario
+                                        <span class="title">-Resumen Diario
                                             </span>
                                     </a>
                                 </li>
@@ -563,22 +556,22 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                             
                         </li>
-                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                         {{-- <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Reporte</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu ">
                                 <li class="nav-item  ">
                                     <a href="form_controls.html" class="nav-link ">
-                                        <span class="title">bUsqueda
+                                        <span class="title">-busqueda
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">General
+                                        <span class="title">-General
                                             </span>
                                     </a>
                                 </li>
@@ -586,11 +579,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                             
                             
-                        </li>
-                       <li> 
-                           </li>
-                            </ul>
-                        </li>
+                        </li> --}}
+                       
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->

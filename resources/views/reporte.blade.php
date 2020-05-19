@@ -11,6 +11,7 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
+        
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -32,10 +33,13 @@
         <link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
+      
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" >
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -404,13 +408,137 @@
         <div class="clearfix"> </div>
         <!-- END HEADER & CONTENT DIVIDER -->
         <!-- BEGIN CONTAINER -->
-        <div class="page-container">
+        <div class="page-container" id="app">
             <!-- BEGIN SIDEBAR -->
             <div class="page-sidebar-wrapper">
                 <!-- BEGIN SIDEBAR -->
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <div class="page-sidebar navbar-collapse collapse">
+                    <ul class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                            <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                      
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        
+                        <li class="heading">
+                            <h3 class="uppercase">Modulos</h3>
+                        </li>
+                       
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle ">
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Colegiados</span>
+                                
+                            </a>
+                            <ul class="page-sidebar-menu "  >
+                                <li class="nav-item  ">
+                                    <a href="/user/create" class="nav-link nav-toggle">
+                                        <span class="title">-Registro</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/user" class="nav-link nav-toggle">
+                                        <span class="title">-Busqueda</span>
+                               
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/reporte" class="nav-link nav-toggle">
+                                        <span class="title">-Reportes</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/cumple" class="nav-link nav-toggle">
+                                        <span class="title">-Cumpleaños</span>
+                                    </a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">Pagos</span>
+                                <span class="selected"></span>
+                            
+                            </a>
+                            <ul class="page-sidebar-menu ">
+                                <li class="nav-item ">
+                                    <a href="/pagos" class="nav-link ">
+                                        <span class="title">-Pagos</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="/fraccionamiento" class="nav-link ">
+                                        <span class="title">-Fraccionamiento</span>
+                                    </a>
+                                </li>
+                            </ul>    
+                        </li>
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Facturacion</span>
+                                
+                            </a>
+                            <ul class="page-sidebar-menu ">
+                                <li class="nav-item  ">
+                                    <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
+                                        <span class="title"> -Ingreso
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">-Resumen Diario
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li>
+                         {{-- <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Reporte</span>
+                                
+                            </a>
+                            <ul class="page-sidebar-menu ">
+                                <li class="nav-item  ">
+                                    <a href="form_controls.html" class="nav-link ">
+                                        <span class="title">-busqueda
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="form_controls_md.html" class="nav-link ">
+                                        <span class="title">-General
+                                            </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </li> --}}
+                       
+                    </ul>
                     <!-- BEGIN SIDEBAR MENU -->
                     <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                     <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -437,8 +565,8 @@
                   
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Buttons Datatable
-                        <small>buttons extension demos</small>
+                    <h3 class="page-title"> Cumpleaños Colegiados
+                        {{-- <small>buttons extension demos</small> --}}
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
@@ -446,11 +574,47 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                            <div class="form-inline">
+                                <form class="form-group" action="{{ url('searchDni')}}"  method="POST">
+                                    {{ csrf_field() }}
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">MES:</label>                                          
+                                        <select class="form-control " name="mes" id="tipoBusqueda" required>
+                                            <option value=""> -mes-</option>        
+                                            <option value="1">Enero</option>
+                                            <option value="2">Febreo</option>
+                                            <option value="3">Marzo</option>
+                                            <option value="4">Abril</option>
+                                            <option value="5">Mayo</option>
+                                            <option value="6">Junio</option>
+                                            <option value="7">Julio</option>
+                                            <option value="8">Agosto</option>
+                                            <option value="9">Septiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+
+                                            
+                                        </select> <i></i> 
+                                        <label class="control-label">DIA:</label>  
+                                        <input type="number" name="dia" min="1" max="31" class="form-control" required>
+
+                                        
+                                        <button type="submit" class="btn btn-circle green" >Buscar <i class="glyphicon glyphicon-search"></i></button>
+                                        
+                                    </div>
+
+                                </form>
+                                
+                            </div>
+                            <br>
                             <div class="portlet light bordered">
+                              
                                 <div class="portlet-title">
                                     <div class="caption font-dark">
                                         <i class="icon-settings font-dark"></i>
-                                        <span class="caption-subject bold uppercase">Buttons</span>
+                                        <span class="caption-subject bold uppercase">Opciones</span>
                                     </div>
                                     <div class="tools"> </div>
                                 </div>
@@ -458,11 +622,12 @@
                                     <table class="table table-striped table-bordered table-hover" id="sample_1">
                                         <thead>
                                             <tr>
-                                                <th> Codigo  </th>
-                                                <th> Nombres </th>
-                                                <th> Apellido Paterno </th>
-                                                <th> Apellido Materno</th>
+                                                <th> Nombres y apellidos</th>
+                                                <th> Codigo  </th>                                               
+                                                <th> DNI </th>
                                                 <th> Email</th>
+                                                <th> Fecha de nacimiento</th>
+                                               
                                                 <th> Ultimo Pago</th>
                                                
                                             </tr>
@@ -470,12 +635,16 @@
                                         <tbody>
                                             @foreach ($cip_user as $users )
                                             <tr>
+                                                <td>{{$users->name}}</td>
                                                 <td>{{$users->codigoCIP}}</td>
-                                                <td>{{$users->nombres}}</td>
-                                                <td>{{$users->paterno}}</td>
-                                                <td>{{$users->materno}}</td>
+                                                <td>{{$users->dni}}</td>
                                                 <td>{{$users->email}}</td>
                                                 <td>{{$users->fechaNacimiento}}</td>
+                                               
+                                                <td>
+                                                    {{$users->ultimoPago}}
+                                                </td>
+                                                
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -484,331 +653,7 @@
                             </div>
                             <!-- END EXAMPLE TABLE PORTLET-->
                             <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                            <div class="portlet box green">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="fa fa-globe"></i>Buttons </div>
-                                    <div class="tools"> </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <table class="table table-striped table-bordered table-hover" id="sample_2">
-                                        <thead>
-                                            <tr>
-                                                <th> Rendering engine </th>
-                                                <th> Browser </th>
-                                                <th> Platform(s) </th>
-                                                <th> Engine version </th>
-                                                <th> CSS grade </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> Internet Explorer 4.0 </td>
-                                                <td> Win 95+ </td>
-                                                <td> 4 </td>
-                                                <td> X </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> Internet Explorer 5.0 </td>
-                                                <td> Win 95+ </td>
-                                                <td> 5 </td>
-                                                <td> C </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> Internet Explorer 5.5 </td>
-                                                <td> Win 95+ </td>
-                                                <td> 5.5 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> Internet Explorer 6 </td>
-                                                <td> Win 98+ </td>
-                                                <td> 6 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> Internet Explorer 7 </td>
-                                                <td> Win XP SP2+ </td>
-                                                <td> 7 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Trident </td>
-                                                <td> AOL browser (AOL desktop) </td>
-                                                <td> Win XP </td>
-                                                <td> 6 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Firefox 1.0 </td>
-                                                <td> Win 98+ / OSX.2+ </td>
-                                                <td> 1.7 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Firefox 1.5 </td>
-                                                <td> Win 98+ / OSX.2+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Firefox 2.0 </td>
-                                                <td> Win 98+ / OSX.2+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Firefox 3.0 </td>
-                                                <td> Win 2k+ / OSX.3+ </td>
-                                                <td> 1.9 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Camino 1.0 </td>
-                                                <td> OSX.2+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Camino 1.5 </td>
-                                                <td> OSX.3+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Netscape 7.2 </td>
-                                                <td> Win 95+ / Mac OS 8.6-9.2 </td>
-                                                <td> 1.7 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Netscape Browser 8 </td>
-                                                <td> Win 98SE+ </td>
-                                                <td> 1.7 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Netscape Navigator 9 </td>
-                                                <td> Win 98+ / OSX.2+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.0 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.1 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.1 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.2 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.2 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.3 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.3 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.4 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.4 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.5 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.5 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.6 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> 1.6 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.7 </td>
-                                                <td> Win 98+ / OSX.1+ </td>
-                                                <td> 1.7 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Mozilla 1.8 </td>
-                                                <td> Win 98+ / OSX.1+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Seamonkey 1.1 </td>
-                                                <td> Win 98+ / OSX.2+ </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Gecko </td>
-                                                <td> Epiphany 2.20 </td>
-                                                <td> Gnome </td>
-                                                <td> 1.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> Safari 1.2 </td>
-                                                <td> OSX.3 </td>
-                                                <td> 125.5 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> Safari 1.3 </td>
-                                                <td> OSX.3 </td>
-                                                <td> 312.8 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> Safari 2.0 </td>
-                                                <td> OSX.4+ </td>
-                                                <td> 419.3 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> Safari 3.0 </td>
-                                                <td> OSX.4+ </td>
-                                                <td> 522.1 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> OmniWeb 5.5 </td>
-                                                <td> OSX.4+ </td>
-                                                <td> 420 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> iPod Touch / iPhone </td>
-                                                <td> iPod </td>
-                                                <td> 420.1 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Webkit </td>
-                                                <td> S60 </td>
-                                                <td> S60 </td>
-                                                <td> 413 </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 7.0 </td>
-                                                <td> Win 95+ / OSX.1+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 7.5 </td>
-                                                <td> Win 95+ / OSX.2+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 8.0 </td>
-                                                <td> Win 95+ / OSX.2+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 8.5 </td>
-                                                <td> Win 95+ / OSX.2+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 9.0 </td>
-                                                <td> Win 95+ / OSX.3+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 9.2 </td>
-                                                <td> Win 88+ / OSX.3+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera 9.5 </td>
-                                                <td> Win 88+ / OSX.3+ </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Opera for Wii </td>
-                                                <td> Wii </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Nokia N800 </td>
-                                                <td> N800 </td>
-                                                <td> - </td>
-                                                <td> A </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Presto </td>
-                                                <td> Nintendo DS browser </td>
-                                                <td> Nintendo DS </td>
-                                                <td> 8.5 </td>
-                                                <td> C/A
-                                                    <sup>1</sup>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                         
                             <!-- END EXAMPLE TABLE PORTLET-->
                         </div>
                     </div>
@@ -1420,6 +1265,7 @@
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+       
     </body>
 
 </html>

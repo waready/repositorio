@@ -562,7 +562,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
@@ -572,7 +572,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -583,7 +583,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }

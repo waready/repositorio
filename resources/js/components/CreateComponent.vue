@@ -362,6 +362,8 @@ export default {
                lugarNacimiento:this.lugarNacimiento, 
                fechaNacimiento:this.fechaNacimiento, 
                ubigeoNacimiento:this.distrito,  
+
+               
                
                paisNacimiento:this.paisNacimiento, 
                //ubigeoDomicilio:'', 

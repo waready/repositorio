@@ -10,13 +10,11 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Cip-usuarios</span>
+                        <span class="caption-subject bold uppercase">Cip-Reportes</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
-                            <a   href="user/create"class="btn sbold green"> Agregar Nuevo 
-                                <i class="fa fa-plus"></i>
-                            </a>
+                            <a href="#"  class="btn sbold green" id="test" onClick="javascript:fnExcelReport();">Exportar Excel</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +32,7 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <div class="form-inline">
-                                    <form class="form-group" action="{{ url('searchName')}}"  method="POST">
+                                    <form class="form-group" action="{{ url('filtro')}}"  method="GET">
                                         {{ csrf_field() }}
                                         
                                         <div class="form-group">
@@ -66,7 +64,15 @@
                                                 <option value="10">Habil</option>
                                                 <option value="11">No Habil</option> 
                                             </select> <i></i> 
-                                            <button type="submit" class="btn btn-circle green" >Buscar <i class="glyphicon glyphicon-search"></i></button>
+
+                                            <select class="form-control " name="sede" id="tipoBusqueda">
+                                                        
+                                                <option value="">- Sede -</option>
+                                                <option value="210101">Puno</option>
+                                                <option value="211101">Juliaca</option>
+                                                
+                                            </select> <i></i> 
+                                            <button type="submit" class="btn btn-circle green" >Filtrar <i class="glyphicon glyphicon-search"></i></button>
                                             
                                         </div>
 
@@ -80,34 +86,33 @@
                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="myTable">
                         <thead>
                             <tr>
-                                <th>
-                                    Perfil
-                                </th>
+                               
                                 <th> Codigo  </th>
-                                <th> Nombres </th>
-                                <th> Apellido Paterno </th>
-                                <th> Apellido Materno</th>
+                                <th> Nombres y Apellidos </th>
+                                <th> DNI</th>
                                 <th> Email</th>
+                                <th> Celular </th>
                                 <th> Ultimo Pago</th>
+                                <th> Sede</th>
                                 <th> Tipo de Colegiado</th>
                                 <th>Condicion</th>
-                                <th>Editar</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($cip_user as $users )
                                 <tr class="odd gradeX">
-                                    <td>
-                                        <a href="user/{{$users->id}}">
-                                            <i class="fa fa-user"></i>
-                                        </a>
-                                    </td>
+                                    
                                     <td>{{$users->codigoCIP}}</td>
-                                    <td>{{$users->nombres}}</td>
-                                    <td>{{$users->paterno}}</td>
-                                    <td>{{$users->materno}}</td>
+                                    <td>{{$users->name}}</td>
+                                    <td>{{$users->dni}}</td>
                                     <td>{{$users->email}}</td>
+                                    <td>{{$users->celular}}</td>
                                     <td>{{$users->ultimoPago}}</td>
+                                    <td> 
+                                        <template v-if="{{$users->ubigeoSede}} == 210101"> Puno</template>
+                                        <template v-if="{{$users->ubigeoSede}} == 211101"> Juliaca</template>
+                                    </td>
                                     
                                     <td>
                                         {{-- {{$users->tipoColegiado}} --}}
@@ -126,13 +131,9 @@
                                         </template>
                                         <template v-if="{{$users->estadoUsuario}} == 11">
                                            No Habil
-                                        </template>                                    
+                                        </template>
                                     </td>
-                                    <td>
-                                        <a href="user/{{$users->id}}#tab_1_3">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                    </td>
+                                   
                                 </tr>
                             @endforeach
                         </tbody>
@@ -141,7 +142,7 @@
                     {{ $cip_user->links() }}
                 </div>
             </div>
-            <a href="#" id="test" onClick="javascript:fnExcelReport();">download</a>
+            
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
