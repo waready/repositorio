@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
@@ -562,7 +562,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
@@ -572,7 +572,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -583,7 +583,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -965,6 +965,18 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     return Response::make($fpdf->Output(),200,$headers);
   }
 
+  public function rptCertificadoGenerico(Request $request)
+  {
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Arial', '', 12);
+    $fpdf->Cell(50, 25, 'Hello World!');
+    
+    
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+  }
 
   public function rptCertificados90(Request $request)
   {
@@ -1596,7 +1608,6 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     //return $fpdf->Output();//$pdf->stream();
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
-    
 
   public function rptCertificadoGenerico(Request $request)
   {
@@ -1609,6 +1620,5 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     //return $fpdf->Output();//$pdf->stream();
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
-
   }
 }

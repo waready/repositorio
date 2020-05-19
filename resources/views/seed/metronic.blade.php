@@ -8,7 +8,7 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
 
-
+        <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -30,13 +30,7 @@
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
 
-
-
-
-
-
-
-
+        
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -78,7 +72,7 @@
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="index.html">
-                        <img src="../img/logot.png" width="130" /> </a>
+                        <img src="../assets/layouts/layout/img/logocip1.png" width="170" /> </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
                     </div>
@@ -445,73 +439,96 @@
                 <div class="page-sidebar navbar-collapse collapse">
                     <!-- BEGIN SIDEBAR MENU -->
                    
-                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                    <ul class="page-sidebar-menu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                         <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-                         
-                       
+                        <li class="sidebar-toggler-wrapper hide">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                            <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                      
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        
                         <li class="heading">
                             <h3 class="uppercase">Modulos</h3>
                         </li>
-    
-                        <li class="nav-item">
-                            <a class="nav-link nav-toggle">
+                       
+                        <li class="nav-item  ">
+                            <a  class="nav-link nav-toggle ">
                                 <i class="icon-puzzle"></i>
                                 <span class="title">Colegiados</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                           
+                            <ul class="page-sidebar-menu "  >
                                 <li class="nav-item  ">
-                                    <a href="/user/create" class="nav-link ">
-                                        <span class="title">Registro</span>
+                                    <a href="/user/create" class="nav-link nav-toggle">
+                                        <span class="title">-Registro</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/user" class="nav-link ">
-                                        <span class="title">Busqueda</span>
-                                        <span class="badge badge-danger">2</span>
+                                    <a href="/user" class="nav-link nav-toggle">
+                                        <span class="title">-Busqueda</span>
+                               
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/user" class="nav-link ">
-                                        <span class="title">Actualización</span>
+                                    <a href="/reporte" class="nav-link nav-toggle">
+                                        <span class="title">-Reportes</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/cumple" class="nav-link nav-toggle">
+                                        <span class="title">-Cumpleaños</span>
                                     </a>
                                 </li>
                                
-                         
+                            </ul>
                         </li>
-                        <li class="nav-item  ">
+
+                        <li class="nav-item">
                             <a  class="nav-link nav-toggle">
-                                <i class="icon-settings"></i>
-                                <span class="title">Pago</span>
-                                <span class="arrow"></span>
+                                <i class="icon-diamond"></i>
+                                <span class="title">Pagos</span>
+                                <span class="selected"></span>
+                            
                             </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item  ">
+                            <ul class="page-sidebar-menu ">
+                                <li class="nav-item ">
                                     <a href="/pagos" class="nav-link ">
-                                        <span class="title">Registro
-                                            </span>
+                                        <span class="title">-Pagos</span>
                                     </a>
                                 </li>
-                            </ul>
-                            
-                            
+                                <li class="nav-item ">
+                                    <a href="/fraccionamiento" class="nav-link ">
+                                        <span class="title">-Fraccionamiento</span>
+                                    </a>
+                                </li>
+                            </ul>    
                         </li>
                         <li class="nav-item  ">
                             <a  class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Facturacion</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu ">
                                 <li class="nav-item  ">
                                     <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
-                                        <span class="title">Ingreso
+                                        <span class="title"> -Ingreso
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">Resumen Diario
+                                        <span class="title">-Resumen Diario
                                             </span>
                                     </a>
                                 </li>
@@ -520,22 +537,22 @@
                             
                             
                         </li>
-                         <li class="nav-item  ">
+                         {{-- <li class="nav-item  ">
                             <a  class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Reporte</span>
-                                <span class="arrow"></span>
+                                
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="page-sidebar-menu ">
                                 <li class="nav-item  ">
                                     <a href="form_controls.html" class="nav-link ">
-                                        <span class="title">bUsqueda
+                                        <span class="title">-busqueda
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
                                     <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">General
+                                        <span class="title">-General
                                             </span>
                                     </a>
                                 </li>
@@ -543,12 +560,8 @@
                             </ul>
                             
                             
-                        </li>
-                       <li> 
-                           </li>
-                            </ul>
-                        </li>
-                      
+                        </li> --}}
+                       
                     </ul>
                     <!-- END SIDEBAR MENU -->
                     <!-- END SIDEBAR MENU -->
@@ -651,8 +664,7 @@
                     <div class="row" id="app">
                         <div class="col-md-12">
                          
-
-
+                          
 
 
                             @yield('content')
@@ -718,9 +730,134 @@
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <script type="text/javascript">
+          function fnExcelReport() {
+            var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+            tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
 
+            tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
+
+            tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+            tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+
+            tab_text = tab_text + "<table border='1px'>";
+            tab_text = tab_text + $('#myTable').html();
+            tab_text = tab_text + '</table></body></html>';
+
+            var data_type = 'data:application/vnd.ms-excel';
+            
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                if (window.navigator.msSaveBlob) {
+                    var blob = new Blob([tab_text], {
+                        type: "application/csv;charset=utf-8;"
+                    });
+                    navigator.msSaveBlob(blob, 'reporte-colegiado.xls');
+                }
+            } else {
+                $('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+                $('#test').attr('download', 'reporte-colegiado.xls');
+            }
+
+        }
+
+        $('#export').click(function() {
+  var titles = [];
+  var data = [];
+
+  /*
+   * Get the table headers, this will be CSV headers
+   * The count of headers will be CSV string separator
+   */
+  $('.dataTable th').each(function() {
+    titles.push($(this).text());
+  });
+
+  /*
+   * Get the actual data, this will contain all the data, in 1 array
+   */
+  $('.dataTable td').each(function() {
+    data.push($(this).text());
+  });
+  
+  /*
+   * Convert our data to CSV string
+   */
+  var CSVString = prepCSVRow(titles, titles.length, '');
+  CSVString = prepCSVRow(data, titles.length, CSVString);
+
+  /*
+   * Make CSV downloadable
+   */
+  var downloadLink = document.createElement("a");
+  var blob = new Blob(["\ufeff", CSVString]);
+  var url = URL.createObjectURL(blob);
+  downloadLink.href = url;
+  downloadLink.download = "data.csv";
+
+  /*
+   * Actually download CSV
+   */
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+});
+
+   /*
+* Convert data array to CSV string
+* @param arr {Array} - the actual data
+* @param columnCount {Number} - the amount to split the data into columns
+* @param initial {String} - initial string to append to CSV string
+* return {String} - ready CSV string
+*/
+function prepCSVRow(arr, columnCount, initial) {
+  var row = ''; // this will hold data
+  var delimeter = ','; // data slice separator, in excel it's `;`, in usual CSv it's `,`
+  var newLine = '\r\n'; // newline separator for CSV row
+
+  /*
+   * Convert [1,2,3,4] into [[1,2], [3,4]] while count is 2
+   * @param _arr {Array} - the actual array to split
+   * @param _count {Number} - the amount to split
+   * return {Array} - splitted array
+   */
+  function splitArray(_arr, _count) {
+    var splitted = [];
+    var result = [];
+    _arr.forEach(function(item, idx) {
+      if ((idx + 1) % _count === 0) {
+        splitted.push(item);
+        result.push(splitted);
+        splitted = [];
+      } else {
+        splitted.push(item);
+      }
+    });
+    return result;
+  }
+  var plainArr = splitArray(arr, columnCount);
+  // don't know how to explain this
+  // you just have to like follow the code
+  // and you understand, it's pretty simple
+  // it converts `['a', 'b', 'c']` to `a,b,c` string
+  plainArr.forEach(function(arrItem) {
+    arrItem.forEach(function(item, idx) {
+      row += item + ((idx + 1) === arrItem.length ? '' : delimeter);
+    });
+    row += newLine;
+  });
+  return initial + row;
+}
+
+        </script>
 
         <!-- END THEME LAYOUT SCRIPTS -->
+
+
+
+        
     </body>
 
 </html>

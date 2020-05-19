@@ -13,19 +13,20 @@ class getUsers extends Controller
 {
     public function index(){
         $cip_user = cip_users::paginate(100);
-        $hola = "select * from cip_users A
-        left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
-        left join cip_param C on C.grupo = '053' and C.codigo = B.idEspecialidad limit 10";
+        // $hola = "select * from cip_users A
+        // left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+        // left join cip_param C on C.grupo = '053' and C.codigo = B.idEspecialidad limit 100";
        // $especialidad = cip_users_especialidad::pagiante(100);
-       $datoPersona = DB::select($hola);
-        return $datoPersona;
-        //return view('usuario.index',compact('cip_user'));
+       //$datoPersona = DB::select($hola);
+        //return $datoPersona;
+        return view('usuario.index',compact('cip_user'));
     }
     public function create()
     {   
         $pais = cip_params::where('grupo','004')->get();
         return view('usuario.create',compact('pais'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -137,20 +138,41 @@ class getUsers extends Controller
     }
 
     public function reporte()
-    {
-        
-        
-        $invoices =  cip_users::where('name', 'like' , '%'. 'walter'.'%' )->get();
+    {     
+        $cip_user = cip_users::paginate(100);
 
-        return view('invoices',compact('invoices'));
-        
+        return view('usuario.reporte',compact('cip_user'));        
     }
+
     public function searchCodigo(Request $request)
     {
         $busqueda = $request->get('search');
+        $tipocolegiado= $request->get('tipoColegiado');
+        $condicion = $request->get('condicion');
+        $sede = $request->get('sede');
 
-        $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%')->paginate(100);
-        return view('usuario.index',compact('cip_user'));
+        if($request->tipoBusqueda == '3'){
+            $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%' )
+                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+                            return view('usuario.reporte',compact('cip_user'));
+        }
+
+        if($request->tipoBusqueda == '2'){
+            $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%' )
+                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+                            return view('usuario.reporte',compact('cip_user'));
+        }
+        if($request->tipoBusqueda == '1'){
+            $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%' )
+                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+                            return view('usuario.reporte',compact('cip_user'));
+        }
     }
 
 
@@ -163,28 +185,7 @@ class getUsers extends Controller
     }
     public function searchDni(Request $request)
     {
-        // $busqueda = $request->post('search');
-        // $tipocolegiado= $request->post('tipoColegiado');
-        // $condicion = $request->post('condicion');
-
-        // if($request->tipoBusqueda == '3'){
-        //     $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%' )
-        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->get();
-        //                     return view('reporte',compact('cip_user'));
-        // }
-
-        // if($request->tipoBusqueda == '2'){
-        //     $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%' )
-        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->get();
-        //                     return view('reporte',compact('cip_user'));
-        // }
-        // if($request->tipoBusqueda == '1'){
-        //     $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%' )
-        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->get();
-        //                     return view('reporte',compact('cip_user'));
+        
         // }
         //1968-01-03
         //return $request;
@@ -195,17 +196,19 @@ class getUsers extends Controller
              
         $cip_user = DB::table('cip_users')->where('fechaNacimiento','like', '%'.$mes.'-'.$dia.'%' )->get();
          return view('reporte',compact('cip_user'));
+         
     }
+    public function cumple()
+    {   
+        $dia = date("d");
+        $mes = date("m");
+        
 
-    // public function searchCodigo(Request $request)
-    // {
-    //     $busqueda = $request->get('search');
-    //     $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%')->paginate(5);
-    //     return view('usuario.index',compact('cip_user'));
-    // }
-
-
-
+        //return $mes. "  ". $dia;
+             
+         $cip_user = DB::table('cip_users')->where('fechaNacimiento','like', '%'.$mes.'-'.$dia.'%' )->get();
+          return view('reporte',compact('cip_user'));
+    }
 
 
     public function show($id)

@@ -53,13 +53,15 @@ Route::resource('/user', 'getUsers');
 Route::post('/searchName', 'getUsers@searchName');
 
 Route::post('/searchDni', 'getUsers@searchDni');
-Route::get('/searchCodigo', 'getUsers@searchCodigo');
+Route::get('/filtro', 'getUsers@searchCodigo');
 
 Route::get('/searchAbil', 'getUsers@searchAbil');
 Route::get('/searchTipo', 'getUsers@searchTipo');
 
 
 Route::get('/reporte', 'getUsers@reporte');
+
+Route::get('/cumple', 'getUsers@cumple');
 
 //imagen
 Route::post('imagen','getUsers@EditarImagen');
