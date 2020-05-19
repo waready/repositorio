@@ -1,8 +1,9 @@
-﻿<?php
+<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 use PDF;
 
 use App\cip_pagos;
@@ -14,7 +15,6 @@ use App\cip_constancias;
 
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
-
 class ColegiadoController extends Controller
 {
 
@@ -33,7 +33,7 @@ class ColegiadoController extends Controller
                       ->with('departamento', $departamento);
   }
 
-  public function busquedaColegiadosNombre(Request $request) {
+public function busquedaColegiadosNombre(Request $request) {
 
     $tipoBusqueda = $request->get('tipoBusqueda');
     $textoBusqueda = $request->get('textoBusqueda');
@@ -78,7 +78,7 @@ class ColegiadoController extends Controller
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
-            left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
@@ -88,7 +88,7 @@ class ColegiadoController extends Controller
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cip_users A 
-            left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -99,7 +99,7 @@ class ColegiadoController extends Controller
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
-            left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -140,7 +140,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
           $bitacoraPago = DB::select($sql);
 
-          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_users_especialidads A
+          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_users_especialidad A
           left join cip_param B on B.grupo = '053' and B.codigo = A.idEspecialidad 
           where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id asc";
 
@@ -562,7 +562,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
@@ -572,7 +572,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -583,7 +583,7 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
@@ -800,7 +800,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       $sql = "SELECT A.codigoCIP, concat(A.paterno,' ',A.materno,', ',A.nombres) as nombres,
     B.idEspecialidad, C.valor, B.fechaIncorporacion 
       from cip_users A 
-      left join cip_users_especialidads B on B.codigoCIP = A.codigoCIP
+      left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
       left join cip_param C on C.grupo = '053' and codigo = B.idEspecialidad
       where A.codigoCIP = '".$codigoCIP."' order by B.fechaIncorporacion desc";
 
@@ -1008,7 +1008,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     'PUNO' as consejo, DATE_FORMAT(A.fecha,'%d') as fdia, DATE_FORMAT(A.fecha,'%m') as fmes, SUBSTR(A.fecha, 3, 2) as fyear
 FROM cip_constancias A 
 left join cip_users B on B.codigoCIP = A.codigoCIP
-left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+left join cip_users_especialidad C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
 left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
             WHERE A.id = ".$idCert.";";
 
@@ -1151,7 +1151,7 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     
     FROM cip_constancias A 
     left join cip_users B on B.codigoCIP = A.codigoCIP
-    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_users_especialidad C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
     left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
     left join cip_param F on F.grupo = '002' and F.codigo = E.extra
@@ -1300,7 +1300,7 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     
     FROM cip_constancias A 
     left join cip_users B on B.codigoCIP = A.codigoCIP
-    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_users_especialidad C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
     left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
     left join cip_param F on F.grupo = '002' and F.codigo = E.extra
@@ -1467,7 +1467,7 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     
     FROM cip_constancias A 
     left join cip_users B on B.codigoCIP = A.codigoCIP
-    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_users_especialidad C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
     left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
     left join cip_param F on F.grupo = '002' and F.codigo = E.extra
@@ -1608,17 +1608,6 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     //return $fpdf->Output();//$pdf->stream();
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
-
-  public function rptCertificadoGenerico(Request $request)
-  {
-    $fpdf = new Fpdf();
-    $fpdf->AddPage();
-    $fpdf->SetFont('Arial', '', 12);
-    $fpdf->Cell(50, 25, 'Hello World!');
-    
-    
-    //return $fpdf->Output();//$pdf->stream();
-    $headers = ['Content-Type'=>'application/pdf'];
-    return Response::make($fpdf->Output(),200,$headers);
   }
+
 }

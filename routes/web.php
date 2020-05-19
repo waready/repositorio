@@ -97,6 +97,8 @@ Route::get('rptCertificados91','ColegiadoController@rptCertificados91');
 Route::get('rptCertificados92','ColegiadoController@rptCertificados92');
 Route::get('rptCertificados93','ColegiadoController@rptCertificados93');
 
+Route::get('terricolas','ColegiadoController@pagoColegiados');
+
 
 
 Route::get('fpdf','ColegiadoController@fpdf');
