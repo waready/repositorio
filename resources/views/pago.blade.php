@@ -49,7 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> 
-		<style type="text/css">
+        <style type="text/css">
             .my-custom-scrollbar {
             position: relative;
             height: 200px;
@@ -71,8 +71,8 @@ License: You must have a valid license purchased only from themeforest(the above
             }
 
         </style>
-		
-		</head>
+        
+        </head>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo">
@@ -1807,9 +1807,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].id+", "+dataReport[i].codigoCIP+", "+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
                                 "</td>"+
+
                                 "<td>"+"<a href='rptCertificados"+dataReport[i].tipo+"?idCert="+dataReport[i].id+"' target='_blank'><i class='fa fa-print'></i></a>"+
 
-                                "</td>"+
+                                "<td>"+
                                 "</tr>";
 
                 }
@@ -1828,6 +1829,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 }
                 if(tipo == '91')
                 {
+
                     url = "rptCertificadoEspecifico";
                 }
                 if(tipo == '92')
@@ -1837,13 +1839,28 @@ License: You must have a valid license purchased only from themeforest(the above
                 if(tipo == '93')
                 {
                     url = "rptCertificadoGenerico";
+
+                    $("#mCHTitle").html('Certificado de Habilidad Específico');
+                }
+                if(tipo == '92')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad por Proyecto');
+                }
+                if(tipo == '93')
+                {
+                    $("#mCHTitle").html('Certificado de Habilidad para Firma Contrato');
+
                 }
 
                 var token = $("#token").val();
 
                     $.ajax({ //Process the form using $.ajax()
                         type      : 'POST', //Method type
+
                         url       : url, //Your form processing file URL
+
+                        url       : '', //Your form processing file URL
+
                         headers   : {'X-CSRF-TOKEN':token},
                         data      : $('#frmCertificadoHabilidad').serialize(), //Forms name
                         dataType  : 'json',
@@ -1859,8 +1876,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                     }
                     });
             }
-
-
 
             function modalCHE(id,cip, nroRecibo, tipo)
             {   
@@ -2307,7 +2322,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 else if($(this). is(":not(:checked)")){
                     
                     console.log("->>>>>>"+$("#conceptoPago").val());
-                    
+
                     $("#totalConcepto").val(mapOption[$("#conceptoPago").val()]);                    
 
                 }
@@ -2722,7 +2737,8 @@ License: You must have a valid license purchased only from themeforest(the above
             //pageSetUp();
             $("#myModal").on('hidden.bs.modal', function () {
             
-            location.reload();
+            //location.reload();
+            busquedaColegiado();
 
             });
 

@@ -140,7 +140,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
           $bitacoraPago = DB::select($sql);
 
-          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_db.cip_users_especialidads A
+          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_users_especialidads A
           left join cip_param B on B.grupo = '053' and B.codigo = A.idEspecialidad 
           where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id asc";
 
@@ -809,7 +809,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       $sql = "SELECT id, idPago, codigoCIP, idEspecialidad, 
               nroConstancia, tipo, institucion, asunto, ubigeo,
               zona, direccion, modalidad, monto
-      FROM cip_db.cip_constancias 
+      FROM cip_constancias 
       where id = ".$id." and codigoCIP = '".$codigoCIP."' and nroRecibo = ".$nroRecibo." and tipo = ".$tipo." limit 1;";
 
       $dataformCert = DB::select($sql);
@@ -964,6 +964,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
   }
+
 
   public function rptCertificados90(Request $request)
   {
@@ -1596,5 +1597,18 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
     
+
+  public function rptCertificadoGenerico(Request $request)
+  {
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Arial', '', 12);
+    $fpdf->Cell(50, 25, 'Hello World!');
+    
+    
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+
   }
 }
