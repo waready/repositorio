@@ -976,6 +976,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     //return $fpdf->Output();//$pdf->stream();
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
+  }
   public function rptCertificados90(Request $request)
   {
     $mes['01']="ENERO";
