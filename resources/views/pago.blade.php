@@ -1798,6 +1798,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "<td>"+"<a href='javascript:;' onclick='modalCHE("+dataReport[i].id+", "+dataReport[i].codigoCIP+", "+dataReport[i].nroRecibo+", "+dataReport[i].tipo+")'><i class='fa fa-pencil'></i></a>"+
                                 "</td>"+
                                 "<td>"+"<a href='javascript:;' onclick='rptCertificados("+dataReport[i].id+", "+dataReport[i].codigoCIP+", "+dataReport[i].tipo+")'><i class='fa fa-print'></i></a>"+
+                                "<td>"+"<a href='rptCertificados"+dataReport[i].tipo+"?idCert="+dataReport[i].id+"' target='_blank'><i class='fa fa-print'></i></a>"+
+
                                 "</td>"+
                                 "</tr>";
 
@@ -1826,6 +1828,15 @@ License: You must have a valid license purchased only from themeforest(the above
                 if(tipo == '93')
                 {
                     $("#mCHTitle").html('Certificado de Habilidad para Firma Contrato');
+                    url = "rptCertificadoEspecifico";
+                }
+                if(tipo == '92')
+                {
+                    url = "rptCertificadoHProyecto";
+                }
+                if(tipo == '93')
+                {
+                    url = "rptCertificadoGenerico";
                 }
 
                 var token = $("#token").val();
@@ -1833,6 +1844,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     $.ajax({ //Process the form using $.ajax()
                         type      : 'POST', //Method type
                         url       : '', //Your form processing file URL
+                        url       : url, //Your form processing file URL
                         headers   : {'X-CSRF-TOKEN':token},
                         data      : $('#frmCertificadoHabilidad').serialize(), //Forms name
                         dataType  : 'json',

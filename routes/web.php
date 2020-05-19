@@ -92,6 +92,10 @@ Route::post('extraeDistrito','ColegiadoController@extraeDistrito');
 
 Route::post('saveCertificadoHabilidad','ColegiadoController@saveCertificadoHabilidad');
 
+Route::get('rptCertificados90','ColegiadoController@rptCertificados90');
+Route::get('rptCertificados91','ColegiadoController@rptCertificados91');
+Route::get('rptCertificados92','ColegiadoController@rptCertificados92');
+Route::get('rptCertificados93','ColegiadoController@rptCertificados93');
 
 
 

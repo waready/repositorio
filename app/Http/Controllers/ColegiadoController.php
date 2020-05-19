@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
@@ -976,5 +976,636 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
     //return $fpdf->Output();//$pdf->stream();
     $headers = ['Content-Type'=>'application/pdf'];
     return Response::make($fpdf->Output(),200,$headers);
+  public function rptCertificados90(Request $request)
+  {
+    $mes['01']="ENERO";
+    $mes['02']="FEBRERO";
+    $mes['03']="MARZO";
+    $mes['04']="ABRIL";
+    $mes['05']="MAYO";
+    $mes['06']="JUNIO";
+    $mes['07']="JULIO";
+    $mes['08']="AGOSTO";
+    $mes['09']="SEPTIEMBRE";
+    $mes['10']="OCTUBRE";
+    $mes['11']="NOVIEMBRE";
+    $mes['12']="DICIEMBRE";
+    //$idTransaccion = $_POST['idTransaccion'];
+    $idCert = $request->get('idCert');
+
+    //$pdf = PDF::loadHTML('<h1> TEXTO ooo'.$idTransaccion.'</h1>');
+
+    $sql = "SELECT A.id, concat(B.nombres,' ',B.paterno,' ',B.materno) as nombres, 
+    A.codigoCIP,
+    DATE_FORMAT(C.fechaIncorporacion,'%d/%m/%Y') as fechaIncorporacion, D.extra as especialidad,
+    A.asunto,
+    A.institucion,
+    '-' as lugar, DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%d') as vdia, 
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%m') as vmes,
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%Y') as vyear,
+    'PUNO' as consejo, DATE_FORMAT(A.fecha,'%d') as fdia, DATE_FORMAT(A.fecha,'%m') as fmes, SUBSTR(A.fecha, 3, 2) as fyear
+FROM cip_constancias A 
+left join cip_users B on B.codigoCIP = A.codigoCIP
+left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
+            WHERE A.id = ".$idCert.";";
+
+    $data = DB::select($sql);
+
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Times', '', 10);
+    $fpdf->SetY(8);
+    $fpdf->SetX(36);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(14);
+    $fpdf->SetX(70);
+    $fpdf->Cell(0, 25, 'PUNO');
+    $fpdf->SetX(165);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP);
+
+    $fpdf->SetY(21);
+    $fpdf->SetX(45);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad)); 
+
+    $fpdf->SetY(35);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(42);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(49);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar));    
+    $fpdf->SetX(173);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(184);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(195);
+    $fpdf->Cell(0, 25, $data[0]->vyear);
+
+    $fpdf->SetY(56);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(157);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(170);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(201);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    $fpdf->SetFont('Times', '', 12);
+    $fpdf->SetY(115);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(123);
+    $fpdf->SetX(100);
+    $fpdf->Cell(0, 25, $data[0]->consejo,0,1);
+
+    $fpdf->SetY(131);
+    $fpdf->SetX(110);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP,0,1);
+    $fpdf->SetY(131);
+    $fpdf->SetX(172);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion,0,1);
+
+    $fpdf->SetY(139);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad));
+
+    $fpdf->SetY(178);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(189);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(200);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar)); 
+
+    $fpdf->SetY(225);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(121);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(138);
+    $fpdf->Cell(0, 25, $data[0]->vyear);
+
+    $fpdf->SetY(240);
+    $fpdf->SetX(88);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(124);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(141);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(175);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+    
+  }
+
+  public function rptCertificados91(Request $request)
+  {
+    $mes['01']="ENERO";
+    $mes['02']="FEBRERO";
+    $mes['03']="MARZO";
+    $mes['04']="ABRIL";
+    $mes['05']="MAYO";
+    $mes['06']="JUNIO";
+    $mes['07']="JULIO";
+    $mes['08']="AGOSTO";
+    $mes['09']="SEPTIEMBRE";
+    $mes['10']="OCTUBRE";
+    $mes['11']="NOVIEMBRE";
+    $mes['12']="DICIEMBRE";
+    //$idTransaccion = $_POST['idTransaccion'];
+    $idCert = $request->get('idCert');
+
+    //$pdf = PDF::loadHTML('<h1> TEXTO ooo'.$idTransaccion.'</h1>');
+
+    $sql = "SELECT A.id, concat(B.nombres,' ',B.paterno,' ',B.materno) as nombres, 
+    A.codigoCIP,
+    DATE_FORMAT(C.fechaIncorporacion,'%d/%m/%Y') as fechaIncorporacion, D.extra as especialidad,
+    A.asunto,
+    A.institucion,
+    concat(G.valor,', ',F.valor,', ',E.valor) as lugar, DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%d') as vdia, 
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%m') as vmes,
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%Y') as vyear,
+    'PUNO' as consejo, DATE_FORMAT(A.fecha,'%d') as fdia, DATE_FORMAT(A.fecha,'%m') as fmes, SUBSTR(A.fecha, 3, 2) as fyear,
+    
+    E.codigo, E.valor as distrito,
+    F.codigo, F.valor as provincia,
+    G.codigo, G.valor as departamento
+    
+    FROM cip_constancias A 
+    left join cip_users B on B.codigoCIP = A.codigoCIP
+    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
+    left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
+    left join cip_param F on F.grupo = '002' and F.codigo = E.extra
+    left join cip_param G on G.grupo = '003' and G.codigo = F.extra
+            WHERE A.id = ".$idCert.";";
+
+    $data = DB::select($sql);
+
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Times', '', 10);
+    $fpdf->SetY(8);
+    $fpdf->SetX(36);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(14);
+    $fpdf->SetX(70);
+    $fpdf->Cell(0, 25, 'PUNO');
+    $fpdf->SetX(165);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP);
+
+    $fpdf->SetY(21);
+    $fpdf->SetX(45);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad)); 
+
+    $fpdf->SetY(35);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(42);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(49);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar));    
+    $fpdf->SetX(173);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(184);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(195);
+    $fpdf->Cell(0, 25, $data[0]->vyear);
+
+    $fpdf->SetY(56);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(157);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(170);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(201);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    $fpdf->SetFont('Times', '', 12);
+    $fpdf->SetY(115);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(123);
+    $fpdf->SetX(100);
+    $fpdf->Cell(0, 25, $data[0]->consejo,0,1);
+
+    $fpdf->SetY(131);
+    $fpdf->SetX(110);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP,0,1);
+    $fpdf->SetY(131);
+    $fpdf->SetX(172);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion,0,1);
+
+    $fpdf->SetY(139);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad));
+
+    $fpdf->SetY(178);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(189);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(200);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar)); 
+
+    $fpdf->SetY(225);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(121);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(138);
+    $fpdf->Cell(0, 25, $data[0]->vyear);
+
+    $fpdf->SetY(240);
+    $fpdf->SetX(88);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(124);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(141);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(175);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+    
+  }
+
+  public function rptCertificados92(Request $request)
+  {
+    $mes['01']="ENERO";
+    $mes['02']="FEBRERO";
+    $mes['03']="MARZO";
+    $mes['04']="ABRIL";
+    $mes['05']="MAYO";
+    $mes['06']="JUNIO";
+    $mes['07']="JULIO";
+    $mes['08']="AGOSTO";
+    $mes['09']="SEPTIEMBRE";
+    $mes['10']="OCTUBRE";
+    $mes['11']="NOVIEMBRE";
+    $mes['12']="DICIEMBRE";
+    //$idTransaccion = $_POST['idTransaccion'];
+    $idCert = $request->get('idCert');
+
+    //$pdf = PDF::loadHTML('<h1> TEXTO ooo'.$idTransaccion.'</h1>');
+
+    $sql = "SELECT A.id, concat(B.nombres,' ',B.paterno,' ',B.materno) as nombres, 
+    A.codigoCIP,
+    DATE_FORMAT(C.fechaIncorporacion,'%d/%m/%Y') as fechaIncorporacion, D.extra as especialidad,
+    A.asunto,
+    A.institucion,
+    concat(G.valor,', ',F.valor,', ',E.valor) as lugar, DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%d') as vdia, 
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%m') as vmes,
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%Y') as vyear,
+    'PUNO' as consejo, DATE_FORMAT(A.fecha,'%d') as fdia, DATE_FORMAT(A.fecha,'%m') as fmes, SUBSTR(A.fecha, 3, 2) as fyear,
+    
+    E.codigo, E.valor as distrito,
+    F.codigo, F.valor as provincia,
+    G.codigo, G.valor as departamento, 
+
+    A.zona,
+    A.direccion
+    
+    FROM cip_constancias A 
+    left join cip_users B on B.codigoCIP = A.codigoCIP
+    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
+    left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
+    left join cip_param F on F.grupo = '002' and F.codigo = E.extra
+    left join cip_param G on G.grupo = '003' and G.codigo = F.extra
+            WHERE A.id = ".$idCert.";";
+
+    $data = DB::select($sql);
+
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Times', '', 10);
+    $fpdf->SetY(8);
+    $fpdf->SetX(36);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(14);
+    $fpdf->SetX(70);
+    $fpdf->Cell(0, 25, 'PUNO');
+    $fpdf->SetX(165);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP);
+
+    $fpdf->SetY(21);
+    $fpdf->SetX(45);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion);
+    $fpdf->SetX(111);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad)); 
+
+    
+    $fpdf->SetY(37);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(45);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    /*$fpdf->SetY(49);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar));    
+    $fpdf->SetX(173);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(184);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(195);
+    $fpdf->Cell(0, 25, $data[0]->vyear);*/
+
+    $fpdf->SetY(54);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(157);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(170);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    //$fpdf->SetX(201);
+    //$fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    $fpdf->SetFont('Times', '', 12);
+    $fpdf->SetY(115);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(123);
+    $fpdf->SetX(100);
+    $fpdf->Cell(0, 25, $data[0]->consejo,0,1);
+
+    $fpdf->SetY(131);
+    $fpdf->SetX(110);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP,0,1);
+    $fpdf->SetY(131);
+    $fpdf->SetX(172);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion,0,1);
+
+    $fpdf->SetY(139);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad));
+
+    $fpdf->SetY(170);
+    $fpdf->SetX(74);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(186);
+    $fpdf->SetX(71);
+    $fpdf->MultiCell(120, 8, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(200);
+    $fpdf->SetX(69);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->departamento));
+    $fpdf->SetX(149);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->provincia));
+
+    $fpdf->SetY(207);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->distrito));
+
+    $fpdf->SetY(214);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->zona)); 
+
+    $fpdf->SetY(221);
+    $fpdf->SetX(90);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->direccion)); 
+
+    /*$fpdf->SetY(225);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(121);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(138);
+    $fpdf->Cell(0, 25, $data[0]->vyear);*/
+
+    $fpdf->SetY(240);
+    $fpdf->SetX(89);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(124);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(141);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(175);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+    
+  }
+
+  public function rptCertificados93(Request $request)
+  {
+    $mes['01']="ENERO";
+    $mes['02']="FEBRERO";
+    $mes['03']="MARZO";
+    $mes['04']="ABRIL";
+    $mes['05']="MAYO";
+    $mes['06']="JUNIO";
+    $mes['07']="JULIO";
+    $mes['08']="AGOSTO";
+    $mes['09']="SEPTIEMBRE";
+    $mes['10']="OCTUBRE";
+    $mes['11']="NOVIEMBRE";
+    $mes['12']="DICIEMBRE";
+    //$idTransaccion = $_POST['idTransaccion'];
+    $idCert = $request->get('idCert');
+
+    //$pdf = PDF::loadHTML('<h1> TEXTO ooo'.$idTransaccion.'</h1>');
+
+    $sql = "SELECT A.id, concat(B.nombres,' ',B.paterno,' ',B.materno) as nombres, 
+    A.codigoCIP,
+    DATE_FORMAT(C.fechaIncorporacion,'%d/%m/%Y') as fechaIncorporacion, D.extra as especialidad,
+    A.asunto,
+    A.institucion,
+    concat(G.valor,', ',F.valor,', ',E.valor) as lugar, DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%d') as vdia, 
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%m') as vmes,
+            DATE_FORMAT(LAST_DAY(STR_TO_DATE(concat(A.habilHasta,'01'),'%Y%m%d')),'%Y') as vyear,
+    'PUNO' as consejo, DATE_FORMAT(A.fecha,'%d') as fdia, DATE_FORMAT(A.fecha,'%m') as fmes, SUBSTR(A.fecha, 3, 2) as fyear,
+    
+    E.codigo, E.valor as distrito,
+    F.codigo, F.valor as provincia,
+    G.codigo, G.valor as departamento, 
+
+    A.zona,
+    A.direccion,
+    if(A.modalidad = '01', 'Firma de Contrato de Obra Pública','Residencia') as modalidad,
+    A.monto
+    
+    FROM cip_constancias A 
+    left join cip_users B on B.codigoCIP = A.codigoCIP
+    left join cip_users_especialidads C on C.idEspecialidad = A.idEspecialidad and C.codigoCIP = A.codigoCIP
+    left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
+    left join cip_param E on E.grupo = '001' and E.codigo = A.ubigeo
+    left join cip_param F on F.grupo = '002' and F.codigo = E.extra
+    left join cip_param G on G.grupo = '003' and G.codigo = F.extra
+            WHERE A.id = ".$idCert.";";
+
+    $data = DB::select($sql);
+
+    $fpdf = new Fpdf();
+    $fpdf->AddPage();
+    $fpdf->SetFont('Times', '', 10);
+    $fpdf->SetY(8);
+    $fpdf->SetX(36);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(14);
+    $fpdf->SetX(70);
+    $fpdf->Cell(0, 25, 'PUNO');
+    $fpdf->SetX(165);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP);
+
+    $fpdf->SetY(21);
+    $fpdf->SetX(45);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion);
+    $fpdf->SetX(111);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad)); 
+
+    
+    $fpdf->SetY(37);
+    $fpdf->SetX(31);
+    //$fpdf->Cell(0, 25, utf8_decode($data[0]->asunto));
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->modalidad));
+    $fpdf->SetY(47);
+    $fpdf->SetX(156);
+    $fpdf->MultiCell(53, 4, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(45);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+    $fpdf->SetX(170);
+    $fpdf->Cell(0, 25, "S/ ".utf8_decode($data[0]->monto));
+
+    /*$fpdf->SetY(49);
+    $fpdf->SetX(31);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->lugar));    
+    $fpdf->SetX(173);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(184);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(195);
+    $fpdf->Cell(0, 25, $data[0]->vyear);*/
+
+    $fpdf->SetY(54);
+    $fpdf->SetX(125);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(157);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(170);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(201);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    $fpdf->SetFont('Times', '', 12);
+    $fpdf->SetY(125);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, $data[0]->nombres,0,1);
+
+    $fpdf->SetY(133);
+    $fpdf->SetX(100);
+    $fpdf->Cell(0, 25, $data[0]->consejo,0,1);
+
+    $fpdf->SetY(141);
+    $fpdf->SetX(110);
+    $fpdf->Cell(0, 25, $data[0]->codigoCIP,0,1);
+    $fpdf->SetY(141);
+    $fpdf->SetX(172);
+    $fpdf->Cell(0, 25, $data[0]->fechaIncorporacion,0,1);
+
+    $fpdf->SetY(149);
+    $fpdf->SetX(60);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->especialidad));
+
+    /*$fpdf->SetY(170);
+    $fpdf->SetX(74);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));*/
+    $fpdf->SetY(179);
+    $fpdf->SetX(71);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->modalidad));
+    $fpdf->SetY(194);
+    $fpdf->SetX(71);
+    $fpdf->MultiCell(120, 6, utf8_decode($data[0]->asunto));
+
+    $fpdf->SetY(198);
+    $fpdf->SetX(76);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->institucion));
+
+    $fpdf->SetY(205);
+    $fpdf->SetX(85);
+    $fpdf->Cell(0, 25, "S/ ".utf8_decode($data[0]->monto));
+
+    
+    $fpdf->SetY(219);
+    $fpdf->SetX(79);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->departamento));
+    $fpdf->SetX(149);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->provincia));
+
+    $fpdf->SetY(226);
+    $fpdf->SetX(72);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->distrito));
+
+    $fpdf->SetY(214);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->zona)); 
+
+    $fpdf->SetY(221);
+    $fpdf->SetX(90);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->direccion)); 
+
+    /*$fpdf->SetY(225);
+    $fpdf->SetX(105);
+    $fpdf->Cell(0, 25, $data[0]->vdia);
+    $fpdf->SetX(121);
+    $fpdf->Cell(0, 25, $data[0]->vmes);
+    $fpdf->SetX(138);
+    $fpdf->Cell(0, 25, $data[0]->vyear);*/
+
+    $fpdf->SetY(242);
+    $fpdf->SetX(89);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->consejo));
+    $fpdf->SetX(124);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fdia));
+    $fpdf->SetX(141);
+    $fpdf->Cell(0, 25, utf8_decode($mes[$data[0]->fmes]));
+    $fpdf->SetX(175);
+    $fpdf->Cell(0, 25, utf8_decode($data[0]->fyear));
+
+    //return $fpdf->Output();//$pdf->stream();
+    $headers = ['Content-Type'=>'application/pdf'];
+    return Response::make($fpdf->Output(),200,$headers);
+    
   }
 }
