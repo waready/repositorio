@@ -1610,4 +1610,101 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
     return Response::make($fpdf->Output(),200,$headers);
   }
 
+  public function reporteDM()
+  {
+
+    $sql = "SELECT DATE_FORMAT(NOW(), '%Y-%m-%d') AS fecha";
+
+    $fechaActual = DB::select($sql);
+
+    return view('rptDiarioMensual')->with('fechaActual',$fechaActual);
+  }
+
+  public function rptDiarioMensual(Request $request)
+  {
+      $fechaDesde = $_POST['fechaDesde'];
+      $fechaHasta = $_POST['fechaHasta'];
+
+      $usuarioConsulta = 'guerrerocippuno';
+
+      $sql = "SELECT A.id, DATE_FORMAT(A.fechaCreacion,'%Y-%m-%d') fechaCreacion,
+                  concat('B/V ', A.serieRecibo,'-',A.nroRecibo) as comprobante,
+                  A.codigoCIP,
+                  concat(B.paterno,' ',B.materno,', ',B.nombres) as nombre,
+                  C.idConceptoPago,
+                  if(D.conceptoPago is null, C.otroConcepto, D.conceptoPago ) as conceptoPago,
+                  C.montoPago
+              from cip_pagos A
+              left join cip_users B on B.codigoCIP = A.codigoCIP
+              left join cip_pagodetalle C on C.idPago = A.id
+              left join cip_pagosconfig D on D.idConceptoPago = C.idConceptoPago and D.lVigente = 1
+              where 
+              A.estado = 1
+              and A.usuarioCreador = '".$usuarioConsulta."'
+              and A.fechaPago between '".$fechaDesde."' and '".$fechaHasta."' order by A.id, C.id;";
+
+      $data = DB::select($sql);
+
+
+      if($data)
+      {
+        $idIni = $data[0]->id;
+        $c = 0;
+        $arMPago[0] = 0;
+
+        $flag = true;
+        $periodoIni = "":
+        $periodoFin = "";
+        for($i = 0 ; $i < sizeof($data); $i++)
+        {
+          if($i == sizeof($data)-1 && $data[$i]->idConceptoPago == '01')
+          {
+            $arConcepto[$c] = str_replace ('Aportacion')$data[$i]->conceptoPago
+          }
+
+          if($idIni == $data[$i]->id)
+          {
+            $c; 
+          }
+          else
+          {
+            $c++;
+            $idIni = $data[$i]->id;
+            $arMPago[$c] = 0;
+            $arConcepto[$c] = $data[$i]->conceptoPago; 
+          }
+
+          $arId[$c] = $data[$i]->id;
+          $arMPago[$c] += $data[$i]->montoPago;
+
+
+          if($data[$i]->idConceptoPago == '01' )
+          {
+            if(&& $flag == true)
+            {
+              $flag = false;
+              $periodoIni = $data[$i]->idConceptoPago;  
+            }
+            $periodoFin = $data[$i]->idConceptoPago; 
+          }
+
+        }  
+      }
+
+      for($i = 0 ; $i < sizeof($arMPago); $i++)
+      {
+        echo $arId[$i]." - ".$arMPago[$i]."<br>";
+      }
+
+      
+
+      /*$resultadoView = array(
+                      "success" => true,
+                      "data" => $data,
+                    ); 
+      
+
+      return json_encode($resultadoView);*/
+  }
+
 }

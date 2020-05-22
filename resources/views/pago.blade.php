@@ -571,14 +571,20 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="form_controls.html" class="nav-link ">
-                                        <span class="title">bUsqueda
+                                    <a href="/rptDiarioMensual" class="nav-link ">
+                                        <span class="title">Diario - Mensual
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">General
+                                    <a href="/rptCertificados" class="nav-link ">
+                                        <span class="title">Certificados
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/rptDetalle" class="nav-link ">
+                                        <span class="title">Detallado
                                             </span>
                                     </a>
                                 </li>
