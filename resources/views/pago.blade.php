@@ -571,7 +571,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="/rptDiarioMensual" class="nav-link ">
+                                    <a href="/reporteDM" class="nav-link ">
                                         <span class="title">Diario - Mensual
                                             </span>
                                     </a>

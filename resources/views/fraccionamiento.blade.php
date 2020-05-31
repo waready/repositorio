@@ -551,22 +551,28 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                             
                         </li>
-                         {{-- <li class="nav-item  ">
-                            <a  class="nav-link nav-toggle">
+                          <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Reporte</span>
-                                
+                                <span class="arrow"></span>
                             </a>
-                            <ul class="page-sidebar-menu ">
+                            <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="form_controls.html" class="nav-link ">
-                                        <span class="title">-busqueda
+                                    <a href="/reporteDM" class="nav-link ">
+                                        <span class="title">Diario - Mensual
                                             </span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="form_controls_md.html" class="nav-link ">
-                                        <span class="title">-General
+                                    <a href="/rptCertificados" class="nav-link ">
+                                        <span class="title">Certificados
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/rptDetalle" class="nav-link ">
+                                        <span class="title">Detallado
                                             </span>
                                     </a>
                                 </li>
@@ -574,7 +580,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                             
                             
-                        </li> --}}
+                        </li>
                        
                     </ul>
                     <!-- END SIDEBAR MENU -->

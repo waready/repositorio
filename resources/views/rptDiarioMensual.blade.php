@@ -19,7 +19,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
-    <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
         
         <title>SISTEMA DE ADMINISTRACION FINANCIERA</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -571,7 +573,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="/rptDiarioMensual" class="nav-link ">
+                                    <a href="/reporteDM" class="nav-link ">
                                         <span class="title">Diario - Mensual
                                             </span>
                                     </a>
@@ -656,12 +658,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="col-md-1">
                                             <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Consultar</button>
                                         </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-1">
+
+                                        <input type="button" id="btnExport" class="btn btn-circle dark"value=" Exportar Excel " />
+
+                                        </div>
+
+                                        
 
                                         </div>
 
                                             
                                         </form>
 
+                                        </div>
+                                        <br>
+                                        <div class="row" id="divReporteDM">
+                                            
                                         </div>
                                        
                                     </div>
@@ -744,6 +759,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <script type="text/javascript">
         
+        
+
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         
         $(document).ready(function() {
@@ -777,7 +794,15 @@ License: You must have a valid license purchased only from themeforest(the above
                         success   : function(data) {
                                         if (data.success)
                                         {
-                                            
+                                            fnReporteDiarioMensual(
+                                                data.arId,
+                                                data.arFecha,
+                                                data.arComprobante,
+                                                data.arCodigoCIP,
+                                                data.arNombre,
+                                                data.arConcepto,
+                                                data.arTotal
+                                                )
                                         }
                                         else
                                         {
@@ -792,6 +817,71 @@ License: You must have a valid license purchased only from themeforest(the above
 
         })
 
+        function fnReporteDiarioMensual(
+                                        arId,
+                                        arFecha,
+                                        arComprobante,
+                                        arCodigoCIP,
+                                        arNombre,
+                                        arConcepto,
+                                        arTotal
+                                        )
+        {
+            $("#divReporteDM").html('');
+                cad = " <table class='table table-striped table-bordered table-hover table-checkable order-column'> " +
+
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Fecha </th>"+
+                                "<th> Comprobante Serie - Número</th>"+
+                                "<th> Código CIP </th>"+
+                                "<th> Nombres del Colegiado </th>"+
+                                "<th> Concepto de Pago</th>"+
+                                "<th> Total</th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                sumTotal = 0;
+                for(var i = 0 ; i < arId.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+arFecha[i]+
+                                "</td>"+
+                                "<td>"+arComprobante[i]+
+                                "</td>"+
+                                "<td>"+arCodigoCIP[i]+
+                                "</td>"+
+                                "<td>"+arNombre[i]+
+                                "</td>"+
+                                "<td>"+arConcepto[i]+
+                                "</td>"+
+                                "<td style='text-align: right;'>"+arTotal[i].toFixed(2)+
+                                "</td>"+
+                                "</tr>";
+
+                    sumTotal +=arTotal[i];
+
+                }
+                    datTabla +=  "<tr>"+
+                                "<td colspan='6' style='text-align: right;'>"+"Total:"+
+                                "</td>"+
+                                "<td style='text-align: right;'>"+sumTotal.toFixed(2)+
+                                "</td>"+
+                                "</tr>";
+                cad += datTabla + "<tbody></table>";
+                
+                $("#divReporteDM").html(cad);
+        }
+
+        $("#btnExport").click(function(e) {
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#divReporteDM').html()));
+        e.preventDefault();
+    });
         </script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>

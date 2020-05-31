@@ -1622,6 +1622,19 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
 
   public function rptDiarioMensual(Request $request)
   {
+    $mes['01']="Ene";
+    $mes['02']="Feb";
+    $mes['03']="Mar";
+    $mes['04']="Abr";
+    $mes['05']="May";
+    $mes['06']="Jun";
+    $mes['07']="Jul";
+    $mes['08']="Ago";
+    $mes['09']="Sep";
+    $mes['10']="Oct";
+    $mes['11']="Nov";
+    $mes['12']="Dic";
+
       $fechaDesde = $_POST['fechaDesde'];
       $fechaHasta = $_POST['fechaHasta'];
 
@@ -1633,7 +1646,10 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
                   concat(B.paterno,' ',B.materno,', ',B.nombres) as nombre,
                   C.idConceptoPago,
                   if(D.conceptoPago is null, C.otroConcepto, D.conceptoPago ) as conceptoPago,
-                  C.montoPago
+                  SUBSTR(C.periodoPago,1,4) as anio,
+                  SUBSTR(C.periodoPago,5,2) as periodo,
+                  C.montoPago,
+                  A.total 
               from cip_pagos A
               left join cip_users B on B.codigoCIP = A.codigoCIP
               left join cip_pagodetalle C on C.idPago = A.id
@@ -1651,17 +1667,17 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
         $idIni = $data[0]->id;
         $c = 0;
         $arMPago[0] = 0;
-
+        $arConcepto[0] = "";
         $flag = true;
-        $periodoIni = "":
+        $periodoIni = "";
         $periodoFin = "";
+        $periodoIniY = "";
+        $periodoFinY = "";
+
+        $ar = array("AA", "BB");
         for($i = 0 ; $i < sizeof($data); $i++)
         {
-          if($i == sizeof($data)-1 && $data[$i]->idConceptoPago == '01')
-          {
-            $arConcepto[$c] = str_replace ('Aportacion')$data[$i]->conceptoPago
-          }
-
+          
           if($idIni == $data[$i]->id)
           {
             $c; 
@@ -1671,40 +1687,105 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
             $c++;
             $idIni = $data[$i]->id;
             $arMPago[$c] = 0;
-            $arConcepto[$c] = $data[$i]->conceptoPago; 
+            
+            $flag = true;
+            
+            for($j=2;$j<sizeof($ar); $j++)
+            {
+              
+              $arConcepto[$c-1] .= $ar[$j].";";
+              
+            }
+
+            //echo "I>".$periodoIni."<br>";
+            //echo "F>".$periodoFin."<br>";
+            $pmesI = "";
+            $pmesF = "";
+            if ($periodoIni != "") {
+              $pmesI = $periodoIniY." ".$mes[$periodoIni];
+            }
+            if ($periodoFin != "") {
+              $pmesF = $periodoFinY." ".$mes[$periodoFin];
+            }
+
+            $arConcepto[$c-1] = str_replace ('Aportacion', 'Aportacion ('.$pmesI.'-'.$pmesF.')',$arConcepto[$c-1]);
+
+            $ar = array("AA", "BB");
+
+            $arConcepto[$c]="";
+            $periodoFin = "";
+          }
+
+          if(!in_array($data[$i]->conceptoPago, $ar))
+          {
+            array_push($ar, $data[$i]->conceptoPago);
+          }
+
+          if($i == sizeof($data)-1)
+          {
+            for($j=2;$j<sizeof($ar); $j++)
+            {
+              $arConcepto[$c] .=$ar[$j].";";
+            }
+          }
+
+
+          if($i == sizeof($data)-1)
+          {
+            $arConcepto[$c] = str_replace ('Aportacion', 'Aportacion ('.$periodoIniY." ".$periodoIni.'-'.$periodoFinY." ".$periodoFin.')',$arConcepto[$c]);
           }
 
           $arId[$c] = $data[$i]->id;
+          $arFecha[$c] = $data[$i]->fechaCreacion;
+          $arComprobante[$c] = $data[$i]->comprobante;
+          $arCodigoCIP[$c] = $data[$i]->codigoCIP;
+          $arNombre[$c] = $data[$i]->nombre;
+          $arTotal[$c] = $data[$i]->total;
+
           $arMPago[$c] += $data[$i]->montoPago;
 
 
           if($data[$i]->idConceptoPago == '01' )
           {
-            if(&& $flag == true)
+            if($flag == true)
             {
               $flag = false;
-              $periodoIni = $data[$i]->idConceptoPago;  
+              $periodoIni = $data[$i]->periodo;
+              $periodoIniY = $data[$i]->anio;
             }
-            $periodoFin = $data[$i]->idConceptoPago; 
+            $periodoFin = $data[$i]->periodo;
+            $periodoFinY = $data[$i]->anio;  
           }
 
-        }  
+        }
+
+        $resultadoView = array(
+              "success" => true,
+              "arId" => $arId,
+              "arFecha" => $arFecha,
+              "arComprobante" => $arComprobante,
+              "arCodigoCIP" => $arCodigoCIP,
+              "arNombre" => $arNombre,
+              "arConcepto" => $arConcepto,
+              "arTotal" => $arTotal,
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
       }
 
+      /*      
       for($i = 0 ; $i < sizeof($arMPago); $i++)
       {
-        echo $arId[$i]." - ".$arMPago[$i]."<br>";
+        echo $arId[$i]." - ".$arMPago[$i]." - ".$arConcepto[$i]."<br>";
       }
+      */
 
-      
-
-      /*$resultadoView = array(
-                      "success" => true,
-                      "data" => $data,
-                    ); 
-      
-
-      return json_encode($resultadoView);*/
+      return json_encode($resultadoView);
   }
 
 }
