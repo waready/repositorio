@@ -74,7 +74,7 @@ public function busquedaColegiadosNombre(Request $request) {
         /*Crear tabla q guarde ultimo periodo de pago y habilidad*/
           if($tipoBusqueda == 1 and $textoBusqueda != "")
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
@@ -84,7 +84,7 @@ public function busquedaColegiadosNombre(Request $request) {
           }
           else if ($tipoBusqueda == 2 and $textoBusqueda != "") 
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cip_users A 
@@ -95,7 +95,7 @@ public function busquedaColegiadosNombre(Request $request) {
 
           else if ($tipoBusqueda == 3 and $textoBusqueda != "") 
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
@@ -559,21 +559,21 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
           if($tipoBusqueda == 1 and $textoBusqueda != "")
           {
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
-            if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
+            if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
           else if ($tipoBusqueda == 2 and $textoBusqueda != "") 
           {
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
-            if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
+            if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
 
@@ -582,9 +582,9 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
 
