@@ -417,7 +417,7 @@
                                     <li class="divider"> </li>
                                     <li>
                                         <a href="page_user_lock_1.html">
-                                            <i class="icon-lock"></i> Lock Screen </a>
+                                            <i class="icon-lock"></i> {{ Auth::user()->email }}</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
