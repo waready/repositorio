@@ -8,6 +8,7 @@ use App\cip_params;
 
 use App\cip_users_especialidad;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class getUsers extends Controller
 {
@@ -146,33 +147,62 @@ class getUsers extends Controller
 
     public function searchCodigo(Request $request)
     {
-        $busqueda = $request->get('search');
-        $tipocolegiado= $request->get('tipoColegiado');
-        $condicion = $request->get('condicion');
-        $sede = $request->get('sede');
 
-        if($request->tipoBusqueda == '3'){
-            $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%' )
-                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
-                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
-                            return view('usuario.reporte',compact('cip_user'));
-        }
+        $category = request('tipoColegiado');
+        $make = request('condicion');
 
-        if($request->tipoBusqueda == '2'){
-            $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%' )
-                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
-                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
-                            return view('usuario.reporte',compact('cip_user'));
-        }
-        if($request->tipoBusqueda == '1'){
-            $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%' )
-                            ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
-                            ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
-                            ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
-                            return view('usuario.reporte',compact('cip_user'));
-        }
+        $cip_user = cip_users::when($category, function ($query) use ($category){
+            return $query->where('tipoColegiado', $category);
+        })
+        ->when($make, function ($query) use ($make) {
+            return $query->where('estadoUsuario', $make);
+        })->paginate(30);
+
+        // $vehicles = Vehicle::when($category, function ($query) use ($category) {
+        //         return $query->where('category', $category);
+        //     })
+        //     ->when($make, function ($query) use ($make) {
+        //         return $query->where('make', $make);
+        //     })
+        //     ->paginate(10);
+
+         $cip_user->appends(request()->query());
+
+         //return view('usuario.reporte', compact('cip_user'));
+
+            return $cip_user;
+
+
+
+
+
+        // $busqueda = $request->get('search');
+        // $tipocolegiado= $request->get('tipoColegiado');
+        // $condicion = $request->get('condicion');
+        // $sede = $request->get('sede');
+
+        // if($request->tipoBusqueda == '3'){
+        //     $cip_user = DB::table('cip_users')->where('name', 'like' , '%'. $busqueda.'%' )
+        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+        //                     ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+        //                     return view('usuario.reporte',compact('cip_user'));
+        // }
+
+        // if($request->tipoBusqueda == '2'){
+        //     $cip_user = DB::table('cip_users')->where('dni', 'like' , '%'. $busqueda.'%' )
+        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+        //                     ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+        //                     return view('usuario.reporte',compact('cip_user'));
+        // }
+        // if($request->tipoBusqueda == '1'){
+        //     $cip_user = DB::table('cip_users')->where('codigoCIP', 'like' , '%'. $busqueda.'%' )
+        //                     ->where( 'tipoColegiado', 'like' , '%'. $tipocolegiado.'%')
+        //                     ->where( 'ubigeoSede', 'like' , '%'. $sede.'%')
+        //                     ->where( 'estadoUsuario', 'like' , '%'. $condicion.'%')->paginate(100);
+        //                     return view('usuario.reporte',compact('cip_user'));
+        // }
     }
 
 
@@ -193,6 +223,9 @@ class getUsers extends Controller
         //('%02d', $request->mes);
             $dia = sprintf('%02d', $request->dia);
             $mes = sprintf('%02d', $request->mes);
+
+            
+
              
         $cip_user = DB::table('cip_users')->where('fechaNacimiento','like', '%'.$mes.'-'.$dia.'%' )->get();
          return view('reporte',compact('cip_user'));
@@ -205,9 +238,16 @@ class getUsers extends Controller
         
 
         //return $mes. "  ". $dia;
+
+
              
          $cip_user = DB::table('cip_users')->where('fechaNacimiento','like', '%'.$mes.'-'.$dia.'%' )->get();
           return view('reporte',compact('cip_user'));
+
+
+
+
+
     }
 
 
@@ -237,7 +277,7 @@ class getUsers extends Controller
             $hola = "SELECT A.id ,A.codigoCIP, A.idEspecialidad, A.idInstitucion, A.fechaIncorporacion, A.fechaPromocion, A.fechaGraduacion, 
             A.tituloProfesional, A.numeroResolucion, A.folioResolucion, A.hojaResolucion, A.fechaRevalidacion, A.resolucionRevalidacion,  A.fechaInscripcion,
             A.fechaJuramentacion,
-            D.valor AS institucion, C.valor AS capitulo, B.valor AS especialdiad FROM cip_users_especialidads A
+            D.valor AS institucion, C.valor AS capitulo, B.valor AS especialdiad FROM cip_users_especialidad A
             LEFT JOIN cip_param D ON D.grupo = '050' AND D.codigo = A.idInstitucion
             LEFT JOIN cip_param B ON B.grupo = '052' AND B.codigo = A.idEspecialidad
             LEFT JOIN cip_param C ON C.grupo = '051' AND C.codigo = B.extra 

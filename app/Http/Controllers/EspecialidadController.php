@@ -22,7 +22,7 @@ class EspecialidadController extends Controller
 
         // ;
 
-        $hola = "SELECT A.id,A.codigoCIP, A.idEspecialidad,C.valor AS capitulo, B.valor AS especialdiad FROM cip_users_especialidads A
+        $hola = "SELECT A.id,A.codigoCIP, A.idEspecialidad,C.valor AS capitulo, B.valor AS especialdiad FROM cip_users_especialidad A
         LEFT JOIN cip_param B ON B.grupo = '052' AND B.codigo = A.idEspecialidad
         LEFT JOIN cip_param C ON C.grupo = '051' AND C.codigo = B.extra 
         WHERE A.codigoCIP = 'info' ";

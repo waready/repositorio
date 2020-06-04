@@ -111,7 +111,8 @@
                                     <td>{{$users->ultimoPago}}</td>
                                     <td> 
                                         <template v-if="{{$users->ubigeoSede}} == 210101"> Puno</template>
-                                        <template v-if="{{$users->ubigeoSede}} == 211101"> Juliaca</template>
+                                        <template v-else-if="{{$users->ubigeoSede}} == 211101"> Juliaca</template>
+                                        <template v-else> Sin sede</template>
                                     </td>
                                     
                                     <td>
