@@ -17,6 +17,10 @@ use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
 class ColegiadoController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
   public function pagoColegiados()
   {
@@ -1788,4 +1792,81 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
       return json_encode($resultadoView);
   }
 
+  public function rptCertif()
+  {
+
+    $sql = "SELECT DATE_FORMAT(NOW(), '%Y-%m-%d') AS fecha";
+
+    $fechaActual = DB::select($sql);
+
+    return view('rptCertificados')->with('fechaActual',$fechaActual);
+  }
+
+  public function rptCertificados(Request $request)
+  {
+      $fechaDesde = $_POST['fechaDesde'];
+      $fechaHasta = $_POST['fechaHasta'];
+
+$sql = "SELECT A.id, 
+            B.fecha, 
+            B.id as identificador,
+            concat('A-',LPAD(B.nroConstancia, 7,'0')) as nroCertificado,
+            concat('B/V ',B.serieRecibo,' - ',B.nroRecibo) as nroComprobante,
+            B.codigoCIP,
+            concat(C.nombres,' ',C.paterno,' ',C.materno) as nombres,
+            D.valor as especialidad,
+            E.conceptoPago,
+            E.montoPago
+        FROM cip_pagos A 
+        inner join cip_constancias B on B.idPago = A.id
+        left join cip_users C on C.codigoCIP = B.codigoCIP 
+        left join cip_param D on D.grupo = '053' and D.codigo = B.idEspecialidad
+        left join cip_pagosconfig E on E.idConceptoPago = B.tipo and E.lVigente = 1
+        where fechaPago between '2016-01-21' and '2016-01-21'
+            and A.usuarioCreador = 'roucem80' 
+            order by A.id, B.id asc ;";
+/*
+            SELECT A.id, 
+    B.fecha, 
+    B.id,
+    concat('A-',LPAD(B.nroConstancia, 7,'0')) as nroCertificado,
+    concat('B/V ',B.serieRecibo,' - ',B.nroRecibo) as nroComprobante,
+    B.codigoCIP,
+    concat(C.nombres,' ',C.paterno,' ',C.materno) as nombres,
+    D.valor as especialidad,
+    E.conceptoPago,
+    E.montoPago
+FROM cip_db.cip_pagos A 
+inner join cip_constancias B on B.idPago = A.id
+left join cip_users C on C.codigoCIP = B.codigoCIP 
+left join cip_param D on D.grupo = '053' and D.codigo = B.idEspecialidad
+left join cip_pagosconfig E on E.idConceptoPago = B.tipo and E.lVigente = 1
+where fechaPago between '2016-01-21' and '2016-01-21'
+    and A.usuarioCreador = 'roucem80' 
+    order by A.id, B.id asc ;
+*/
+      if($data = DB::select($sql))
+      {
+        $resultadoView = array(
+              "success" => true,
+              "arCertData" => $data,
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
+
+      /*      
+      for($i = 0 ; $i < sizeof($arMPago); $i++)
+      {
+        echo $arId[$i]." - ".$arMPago[$i]." - ".$arConcepto[$i]."<br>";
+      }
+      */
+
+      return json_encode($resultadoView);
+  }
 }
