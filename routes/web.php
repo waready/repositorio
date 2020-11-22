@@ -100,6 +100,8 @@ Route::get('rptCertificados93','ColegiadoController@rptCertificados93');
 Route::get('reporteDM','ColegiadoController@reporteDM');
 Route::post('rptDiarioMensual','ColegiadoController@rptDiarioMensual');
 
+Route::get('rptCertif','ColegiadoController@rptCertif');
+Route::post('rptCertificados','ColegiadoController@rptCertificados');
 
 Route::get('fpdf','ColegiadoController@fpdf');
 

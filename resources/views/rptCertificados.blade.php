@@ -641,7 +641,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-title">
                                         <div class="caption">
                                             <i class="icon-social-dribbble font-blue-sharp"></i>
-                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte Diario - Mensual</span>
+                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte de Certificados</span>
                                         </div>
                                         <div class="actions">
                                             
@@ -650,7 +650,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-body">
                                         <div class="row" id="divTop">
 
-                                        <form id="frmRptDiarioMensual" class="" role="form">
+                                        <form id="frmRptCertificados" class="" role="form">
                                         <input type="hidden" id="token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
@@ -812,27 +812,21 @@ License: You must have a valid license purchased only from themeforest(the above
                 format: 'yyyy-mm-dd' 
             });
 
-            $('#frmRptDiarioMensual').submit(function(event) {
+            $('#frmRptCertificados').submit(function(event) {
 
                 var token = $("#token").val();
 
                     $.ajax({ //Process the form using $.ajax()
                         type      : 'POST', //Method type
-                        url       : 'rptDiarioMensual', //Your form processing file URL
+                        url       : 'rptCertificados', //Your form processing file URL
                         headers   : {'X-CSRF-TOKEN':token},
-                        data      : $('#frmRptDiarioMensual').serialize(), //Forms name
+                        data      : $('#frmRptCertificados').serialize(), //Forms name
                         dataType  : 'json',
                         success   : function(data) {
                                         if (data.success)
                                         {
                                             fnReporteDiarioMensual(
-                                                data.arId,
-                                                data.arFecha,
-                                                data.arComprobante,
-                                                data.arCodigoCIP,
-                                                data.arNombre,
-                                                data.arConcepto,
-                                                data.arTotal
+                                                data.arCertData
                                                 )
                                         }
                                         else
@@ -849,53 +843,57 @@ License: You must have a valid license purchased only from themeforest(the above
         })
 
         function fnReporteDiarioMensual(
-                                        arId,
-                                        arFecha,
-                                        arComprobante,
-                                        arCodigoCIP,
-                                        arNombre,
-                                        arConcepto,
-                                        arTotal
+                                        arCertData
                                         )
         {
+            console.log(arCertData[0].fecha);
             $("#divReporteDM").html('');
                 cad = " <table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
 
                         "<thead>" + 
                             "<tr>" +
                                 "<th style='width:3%'> # </th>"+
-                                "<th style='width:10%'> Fecha </th>"+
-                                "<th style='width:12%'> Comprobante Serie - Número</th>"+
-                                "<th style='width:10%'> Código CIP </th>"+
-                                "<th style='width:25%'> Nombres del Colegiado </th>"+
-                                "<th style='width:30%'> Concepto de Pago</th>"+
-                                "<th style='width:10%'> Total</th>"+
+                                "<th style='width:8%'> Fecha </th>"+
+                                "<th style='width:6%'> ID </th>"+
+                                "<th style='width:8%'> Nro. Certificado</th>"+
+                                "<th style='width:8%'> Comprobante Serie - Número</th>"+
+                                "<th style='width:7%'> Código CIP </th>"+
+                                "<th style='width:20%'> Nombres del Colegiado </th>"+
+                                "<th style='width:15%'> Especialidad </th>"+
+                                "<th style='width:18%'> Tipo de Certificado</th>"+
+                                "<th style='width:7%'> Total</th>"+
                             "</tr>"+
                         "</thead>"+
                         "<tbody>";
                         datTabla = "";
                 sumTotal = 0;
-                for(var i = 0 ; i < arId.length; i++)
+                for(var i = 0 ; i < arCertData.length; i++)
                 {
                     datTabla +=  "<tr>"+
                                 
                                 "<td style='text-align: right;'>"+(i+1)+
                                 "</td>"+
-                                "<td>"+arFecha[i]+
+                                "<td>"+arCertData[i].fecha+
                                 "</td>"+
-                                "<td>"+arComprobante[i]+
+                                "<td>"+arCertData[i].identificador+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arCodigoCIP[i]+
+                                "<td>"+arCertData[i].nroCertificado+
                                 "</td>"+
-                                "<td>"+arNombre[i]+
+                                "<td>"+arCertData[i].nroComprobante+
                                 "</td>"+
-                                "<td>"+arConcepto[i]+
+                                "<td style='text-align: right;'>"+arCertData[i].codigoCIP+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arTotal[i].toFixed(2)+
+                                "<td>"+arCertData[i].nombres+
+                                "</td>"+
+                                "<td>"+arCertData[i].especialidad+
+                                "</td>"+
+                                "<td>"+arCertData[i].conceptoPago+
+                                "</td>"+
+                                "<td style='text-align: right;'>"+arCertData[i].montoPago.toFixed(2)+
                                 "</td>"+
                                 "</tr>";
 
-                    sumTotal +=arTotal[i];
+                    sumTotal +=arCertData[i].montoPago;
 
                 }
                     datTabla +=  "<tr>"+

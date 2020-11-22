@@ -17,6 +17,10 @@ use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
 class ColegiadoController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
   public function pagoColegiados()
   {
@@ -74,7 +78,7 @@ public function busquedaColegiadosNombre(Request $request) {
         /*Crear tabla q guarde ultimo periodo de pago y habilidad*/
           if($tipoBusqueda == 1 and $textoBusqueda != "")
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
@@ -84,7 +88,7 @@ public function busquedaColegiadosNombre(Request $request) {
           }
           else if ($tipoBusqueda == 2 and $textoBusqueda != "") 
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cip_users A 
@@ -95,7 +99,7 @@ public function busquedaColegiadosNombre(Request $request) {
 
           else if ($tipoBusqueda == 3 and $textoBusqueda != "") 
           {
-            $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
+            $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
@@ -559,21 +563,21 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
           if($tipoBusqueda == 1 and $textoBusqueda != "")
           {
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
-            if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
+            if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
           }
           else if ($tipoBusqueda == 2 and $textoBusqueda != "") 
           {
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
-            if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
+            if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
 
@@ -582,9 +586,9 @@ WHERE A.id = ".$idTransaccion." order by B.id DESC limit 1";
             $sql = "SELECT A.nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
-            FROM cippuno.cip_users A 
-            left join cippuno.cip_users_especialidad B on B.codigoCIP = A.codigoCIP
-            LEFT JOIN cippuno.cip_pagos C on C.codigoCIP = A.codigoCIP
+            FROM cip_users A 
+            left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
+            LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
 
@@ -1788,4 +1792,81 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
       return json_encode($resultadoView);
   }
 
+  public function rptCertif()
+  {
+
+    $sql = "SELECT DATE_FORMAT(NOW(), '%Y-%m-%d') AS fecha";
+
+    $fechaActual = DB::select($sql);
+
+    return view('rptCertificados')->with('fechaActual',$fechaActual);
+  }
+
+  public function rptCertificados(Request $request)
+  {
+      $fechaDesde = $_POST['fechaDesde'];
+      $fechaHasta = $_POST['fechaHasta'];
+
+$sql = "SELECT A.id, 
+            B.fecha, 
+            B.id as identificador,
+            concat('A-',LPAD(B.nroConstancia, 7,'0')) as nroCertificado,
+            concat('B/V ',B.serieRecibo,' - ',B.nroRecibo) as nroComprobante,
+            B.codigoCIP,
+            concat(C.nombres,' ',C.paterno,' ',C.materno) as nombres,
+            D.valor as especialidad,
+            E.conceptoPago,
+            E.montoPago
+        FROM cip_pagos A 
+        inner join cip_constancias B on B.idPago = A.id
+        left join cip_users C on C.codigoCIP = B.codigoCIP 
+        left join cip_param D on D.grupo = '053' and D.codigo = B.idEspecialidad
+        left join cip_pagosconfig E on E.idConceptoPago = B.tipo and E.lVigente = 1
+        where fechaPago between '2016-01-21' and '2016-01-21'
+            and A.usuarioCreador = 'roucem80' 
+            order by A.id, B.id asc ;";
+/*
+            SELECT A.id, 
+    B.fecha, 
+    B.id,
+    concat('A-',LPAD(B.nroConstancia, 7,'0')) as nroCertificado,
+    concat('B/V ',B.serieRecibo,' - ',B.nroRecibo) as nroComprobante,
+    B.codigoCIP,
+    concat(C.nombres,' ',C.paterno,' ',C.materno) as nombres,
+    D.valor as especialidad,
+    E.conceptoPago,
+    E.montoPago
+FROM cip_db.cip_pagos A 
+inner join cip_constancias B on B.idPago = A.id
+left join cip_users C on C.codigoCIP = B.codigoCIP 
+left join cip_param D on D.grupo = '053' and D.codigo = B.idEspecialidad
+left join cip_pagosconfig E on E.idConceptoPago = B.tipo and E.lVigente = 1
+where fechaPago between '2016-01-21' and '2016-01-21'
+    and A.usuarioCreador = 'roucem80' 
+    order by A.id, B.id asc ;
+*/
+      if($data = DB::select($sql))
+      {
+        $resultadoView = array(
+              "success" => true,
+              "arCertData" => $data,
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
+
+      /*      
+      for($i = 0 ; $i < sizeof($arMPago); $i++)
+      {
+        echo $arId[$i]." - ".$arMPago[$i]." - ".$arConcepto[$i]."<br>";
+      }
+      */
+
+      return json_encode($resultadoView);
+  }
 }
