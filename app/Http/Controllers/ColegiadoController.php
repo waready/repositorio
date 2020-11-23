@@ -80,31 +80,39 @@ public function busquedaColegiadosNombre(Request $request) {
           {
             $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
+              D.valor as descTipoColegiado,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
             left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
-            WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";
+            left join cip_param D on D.grupo = '008' and D.codigo = A.tipoColegiado
+            WHERE A.codigoCIP = '".$textoBusqueda."' order by C.fechaPago DESC limit 1";
+            /*
+            WHERE A.codigoCIP like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1";*/
           }
           else if ($tipoBusqueda == 2 and $textoBusqueda != "") 
           {
             $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(DATE_FORMAT(NOW(), '%Y-%m-%d') <= LAST_DAY(STR_TO_DATE(concat(C.habilHasta,'01'),'%Y%m%d')), 'HABIL', 'NO HABIL') estadoHabil,
+              D.valor as descTipoColegiado,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta  
             FROM cip_users A 
             left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
-            WHERE A.dni like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
+            left join cip_param D on D.grupo = '008' and D.codigo = A.tipoColegiado
+            WHERE A.dni = '".$textoBusqueda."' order by C.fechaPago DESC limit 1"; 
           }
 
           else if ($tipoBusqueda == 3 and $textoBusqueda != "") 
           {
             $sql = "SELECT CONCAT(A.paterno,' ',A.materno,', ',A.nombres) as nombres, A.dni, A.codigoCIP, B.idEspecialidad, A.estadoUsuario,  
             if(Now() < STR_TO_DATE(C.habilHasta,'%Y %m'), 'HABIL', 'NO HABIL') estadoHabil,
+              D.valor as descTipoColegiado,
             DATE_FORMAT(NOW(), '%Y-%m-%d') as fechaActual, C.fechaPago, C.habilHasta 
             FROM cip_users A 
             left join cip_users_especialidad B on B.codigoCIP = A.codigoCIP
             LEFT JOIN cip_pagos C on C.codigoCIP = A.codigoCIP
+            left join cip_param D on D.grupo = '008' and D.codigo = A.tipoColegiado
             WHERE A.name like '%".$textoBusqueda."%' order by C.fechaPago DESC limit 1"; 
           }
 

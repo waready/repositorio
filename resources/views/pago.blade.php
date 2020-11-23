@@ -61,7 +61,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
             .lbinformacion {
                 color: orange; 
-                font-weight: bold;                
+                font-weight: bold;  
+                margin-left: 10px;              
             }
 
             .colorTab { 
@@ -657,7 +658,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Buscar</button>
                                                 </div>
 
-                                                <div class="col-md-3" class="alert alert-info" id="lbinformacion" >
+                                                <div class="col-md-5" class="alert alert-info" id="lbinformacion" >
                                                     
                                                 </div>
                                             </div>
@@ -785,9 +786,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </a>
                                             </li>
                                             <li class="colorTab">
-                                                <a href="#tab_6" data-toggle="tab" >
+                                                <a href="#tab_6" data-toggle="tab" id="tabDeudas">
                                                 Deudas
-                                                <span class="badge badge-success"> 2 </span>
+                                                
                                                 </a>
                                             </li>
                                             <li class="colorTab">
@@ -1532,7 +1533,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                             var conceptoPFrac = data.conceptoPagoFrac;
 
-                                            fnPrintInformacion(data.conceptoPagoDeuda,conceptoPFrac, datos[0].estadoHabil);
+                                            fnPrintInformacion(data.conceptoPagoDeuda,conceptoPFrac, datos[0].estadoHabil,datos[0].descTipoColegiado);
 
                                             fnReportFecha(data.reportFecha);
                                             fnReportCertificado(data.reportCertificado);
@@ -1666,7 +1667,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     //ind_tr++;
                 
                 }
-
+                if(totalDeudaAp != 0)
+                {
                 datTabla +=  "<tr>"+
                                 
                                 "<td>"+(ind++)+
@@ -1677,10 +1679,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
 
                                 "</tr>";
-
+                }
                 cad += datTabla + "<tbody></table></div>";
                 
                 $("#ctabDeuda").html(cad);
+
+                if(ind > 1)
+                {
+                    $("#tabDeudas").html("Deudas<span class='badge badge-danger'> " +(ind-1)+" </span>");
+                }
+                else
+                {
+                    $("#tabDeudas").html("Deudas");
+                }
             }
             function fnReportFracc(dataReport)
             {
@@ -2157,7 +2168,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#ctabPorFecha").html(cad);
             }
 
-            function fnPrintInformacion(deuda,fraccionamiento,habilidad)
+            function fnPrintInformacion(deuda,fraccionamiento,habilidad, descTipoColegiado)
             {
                 informacion = "";
                 console.log("habilidad->"+habilidad);   
@@ -2169,6 +2180,15 @@ License: You must have a valid license purchased only from themeforest(the above
                 }
                 
                     informacion+=infoHabilidad;
+
+                dTipoColegiado ='<label class="control-label lbinformacion" style="color: #05c3d9; font-weight: bold"> ('+descTipoColegiado+') </label>';
+                
+                if(descTipoColegiado == 'VITALICIO')
+                {
+                    dTipoColegiado ='<label class="control-label lbinformacion" style="color: red; font-weight: bold"> ('+descTipoColegiado+') </label>';   
+                }
+                informacion+=dTipoColegiado;
+
                 if(fnTieneDeuda(deuda))
                 {
                     informacion+='<label class="control-label lbinformacion" > (Multa) </label>';
