@@ -1541,7 +1541,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             fnReportFracc(data.reportFracc);
                                             fnReportDeudas(data.conceptoPagoDeuda,data.conceptoPagoFrac)
 
-                                            readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago,datos[0].estadoHabil);
+                                            readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago,datos[0].estadoHabil, datos[0].fechaActual);
 
                                             $("#checkExcepcion"). prop("checked", false);
 
@@ -2566,8 +2566,55 @@ License: You must have a valid license purchased only from themeforest(the above
             }
 
 
-            function readSelecOption(lista1, lista2, lista3, habilidad)
+            function readSelecOption(lista1, lista2, lista3, habilidad, fechaActual)
             {
+                
+                dateYear = parseInt(fechaActual.substr(0,4));
+                
+                $("#periodo").html('');
+                for (var i = dateYear + 2; i >= 1980; i--) {
+
+                    textSelected = "";
+                    if(i == dateYear)
+                    {
+                        textSelected = "selected";
+                    }
+                    markup = '<option value="'+i+'"'+textSelected+'>'+i+'</option>';
+
+                    $("#periodo").append(markup);                    
+                }
+
+                dateMes = fechaActual.substr(5,2);
+                console.log('DATEMES-->'+dateMes);
+                $("#periodoMes").html('');
+                
+            textSelected="";if(dateMes == '01'){textSelected = "selected";}
+                markup='<option value="01" '+textSelected+'>Enero</option>';
+            textSelected="";if(dateMes == '02'){textSelected = "selected";}
+                markup+='<option value="02" '+textSelected+'>Febrero</option>';
+            textSelected="";if(dateMes == '03'){textSelected = "selected";}
+                markup+='<option value="03" '+textSelected+'>Marzo</option>';
+            textSelected="";if(dateMes == '04'){textSelected = "selected";}
+                markup+='<option value="04" '+textSelected+'>Abril</option>';
+            textSelected="";if(dateMes == '05'){textSelected = "selected";}
+                markup+='<option value="05" '+textSelected+'>Mayo</option>';
+            textSelected="";if(dateMes == '06'){textSelected = "selected";}
+                markup+='<option value="06" '+textSelected+'>Junio</option>';
+            textSelected="";if(dateMes == '07'){textSelected = "selected";}
+                markup+='<option value="07" '+textSelected+'>Julio</option>';
+            textSelected="";if(dateMes == '08'){textSelected = "selected";}
+                markup+='<option value="08" '+textSelected+'>Agosto</option>';
+            textSelected="";if(dateMes == '09'){textSelected = "selected";}
+                markup+='<option value="09" '+textSelected+'>Septiembre</option>';
+            textSelected="";if(dateMes == '10'){textSelected = "selected";}
+                markup+='<option value="10" '+textSelected+'>Octubre</option>';
+            textSelected="";if(dateMes == '11'){textSelected = "selected";}
+                markup+='<option value="11" '+textSelected+'>Noviembre</option>';
+            textSelected="";if(dateMes == '12'){textSelected = "selected";}
+                markup+='<option value="12" '+textSelected+'>Diciembre</option>';
+                
+                $("#periodoMes").append(markup);
+
                 $("#conceptoPago").html('');
                 selecPOption = lista1;
                 
