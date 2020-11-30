@@ -125,7 +125,7 @@ public function busquedaColegiadosNombre(Request $request) {
           
           $sql = "SELECT A.codigoCIP, A.id, B.periodoPago, DATE_FORMAT(DATE_ADD(CONCAT(B.periodoPago,'01'), INTERVAL 3 MONTH), '%Y%m') as fHabil FROM cip_pagos A inner join cip_pagodetalle B on B.idPago = A.id and idConceptoPago = '01' WHERE A.codigoCIP =".$users[0]->codigoCIP." ORDER BY B.id DESC limit 1";
 
-          $sql = "SELECT A.codigoCIP, A.id, A.ultimoPago as periodoPago, A.habilHasta as fHabil  from cip_users A WHERE A.codigoCIP = ".$users[0]->codigoCIP." ";
+          $sql = "SELECT A.codigoCIP, A.id, A.ultimoPago as periodoPago, A.habilHasta as fHabil  from cip_users A WHERE A.codigoCIP = '".$users[0]->codigoCIP."' ";
 
           $fpagos = DB::select($sql);
 
@@ -152,11 +152,14 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
 
           $bitacoraPago = DB::select($sql);
 
-          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, B.valor FROM cip_users_especialidad A
+          $sql = "SELECT A.codigoCIP ,A.idEspecialidad, A.fechaIncorporacion, 
+          TIMESTAMPDIFF(YEAR, A.fechaIncorporacion, NOW()) as antiguedad,
+          B.valor FROM cip_users_especialidad A
           left join cip_param B on B.grupo = '053' and B.codigo = A.idEspecialidad 
           where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id asc";
 
-          $especialidad = DB::select($sql); 
+          $especialidad = DB::select($sql);
+          
 
           $sql = "select concat(A.serieRecibo,'-',A.nroRecibo) as recibo, A.fechaPago, A.total, B.name, A.estado 
 from cip_pagos A
@@ -195,6 +198,17 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
                   where A.codigoCIP = '".$users[0]->codigoCIP."';";
 
           $reportFracc = DB::select($sql);
+
+          $sql = "SELECT B.codigo,B.valor, C.fechaEntrega, 
+                  concat(E.nombres,' ',E.paterno,' ', E.materno) as nombreEntrega, 
+                  C.anho 
+                  from cip_param B 
+                  left join cip_users D on D.codigoCIP = '".$users[0]->codigoCIP."' 
+                  left join cip_users_presentes C on C.idUser = D.id and C.idPresente = B.codigo and C.anho = DATE_FORMAT(NOW(), '%Y') 
+                  left join cip_users E on E.username = C.usuarioEntrega
+                  where B.grupo = '040';";
+
+          $reportPresentes = DB::select($sql);
           
 
           $resultadoView = array(
@@ -210,6 +224,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
                       "reportCertificado" => $reportCertificado,
                       "reportMultas" => $reportMultas,
                       "reportFracc" => $reportFracc,            
+                      "reportPresentes" => $reportPresentes,            
                     );    
         }   
         else

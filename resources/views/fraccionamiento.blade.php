@@ -570,12 +570,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
+                                <!--li class="nav-item  ">
                                     <a href="/rptDetalle" class="nav-link ">
                                         <span class="title">Detallado
                                             </span>
                                     </a>
-                                </li>
+                                </li-->
                                 
                             </ul>
                             

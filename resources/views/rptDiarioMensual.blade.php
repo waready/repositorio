@@ -92,6 +92,17 @@ License: You must have a valid license purchased only from themeforest(the above
                 display: none; /* Hide from screen */
             }
 
+            #divTop {
+                
+                margin-bottom: 20px;
+            }
+
+            #divReporteDM {
+                
+                display: block;
+                margin-top: 50px;
+            }
+
 
         }
 
@@ -397,9 +408,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </form>
 
                                         </div>
-                                        <br>
+                                        
+                                        
                                         <header class="onlyprint" >Reporte emitido el: {{ date('Y')}}</header>
-                                        <div class="row" id="divReporteDM">
+                                        <div class="" id="divReporteDM">
                                             
                                         </div>
                                         <footer class="onlyprint" id="pageFooter">
@@ -554,7 +566,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         )
         {
             $("#divReporteDM").html('');
-                cad = " <table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
+                cad = " <br><table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
 
                         "<thead>" + 
                             "<tr>" +
