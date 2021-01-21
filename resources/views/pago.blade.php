@@ -683,6 +683,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane" id="tab_7">
+                                                        <div id=ctabPresentesForm>
+                                                            <div class="form-group">
+
+                                                <label class="control-label col-md-1">Filtrar por año:</label>
+                                                <div class="col-md-1">
+                                                    <select name="fechaPresente" id="fechaPresente" class="form-control input-sm">
+                                                
+                                                    </select> <i></i> 
+                                                </div>
+                                            </div>
+                                                        </div>
+                                                        <div id="ctabPresentes" class="col-md-7 column">
+                                    
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -838,6 +852,33 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="modal-footer">
 
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+        
+        <div class="modal fade" id="mPresentes" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Colegio de Ingenieros del Perú - Consejo Departamental Puno
+</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="note note-success">
+                    <h4>¿Desea entregar el presente al colegiado?</h4>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+
+                <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="otorgarPresente()">Aceptar</button>
+
+                  <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
               </div>
               
@@ -1020,6 +1061,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>    
                     </div>
 
+                    
+
                     <div id="mHabilidadProyFirmaC" style="display: none">
                     <br>
                         <div class="row">
@@ -1153,6 +1196,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
             var ind_tr = 0;
 
+            var codPresente = "";
+            var codU = 0;
+
             function busquedaNombre()
             {
                 var token = $("#token").val();
@@ -1255,7 +1301,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             fnReportCertificado(data.reportCertificado);
                                             fnReportMultas(data.reportMultas);
                                             fnReportFracc(data.reportFracc);
-                                            fnReportDeudas(data.conceptoPagoDeuda,data.conceptoPagoFrac)
+                                            fnReportDeudas(data.conceptoPagoDeuda,data.conceptoPagoFrac);
+
+                                            fnReportPresentes(data.reportPresentes);
 
                                             readSelecOption(data.conceptoPagoDeuda,conceptoPFrac,data.conceptoPago,datos[0].estadoHabil, datos[0].fechaActual);
 
@@ -1607,6 +1655,90 @@ License: You must have a valid license purchased only from themeforest(the above
                                         }
 
                                     }
+                    });
+            }
+
+            function fnReportPresentes(dataReport)
+            {
+                $("#ctabPresentes").html('');
+                cad = " <table class='table table-condensed table-hover'> " +
+                        "<thead>" + 
+                            "<tr>" +
+                                "<th> # </th>"+
+                                "<th> Concepto de Entrega </th>"+
+                                "<th> Fecha de Entrega</th>"+
+                                "<th> Usuario responsable de la Entrega</th>"+
+                                "<th> Estado</th>"+
+                            "</tr>"+
+                        "</thead>"+
+                        "<tbody>";
+                        datTabla = "";
+                for(var i = 0 ; i < dataReport.length; i++)
+                {
+                    descripcionEstado = "";
+                    fechaEntrega = "";
+                    nombreEntrega = "";
+                    if(dataReport[i].anho != null)
+                    {
+                        descripcionEstado = "Entregado";
+                        fechaEntrega = dataReport[i].fechaEntrega;
+                        nombreEntrega = dataReport[i].nombreEntrega;
+                    }
+                    else
+                    {
+                        descripcionEstado = "<a class='btn btn-circle green-meadow btn-sm ' href='javascript:void(0);' onclick="+"entregarPresente('"+dataReport[i].codigo+"',"+dataReport[i].iu+")> Entregar</a>";
+                    }
+
+
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataReport[i].valor+
+                                "</td>"+
+                                "<td>"+fechaEntrega+
+                                "</td>"+
+                                "<td>"+nombreEntrega+
+                                "</td>"+
+                                "<td>"+descripcionEstado+
+                                "</td>"+
+                                "</tr>";
+
+                }
+
+                cad += datTabla + "<tbody></table>";
+                
+                $("#ctabPresentes").html(cad);
+            }
+
+            function entregarPresente(cod,cu)
+            {
+                codPresente = cod;
+                codU = cu;
+                $("#mPresentes").modal('show');;
+
+            }
+
+            function otorgarPresente()
+            {
+                var anio = $("#fechaPresente").val();
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'otorgarPresente', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : 'codPresente='+codPresente+'&cu='+codU+'&fechaPresente='+anio, //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            alert(data.mensaje);
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
                     });
             }
 
@@ -2386,6 +2518,19 @@ License: You must have a valid license purchased only from themeforest(the above
                 mapOption = nArray;
 
                 $("#totalConcepto").val(mapOption['01']);
+
+                $("#fechaPresente").html('');
+                for (var i = dateYear + 1; i >= dateYear - 1 ; i--) {
+
+                    textSelected = "";
+                    if(i == dateYear)
+                    {
+                        textSelected = "selected";
+                    }
+                    markup = '<option value="'+i+'"'+textSelected+'>'+i+'</option>';
+
+                    $("#fechaPresente").append(markup);                    
+                }
 
             }
 

@@ -103,6 +103,8 @@ Route::post('rptDiarioMensual','ColegiadoController@rptDiarioMensual');
 Route::get('rptCertif','ColegiadoController@rptCertif');
 Route::post('rptCertificados','ColegiadoController@rptCertificados');
 
+Route::post('otorgarPresente','ColegiadoController@otorgarPresente');
+
 Route::get('fpdf','ColegiadoController@fpdf');
 
 Route::post('pdf', function () {
