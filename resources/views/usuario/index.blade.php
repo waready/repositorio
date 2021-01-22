@@ -1,6 +1,8 @@
 
 @extends('seed.metronic')
-
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+@endpush
 @section('content')
     <div class="row">
         
@@ -34,6 +36,8 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <div class="form-inline">
+                                   
+
                                     <form class="form-group" action="{{ url('searchName')}}"  method="POST">
                                         {{ csrf_field() }}
                                         
@@ -89,8 +93,9 @@
                                 <th> Apellido Materno</th>
                                 <th> Email</th>
                                 <th> Ultimo Pago</th>
+                                <th> Especialidad</th>
                                 <th> Tipo de Colegiado</th>
-                                <th>Condicion</th>
+                                <th> Condicion</th>
                                 <th>Editar</th>
                             </tr>
                         </thead>
@@ -108,26 +113,13 @@
                                     <td>{{$users->materno}}</td>
                                     <td>{{$users->email}}</td>
                                     <td>{{$users->ultimoPago}}</td>
-                                    
-                                    <td>
-                                        {{-- {{$users->tipoColegiado}} --}}
-                                        <template v-if="{{$users->tipoColegiado}} == 0">FALLECIDO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 1">INCORPORADO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 2">TRANSFERIDO NACIONAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 3">VITALICIO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 4">TEMPORAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 5">EN TRAMITE</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 6">NACIONAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 7">INCORPORADO NACIONAL</template>
-                                    </td>
-                                    <td >
-                                        <template v-if="{{$users->estadoUsuario}} == 10">
-                                            Habil
-                                        </template>
-                                        <template v-if="{{$users->estadoUsuario}} == 11">
-                                           No Habil
-                                        </template>                                    
-                                    </td>
+                                    <td> 
+                                        @foreach ($users->especialidades as $espe )
+                                          <li> {{$espe->especialidad}}</li>  
+                                        @endforeach
+                                    </td> 
+                                    <td>{{$users->tipo}}</td> 
+                                    <td>{{$users->habiliad}}</td>
                                     <td>
                                         <a href="user/{{$users->id}}#tab_1_3">
                                             <i class="fa fa-pencil"></i>
@@ -146,5 +138,33 @@
         </div>
     </div>
 @endsection
-                    
+@push('scripts')
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        let dt;
+        let modal = jQuery("#appModal");
+        jQuery(document).ready(function() {
+            dt = jQuery("#students-table").DataTable({
+                pageLength: 5,
+                lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
+                processing: true,
+                "scrollX": true,
+                serverSide: true,
+                
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
+                columns: [
+                    {data: 'user.id', visible: false},
+                    {data: 'user.name'},
+                    {data: 'user.email'},
+                    {data: 'courses_formatted'},
+                    {data: 'actions'}
+                ]
+            });
+           
+        
+        })
+    </script>
+@endpush         
              

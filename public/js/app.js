@@ -44472,7 +44472,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { staticClass: "control-label" }, [
-                    _vm._v("Capitulo " + _vm._s(_vm.espe.capitulo))
+                    _vm._v("Capitulo")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -45813,7 +45813,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text" },
+                    attrs: { type: "text", maxlength: "10" },
                     domProps: { value: _vm.espe.resolucionRevalidacion },
                     on: {
                       input: function($event) {
@@ -46027,11 +46027,11 @@ var render = function() {
           _c(
             "h2",
             { staticClass: "font-  uppercase" },
-            _vm._l(_vm.especialidad, function(item) {
+            _vm._l(_vm.especialidad.mensaje, function(item) {
               return _c("div", { key: item.id }, [
                 _vm._v(
                   "\n                            " +
-                    _vm._s(item.tituloProfesional) +
+                    _vm._s(item.titulo) +
                     "\n                    "
                 )
               ])

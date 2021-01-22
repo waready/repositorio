@@ -33,8 +33,8 @@
                 <div class="col-md-8 profile-info">
                                         
                     <h2 class="font-  uppercase" >
-                        <div v-for="item in especialidad" :key="item.id">
-                                {{item.tituloProfesional}}
+                        <div v-for="item in especialidad.mensaje" :key="item.id">
+                                {{item.titulo}}
                         </div>
                     </h2>
                     <h3 class="font-green  uppercase">

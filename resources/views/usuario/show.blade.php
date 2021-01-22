@@ -21,7 +21,7 @@
                 </ul>
                 {{-- <perfil-component :datos="{{$message}}"></perfil-component>   --}}
                 <div class="tab-content">
-                    
+                  
                     <div class="tab-pane active" id="tab_1_1">
                         <perfil-component :datos="{{$message}}" :especialidad=" {{$especialidad}}"></perfil-component>
                     </div>
@@ -33,8 +33,7 @@
                     </div>
                     
                     <!--end tab-pane-->
-                    <div class="tab-pane" id="tab_1_6">
-                        
+                    <div class="tab-pane" id="tab_1_6"> 
                     <especialidad-component :especialidad=" {{$especialidad}}"  :datos="{{$message}}"  :uni="{{$univercidad}}"></especialidad-component>
                     </div>
                     <!--end tab-pane-->
