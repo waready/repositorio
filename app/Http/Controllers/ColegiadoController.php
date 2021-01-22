@@ -754,7 +754,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       {
         $idTransaccion = $cipfrac->getKey();
 
-        $sqlUpdate = 'UPDATE cip_fraccionamientosettings SET nroRecibo ='.$nroDocumento.'  W1HERE usuario ="'.$usuarioRegistro.'" and lVigente = 1';
+        $sqlUpdate = 'UPDATE cip_fraccionamientosettings SET nroRecibo ='.$nroDocumento.'  WHERE usuario ="'.$usuarioRegistro.'" and lVigente = 1';
 
         DB::update($sqlUpdate);
 
@@ -806,8 +806,9 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
         }
 
       }
+      /*
+      */
       
-
       $resultadoView = array(
                       "success" => true,
                       "mensaje" => $extension,

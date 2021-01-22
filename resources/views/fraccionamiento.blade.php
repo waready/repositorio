@@ -797,8 +797,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
-                                                    <a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a>
+                                                    <!--a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
+                                                    <a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a-->
 
                                                     <button type="submit" class="btn btn-circle blue btn-sm " href="javascript:void(0);">Grabar</button>
 
@@ -815,17 +815,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <thead>
                                                         <tr>
                                                             
-                                                            <th width="20%">Nro. Cuota</th>
+                                                            <th width="10%">Nro. Cuota</th>
+                                                            <th width="15%" colspan="2">Cantidad Cuotas</th>
                                                             <th width="10%">Cantidad</th>
-                                                            <th width="40%">Meses</th>
+                                                            <th width="30%">Meses</th>
                                                             <th width="20%">Fecha Pago</th>
                                                             <th width="10%">Monto</th>
+                                                            <th width="5%">Opcion</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tablePagos">
                                                 
-                                                        
-                                                        
                                                     </tbody>
                                                 </table>
                                             
@@ -877,7 +877,7 @@ License: You must have a valid license purchased only from themeforest(the above
                   <div class="note note-success">
                     
                     <p>
-                        Gracias! El pago ha sido realizado correctamente.
+                        Gracias! El registro ha sido realizado correctamente.
                     </p>
                     
                     
@@ -885,7 +885,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="modal-footer">
 
-                    <a id="printBoucher" class="btn blue btn-sm " href="pdfPrint" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                    <!--a id="printBoucher" class="btn blue btn-sm " href="pdfPrint" target="_blank"><i class="fa fa-print"></i> Imprimir</a-->
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
               </div>
@@ -1058,6 +1058,20 @@ License: You must have a valid license purchased only from themeforest(the above
             month[9] = "Octubre";
             month[10] = "Noviembre";
             month[11] = "Diciembre";
+
+            var monthJ_mN = new Array();
+            monthJ_mN[0] = "01";
+            monthJ_mN[1] = "02";
+            monthJ_mN[2] = "03";
+            monthJ_mN[3] = "04";
+            monthJ_mN[4] = "05";
+            monthJ_mN[5] = "06";
+            monthJ_mN[6] = "07";
+            monthJ_mN[7] = "08";
+            monthJ_mN[8] = "09";
+            monthJ_mN[9] = "10";
+            monthJ_mN[10] = "11";
+            monthJ_mN[11] = "12";
 
             function busquedaNombre()
             {
@@ -1354,7 +1368,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 console.log('->'+fechaComparacion);                
                 fechaComparacion.setMonth( fechaComparacion.getMonth() + mes );
 
-                console.log('->'+mes);
+                console.log('mesmes->'+mes);
                 for(var i=bitacoraPago.length-1; i >=0 ; i--)
                 {
                     var fechaBitacora = new Date(bitacoraPago[i].dFechaIni.substr(0,4),e[bitacoraPago[i].dFechaIni.substr(5,2)],bitacoraPago[i].dFechaIni.substr(8,2));
@@ -1412,6 +1426,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     "<td>"+selectCuotaTexto+
                     "<input type='hidden' name='nroCuota[]' value='"+selectCuota+"'>"+
                     "</td>"+
+                    "<td>"+
+                        "<input type='text' name='cd_meses' id='cm_"+selectCuota+"' value='' class='form-control input-sm algo'>"+
+                    "</td>"+
+                    "<td>"+
+                        "<button type='submit' class='btn btn-circle purple btn-sm' href='javascript:void(0);' onclick='generarCuota("+selectCuota+")'>Generar</button>"+
+                    "</td>"+
                     "<td>"+cantidad_Cuota[selectCuota]+
                     "<input type='hidden' name='cantidadMeses[]' value='"+cantidad_Cuota[selectCuota]+"'>"+
                     "</td>"+
@@ -1424,7 +1444,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     "<td>"+monto_cuota[selectCuota]+
                     "<input type='hidden' name='montoPagoMes[]' value='"+monto_cuota[selectCuota]+"'>"+
                     "</td>"+
-                    "<td><input type='checkbox' name='record' value='"+selectCuota+"'></td>"
+                    "<td><button type='submit' class='btn btn-circle red btn-sm' href='javascript:void(0);' onclick='fnQuitar("+selectCuota+")'>Quitar</button></td>"
                     );
 
 
@@ -1443,10 +1463,130 @@ License: You must have a valid license purchased only from themeforest(the above
                 //calculaTotal();
             }
 
-            function fnQuitar()
+            function fnAgregarG(indCuota,mesP)
+            {
+                mes++;
+
+                var selectCuota = indCuota;
+                var selectCuotaTexto = $( "#selectCuota option:selected" ).text();
+
+                cantidad_Cuota[selectCuota]++;
+                var ultimoPago = $("#ultimoPago").val();
+                console.log("selectCuota->"+selectCuota);
+
+                var fechaComparacion = new Date(ultimoPago.substr(0,4), e[ultimoPago.substr(4,2)], '01');
+                console.log('->'+fechaComparacion);                
+                fechaComparacion.setMonth( fechaComparacion.getMonth() + mes );
+
+                console.log('mesmes->'+mes);
+                for(var i=bitacoraPago.length-1; i >=0 ; i--)
+                {
+                    var fechaBitacora = new Date(bitacoraPago[i].dFechaIni.substr(0,4),e[bitacoraPago[i].dFechaIni.substr(5,2)],bitacoraPago[i].dFechaIni.substr(8,2));
+                    if(fechaComparacion >= fechaBitacora)
+                    {
+                        total_deuda+=bitacoraPago[i].nMonto;
+                        monto_cuota[selectCuota]+=bitacoraPago[i].nMonto;
+                    console.log(fechaComparacion+"-"+fechaBitacora+"->"+bitacoraPago[i].nMonto);
+                    break;
+                    }
+                    
+                }
+
+                var deudaT = $("#deudaTotal").val();
+
+                if(total_deuda<=deudaT)
+                {
+                    //return 0;
+
+                console.log('selectCuota->'+selectCuota+' cantidad_Cuota->'+cantidad_Cuota[selectCuota]+' monto_cuota->'+monto_cuota[selectCuota]);
+                console.log("mes->"+mes+" ->"+total_deuda);
+
+                $("#deudaTotalPago").val(total_deuda);
+                                    
+                var fechaInicial = new Date(ultimoPago.substr(0,4), e[ultimoPago.substr(4,2)], '01');
+                var fechaFinal = new Date(ultimoPago.substr(0,4), e[ultimoPago.substr(4,2)], '01');
+                var sumaParcial = 0;
+                var sumaParcialTotal = 0;
+                for(var i=0;i<=selectCuota;i++)
+                {
+                    if(selectCuota>i)
+                    {
+                        sumaParcial+=cantidad_Cuota[i];
+                    }
+                    sumaParcialTotal+=cantidad_Cuota[i];
+                }
+                sumaParcial +=1;
+                
+                fechaInicial.setMonth( fechaInicial.getMonth() + sumaParcial );
+                
+                var fechaInicialPrint = month[fechaInicial.getMonth()]+" "+fechaInicial.getFullYear();
+
+                fechaFinal.setMonth( fechaFinal.getMonth() + sumaParcialTotal ); 
+                var fechaFinalPrint = month[fechaFinal.getMonth()]+" "+fechaFinal.getFullYear(); 
+
+                var textoMesPrint = "";
+                if(cantidad_Cuota[selectCuota]==1)
+                {
+                    textoMesPrint = fechaInicialPrint;
+                }
+                else
+                {
+                    textoMesPrint = fechaInicialPrint + " - "+ fechaFinalPrint;
+                }
+
+                var fechaPagoPrint = $("#fechaPago").val();
+
+                console.log("fechaPagoPrint->"+fechaPagoPrint);
+                console.log("sum parcial->"+sumaParcial+" suma total->"+sumaParcialTotal);
+
+                $("#tr_"+selectCuota).html(
+                    "<td>"+selectCuotaTexto+
+                    "<input type='hidden' name='nroCuota[]' value='"+selectCuota+"'>"+
+                    "</td>"+
+                    "<td>"+
+                        "<input type='text' name='cd_meses' id='cm_"+selectCuota+"' value='' class='form-control input-sm algo'>"+
+                    "</td>"+
+                    "<td>"+
+                        "<button type='submit' class='btn btn-circle purple btn-sm' href='javascript:void(0);' onclick=generarCuota("+selectCuota+",'"+mesP+"')>Generar</button>"+
+                    "</td>"+
+                    "<td>"+cantidad_Cuota[selectCuota]+
+                    "<input type='hidden' name='cantidadMeses[]' value='"+cantidad_Cuota[selectCuota]+"'>"+
+                    "</td>"+
+                    "<td>"+"("+ textoMesPrint +")"+
+                    "<input type='hidden' name='descripcionMeses[]' value='"+"("+ textoMesPrint +")"+"'>"+
+                    "</td>"+
+                    "<td>"+mesP+
+                    "<input type='hidden' name='fechaPagoMes[]' value='"+mesP+"'>"+
+                    "</td>"+
+                    "<td>"+monto_cuota[selectCuota]+
+                    "<input type='hidden' name='montoPagoMes[]' value='"+monto_cuota[selectCuota]+"'>"+
+                    "</td>"+
+                    "<td><button type='submit' class='btn btn-circle red btn-sm' href='javascript:void(0);' onclick=fnQuitar("+selectCuota+",'"+mesP+"')>Quitar</button></td>"
+                    );
+
+
+
+                $("input:checkbox").on('click', function() {
+              // in the handler, 'this' refers to the box clicked on
+                var $box = $(this);
+                  if ($box.is(":checked")) {
+                    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                    $(group).prop("checked", false);
+                    $box.prop("checked", true);
+                  } else {
+                    $box.prop("checked", false);
+                  }
+                });
+                //calculaTotal();
+
+                }
+            }
+
+            function fnQuitar(indCuota,mesP)
             {
                 var indice = 999;
-                indice = $('input:checkbox[name=record]:checked').val();
+                //indice = $('input:checkbox[name=record]:checked').val();
+                indice = indCuota;
                 
                 if(indice === undefined)
                 {
@@ -1479,19 +1619,25 @@ License: You must have a valid license purchased only from themeforest(the above
                     "<td>"+texOpcion+
                     "<input type='hidden' name='nroCuota[]' value='"+indice+"'>"+
                     "</td>"+
+                    "<td>"+
+                        "<input type='text' name='cd_meses' id='cm_"+indice+"' value='' class='form-control input-sm'>"+
+                    "</td>"+
+                    "<td>"+
+                        "<button type='submit' class='btn btn-circle purple btn-sm' href='javascript:void(0);' onclick=generarCuota("+indice+",'"+mesP+"')>Generar</button>"+
+                    "</td>"+
                     "<td>"+"0"+
                     "<input type='hidden' name='cantidadMeses[]' value='"+"0"+"'>"+
                     "</td>"+
                     "<td>"+"()"+
                     "<input type='hidden' name='descripcionMeses[]' value='"+"()"+"'>"+
                     "</td>"+
-                    "<td>"+"0000-00-00"+
-                    "<input type='hidden' name='fechaPagoMes[]' value='"+"0000-00-00"+"'>"+
+                    "<td>"+mesP+
+                    "<input type='hidden' name='fechaPagoMes[]' value='"+mesP+"'>"+
                     "</td>"+
                     "<td>"+"0"+
                     "<input type='hidden' name='montoPagoMes[]' value='"+"0"+"'>"+
                     "</td>"+
-                    "<td><input type='checkbox' name='record' value='"+indice+"'></td>"
+                    "<td><button type='submit' class='btn btn-circle red btn-sm' href='javascript:void(0);' onclick=fnQuitar("+indice+",'"+mesP+"')>Quitar</button></td>"
                     );
 
 
@@ -1530,6 +1676,29 @@ License: You must have a valid license purchased only from themeforest(the above
               
             });
 
+            /*
+            $("input[name='cd_meses']").keyup(function() {
+
+                var indiceC = $("#selectCuota").val();
+                console.log("Entraentra");
+                alert("indice :"+indiceC);
+
+            });*/
+
+            function generarCuota(indCuota,mesP) {
+
+                //var indiceC = $("#selectCuota").val();
+                var valor = $("#cm_"+indCuota).val();
+                fnQuitar(indCuota,mesP);
+
+                for(var i=0;i<valor;i++)
+                {
+                    fnAgregarG(indCuota,mesP);
+                }
+
+            };
+            
+
             $( "#nroCuotas" ).keyup(function() {
                 total_deuda = 0;
                 console.log("event");
@@ -1557,8 +1726,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 }
 
-                $("#selectCuota").append(textOpFinal); 
+                $("#selectCuota").append(textOpFinal);
+
+                fIniRef = $("#dataFecha").val();
                 
+                DateInicial = new Date(fIniRef.substr(0,4), e[fIniRef.substr(5,2)], fIniRef.substr(8,2));
+                console.log("FEchaInicialGeneracion->"+DateInicial);
+
                 for(var i = 0 ; i<= nroCuotas; i++)
                 {
                     texOpcion = 'Cuota Nro. '+i;
@@ -1567,10 +1741,20 @@ License: You must have a valid license purchased only from themeforest(the above
                         texOpcion = 'Cuota Inicial';
                     }
                     
+                    if(i>0)
+                    {DateInicial.setDate(DateInicial.getDate() + 30);}
+                    
+                    var dateText = DateInicial.getFullYear()+"-"+monthJ_mN[DateInicial.getMonth()]+"-"+DateInicial.getDate();
                     var markup = "<tr id='tr_"+i+"'>"+
                                     
                                     "<td>"+texOpcion+
                                     "<input type='hidden' name='nroCuota[]' value='"+i+"'>"+
+                                    "</td>"+
+                                    "<td>"+
+                                    "<input type='text' name='cd_meses' id='cm_"+i+"' value='' class='form-control input-sm col-md-1'>"+
+                                    "</td>"+
+                                    "<td>"+
+                                    "<button type='submit' class='btn btn-circle purple btn-sm' href='javascript:void(0);' onclick=generarCuota("+i+",'"+dateText+"')>Generar</button>"+
                                     "</td>"+
                                     "<td>"+"0"+
                                     "<input type='hidden' name='cantidadMeses[]' value='"+"0"+"'>"+
@@ -1578,16 +1762,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                     "<td>"+"()"+
                                     "<input type='hidden' name='descripcionMeses[]' value='"+"()"+"'>"+
                                     "</td>"+
-                                    "<td>"+"0000-00-00"+
-                                    "<input type='hidden' name='fechaPagoMes[]' value='"+"0000-00-00"+"'>"+
+                                    "<td>"+dateText+
+                                    "<input type='hidden' name='fechaPagoMes[]' value='"+dateText+"'>"+
                                     "</td>"+
                                     "<td>"+"0"+
                                     "<input type='hidden' name='montoPagoMes[]' value='"+"0"+"'>"+
                                     "</td>"+
-                                    "<td><input type='checkbox' name='record' value='"+i+"'></td>"+
+                                    "<td><button type='submit' class='btn btn-circle red btn-sm' href='javascript:void(0);' onclick="+"fnQuitar("+i+",'"+ dateText +"')>Quitar</button></td>"+
                                 "</tr>";
 
                         $("#tablePagos").append(markup); 
+
 
                 }
 
@@ -1612,6 +1797,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 $box.prop("checked", false);
               }
             });
+
+
 
             });
 
