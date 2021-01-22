@@ -279,7 +279,7 @@
 
                         <form role="form" action="#"  v-on:submit.prevent="crearEspecialidad()">
                             <div class="form-group">
-                                <label class="control-label">Capitulo {{espe.capitulo}}</label>
+                                <label class="control-label">Capitulo</label>
                                 <select class="form-control" data-placeholder="Choose a Category"  v-model="espe.capitulo" required>
 
                                     <option value="AGRICOLAS">AGRICOLAS</option>
@@ -471,7 +471,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Núm. Resolución Revalidación</label>
-                                <input type="text" v-model="espe.resolucionRevalidacion"  class="form-control" />
+                                <input type="text" maxlength="10" v-model="espe.resolucionRevalidacion"  class="form-control" />
                             </div>
                              <div class="form-group">
                                 <label class="control-label">Fecha de Inscripción</label>
