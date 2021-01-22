@@ -12,6 +12,7 @@ use App\cip_fraccionamientodetalle;
 use App\cip_fraccionamientomeses;
 use App\cip_pagodetalle;
 use App\cip_constancias;
+use App\cip_users_presentes;
 
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
@@ -199,7 +200,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           $reportFracc = DB::select($sql);
 
-          $sql = "SELECT B.codigo,B.valor, C.fechaEntrega, 
+          $sql = "SELECT D.id as iu, B.codigo,B.valor, C.fechaEntrega, 
                   concat(E.nombres,' ',E.paterno,' ', E.materno) as nombreEntrega, 
                   C.anho 
                   from cip_param B 
@@ -1891,5 +1892,39 @@ where fechaPago between '2016-01-21' and '2016-01-21'
       */
 
       return json_encode($resultadoView);
+  }
+
+  public function otorgarPresente(Request $request)
+  {
+    $idUsuario = $_POST['cu'];
+    $codigoPresente = $_POST['codPresente'];
+    $fechaPresente = $_POST['fechaPresente'];
+
+    $usuarioRegistro = 'guerrerocippuno';
+
+      $cipPresentes = new cip_users_presentes();
+      $cipPresentes->idUser = $idUsuario;
+      $cipPresentes->idPresente = $codigoPresente;
+      $cipPresentes->fechaEntrega = date("Y/m/d H:i:s");
+      $cipPresentes->usuarioEntrega = $usuarioRegistro;
+      $cipPresentes->anho = $fechaPresente;
+
+
+      if($cipPresentes->save())
+      {
+        $resultadoView = array(
+              "success" => true,
+              "mensaje" => "La entrega de presente se registro satisfactoriamente",
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
+    return json_encode($resultadoView); 
+
   }
 }
