@@ -1,6 +1,13 @@
 <template>
 	<div class="row">
+        
         <div class="col-md-12">
+            <div class="alert alert-success" v-if="correcto" role="alert">
+               SE registro Correctamente!
+            </div>
+            <div class="alert alert-danger" v-if="incorrecto" role="alert">
+               Error al registrar!
+            </div>
             <div class="portlet box red-intense">
                 <div class="portlet-title">
                     <div class="caption">
@@ -266,6 +273,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
     props:['pais'],
     mounted(){
@@ -277,6 +285,8 @@ export default {
     },
    data(){
        return{
+        correcto:false,
+        incorrecto:false,
         imagen : null,
 
 
@@ -399,10 +409,11 @@ export default {
                 
                 if(response.data.success){
                   
-                     document.location.href = "../../user/" 
-                    this.newMensaje="";
+                    document.location.href = "../../user/" 
+   
                 }else {
-
+                    this.incorrecto=true; 
+                   
                 }
             
             })

@@ -513,7 +513,7 @@
                 </div>
             </div>
             <!--end col-md-9-->
-            {{}}
+            
         </div>
     </div>
 </template>

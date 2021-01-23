@@ -276,7 +276,7 @@
                             </div>
                         </div>
                     <div id="tab_2" class="tab-pane">
-
+                      <h4>Agregar Institución <button class="btn btn-circle" @click="isShow = !isShow"> <span class="badge badge-secondary">Nueva</span> </button></h4>
                         <form role="form" action="#"  v-on:submit.prevent="crearEspecialidad()">
                             <div class="form-group">
                                 <label class="control-label">Capitulo</label>
@@ -428,7 +428,7 @@
                                 </template>                        
                             </div>
                             <div class="form-group">
-                                 <label class="control-label">Institucion</label>
+                                <label class="control-label">Institución</label>
                                 <select class="form-control"  data-placeholder="Choose a Category"  v-model="espe.institucion">
                                     <option v-for="item in uni" :key="item.codigo" :value="item.codigo">{{item.valor}}</option>
                                 </select>
@@ -489,14 +489,49 @@
                     </div>
                 </div>
             </div>
+           
         </div>
+
+            <div>
+                <simple-modal v-model="isShow" title="Agregar Institución Superior">
+                    <template slot="body">
+                        <div class="col-md-12">
+                            <form v-on:submit.prevent="crearInstitucion()">
+
+                            
+                                <div class="form-group">
+                                    <label class="control-label">Nueva Institución</label>
+                                    <input type="text"  v-model="institucion" 
+                                        class="form-control" /> 
+                                </div>
+                        
+                                <button class="btn btn-danger">OK</button>
+                                <div>
+                                    <hr>
+                                </div>
+                            </form>
+                        </div>
+                    </template>
+                    <template slot="footer">
+                        
+                    </template>
+                </simple-modal>
+
+            </div>
+
+
+
     </div>
 </template>
 <script>
+import SimpleModal from 'simple-modal-vue'
 export default {
       props:['datos','especialidad','uni'],
+      components: { SimpleModal },
     data (){
         return{
+            isShow: false,
+            institucion: "",
             respuesta: this.especialidad.mensaje,
             espe:{
                 capitulo:"",
@@ -552,6 +587,20 @@ export default {
             })
 
         },
+        crearInstitucion(){
+            const institucion ={
+                inst: this.institucion.toUpperCase()
+            }
+             axios.post('/institucion', institucion).then((response)=>{
+                //document.location.href = "../../user/"+this.datos.id;
+                if(response.data.success){
+                    this.newMensaje="";
+                }else {
+
+                }
+            
+            })
+        },
         eliminarEspecialidad(id){
             //Ingresamos un mensaje a mostrar
             var mensaje = confirm("¿Esta seguro de eliminar la especialidad?");
@@ -582,3 +631,4 @@ export default {
     
 }
 </script>
+
