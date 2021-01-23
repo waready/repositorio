@@ -152,3 +152,5 @@ Route::get('api/params','getUsers@param');
 // };
 
 Route::post('/dashboard/avatar', 'getUsers@upload');
+
+Route::post('institucion', 'EspecialidadController@institucion');

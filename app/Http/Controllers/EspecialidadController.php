@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\cip_params;
 use Illuminate\Http\Request;
 use App\cip_users_especialidad;
 use App\cip_users;
@@ -240,5 +241,20 @@ class EspecialidadController extends Controller
     }
     public function vista(){
         return view ('usuario.nuevo');
+    }
+
+    public function institucion(Request $request){
+        //return $request;
+        $datos = DB::table('cip_param')->select('*')->where('grupo','032')->orderBy('codigo', 'desc')->get();
+   
+        
+        $ultimo = str_pad(intval($datos[0]->codigo)+1,3,'0',STR_PAD_LEFT);
+
+        $institucion = new cip_params();
+        $institucion->grupo  = "032";
+        $institucion->codigo = $ultimo;
+        $institucion->valor = $request->inst;
+        $institucion->save();
+        
     }
 }

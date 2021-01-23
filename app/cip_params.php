@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class cip_params extends Model
 {
     protected $table = 'cip_param';
+    public $timestamps = false;
 }
