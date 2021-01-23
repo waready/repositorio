@@ -2150,15 +2150,9 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post('/user', params).then(function (response) {
         if (response.data.success) {
-          //document.location.href = "../../user/" 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default.a.toast({
-            heading: 'Warning',
-            text: 'It is going to be supper easy for you to use ;)',
-            showHideTransition: 'plain',
-            icon: 'warning'
-          });
+          document.location.href = "../../user/";
         } else {
-          _this2.newMensaje = "Error";
+          _this2.incorrecto = true;
         }
       });
     },
