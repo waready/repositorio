@@ -1598,7 +1598,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 console.log("indice ->" + indice);
                 total_deuda = total_deuda - monto_cuota[indice];
 
-                console.log("total_deuda ->" + total_deuda); 
+                //console.log("total_deuda ->" + total_deuda); 
                 $("#deudaTotalPago").val(total_deuda);
 
                 cantidad_Cuota[indice] = 0;

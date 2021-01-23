@@ -457,7 +457,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           DB::update($sqlUpdate);
 
-          $sqlUpdate = 'UPDATE cip_users SET habilHasta =\''.$fHabilidad[0]->fHabil.'\',  ultimoPago = \''.$fHabilidad[0]->fechaPago.'\' WHERE codigoCIP =\''.$codigoCIP.'\' ';
+          $sqlUpdate = 'UPDATE cip_users SET habilHasta =\''.$fHabilidad[0]->fHabil.'\',  ultimoPago = \''.substr($fHabilidad[0]->fechaPago, 0,4).substr($fHabilidad[0]->fechaPago, 5,2).'\' WHERE codigoCIP =\''.$codigoCIP.'\' ';
 
           DB::update($sqlUpdate);
 
