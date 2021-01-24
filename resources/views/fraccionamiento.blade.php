@@ -565,7 +565,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/rptCertificados" class="nav-link ">
+                                    <a href="/rptCertif" class="nav-link ">
                                         <span class="title">Certificados
                                             </span>
                                     </a>
