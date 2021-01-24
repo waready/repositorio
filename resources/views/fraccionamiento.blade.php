@@ -1468,7 +1468,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 mes++;
 
                 var selectCuota = indCuota;
-                var selectCuotaTexto = $( "#selectCuota option:selected" ).text();
+                //var selectCuotaTexto = $( "#selectCuota option:selected" ).text();
+                var selectCuotaTexto = $( "#selectCuota option[value='"+selectCuota+"']" ).text();
 
                 cantidad_Cuota[selectCuota]++;
                 var ultimoPago = $("#ultimoPago").val();
