@@ -245,16 +245,25 @@ class EspecialidadController extends Controller
 
     public function institucion(Request $request){
         //return $request;
-        $datos = DB::table('cip_param')->select('*')->where('grupo','032')->orderBy('codigo', 'desc')->get();
-   
+        $datos = DB::table('cip_param')
+        ->where('grupo', '050')
+    
         
-        $ultimo = str_pad(intval($datos[0]->codigo)+1,3,'0',STR_PAD_LEFT);
+        ->get();
+        $collection = collect($datos);
+           $max= $collection->max('codigo');
+            //$min=$collection->min('codigo');
+
+        
+      
+        $ultimo = str_pad(intval($max)+1,0,'0',STR_PAD_LEFT);
 
         $institucion = new cip_params();
-        $institucion->grupo  = "032";
+        $institucion->grupo  = "050";
         $institucion->codigo = $ultimo;
         $institucion->valor = $request->inst;
         $institucion->save();
         
+        return $ultimo;
     }
 }
