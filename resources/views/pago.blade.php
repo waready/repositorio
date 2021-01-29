@@ -250,7 +250,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item ">
+                                <li class="nav-item active open">
                                     <a href="/pagos" class="nav-link ">
                                         <span class="title">Pagos</span>
                                     </a>
@@ -302,6 +302,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li class="nav-item  ">
                                     <a href="/rptCertif" class="nav-link ">
                                         <span class="title">Certificados
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/rptFracc" class="nav-link ">
+                                        <span class="title">Rpt Fraccionamientos
                                             </span>
                                     </a>
                                 </li>
@@ -877,6 +883,41 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="modal-footer">
 
                 <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="otorgarPresente()">Aceptar</button>
+
+                  <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalRecibo" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="titleRecibo">Recibo
+</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <th>#</th>
+                            <th>Concepto</th>
+                            <th>Periodo</th>
+                            <th>Monto</th>
+                        </thead>
+                        <tbody id="tableRecibo">
+                            
+                        </tbody>
+                    </table>
+                
+                </div>
+                <div class="modal-footer">
+
+                <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="imprimirRecibo()">Imprimir</button>
 
                   <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -1983,10 +2024,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             "<tr>" +
                                 "<th> # </th>"+
                                 "<th> Nro. Recibo </th>"+
+                                "<th> Ver </th>"+
                                 "<th> Fecha </th>"+
                                 "<th> Total </th>"+
                                 "<th> Usuario </th>"+
-                                "<th> Imprimir </th>"+
+                                
                             "</tr>"+
                         "</thead>"+
                         "<tbody>";
@@ -1999,14 +2041,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+dataReport[i].recibo+
                                 "</td>"+
+                                "<td>"+"<a href='javascript:void(0);' onclick=modalRecibo('"+dataReport[i].serieRecibo+"','"+dataReport[i].nroRecibo+"','"+dataReport[i].codigoCIP+"')><i class='fa fa-eye'></i></a>"+
+                                "</td>"+
                                 "<td>"+dataReport[i].fechaPago+
                                 "</td>"+
                                 "<td>"+dataReport[i].total+
                                 "</td>"+
                                 "<td>"+dataReport[i].name+
                                 "</td>"+
-                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
-                                "</td>"+
+                                
                                 "</tr>";
 
                 }
@@ -2662,6 +2705,58 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#dTotalCambio").html("<h4>Cambio: <b>S/ "+cambio+"</b></h4>");
               
             });
+
+            function modalRecibo(serie,recibo,cip){
+                $("#titleRecibo").html("Recibo "+serie+"-"+recibo);
+
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'verRecibo', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : {serie:serie,recibo:recibo,cip:cip}, //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+
+                                        if (data.success) { //If fails
+                                            reporteRecibo(data.arRecibo)
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+
+                $('#modalRecibo').modal('show');
+
+            }
+
+            function reporteRecibo(dataRecibo)
+            {
+                $("#tableRecibo").html('');
+                cad = "";
+                        datTabla = "";
+                for(var i = 0 ; i < dataRecibo.length; i++)
+                {
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+(i+1)+
+                                "</td>"+
+                                "<td>"+dataRecibo[i].conceptoPagos+
+                                "</td>"+
+                                "<td>"+dataRecibo[i].periodoPago+
+                                "</td>"+
+                                "<td>"+dataRecibo[i].montoPago+
+                                "</td>"+
+                                                                
+                                "</tr>";
+                }
+
+                cad += datTabla;
+                
+                $("#tableRecibo").html(cad);
+            }
             
 
         </script>

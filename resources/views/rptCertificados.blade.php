@@ -302,6 +302,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
+                                <li class="nav-item  ">
+                                    <a href="/rptFracc" class="nav-link ">
+                                        <span class="title">Rpt Fraccionamientos
+                                            </span>
+                                    </a>
+                                </li>
                                 <!--li class="nav-item  ">
                                     <a href="/rptDetalle" class="nav-link ">
                                         <span class="title">Detallado

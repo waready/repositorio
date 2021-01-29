@@ -53,7 +53,18 @@ License: You must have a valid license purchased only from themeforest(the above
         <link rel="shortcut icon" href="favicon.ico" /> 
         <style type="text/css">
 
-        
+        #divReporteDM .portlet-bodyth th td{
+                
+                font-size: 9px !important;
+            }
+
+            .table td{
+                font-size: 11px;
+            }
+
+            .table th {
+                font-size: 10px;
+            }
         @media print{
 
             @page {
@@ -66,7 +77,7 @@ License: You must have a valid license purchased only from themeforest(the above
             }
             #divReporteDM #tablePrint {
                 border: 1px solid black;
-                font-size: 10px !important;
+                font-size: 9px !important;
             }
             .portlet-title {
                 display: none;
@@ -90,17 +101,6 @@ License: You must have a valid license purchased only from themeforest(the above
             
             header.onlyprint, footer.onlyprint{
                 display: none; /* Hide from screen */
-            }
-
-            #divTop {
-                
-                margin-bottom: 20px;
-            }
-
-            #divReporteDM {
-                
-                display: block;
-                margin-top: 50px;
             }
 
 
@@ -353,7 +353,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-title">
                                         <div class="caption">
                                             <i class="icon-social-dribbble font-blue-sharp"></i>
-                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte Diario - Mensual</span>
+                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte de Fraccionamientos Vencidos</span>
                                         </div>
                                         <div class="actions">
                                             
@@ -362,36 +362,23 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-body">
                                         <div class="row" id="divTop">
 
-                                        <form id="frmRptDiarioMensual" class="" role="form">
+                                        <form id="frmRptCertificados" class="" role="form">
                                         <input type="hidden" id="token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-1 form-horizontal" style="text-align: right;">Desde: </label>
+                                            <label class="control-label col-md-1 form-horizontal" style="text-align: right;"></label>
 
                                         <div class="col-md-2">
                                                 
-                                        <div class="input-group date" id="datepicker_">
-                                            <input type="text" name="fechaDesde" class="form-control input-sm" id="fechaDesde" value="{{$fechaActual[0]->fecha}}">
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                        </div>
                                         </div>
 
-                                        <label class="control-label col-md-1 form-horizontal" style="text-align: right;">Hasta: </label>
+                                        <label class="control-label col-md-1 form-horizontal" style="text-align: right;"></label>
 
                                         <div class="col-md-2">
-                                                
-                                        <div class="input-group date" id="datepicker_">
-                                            <input type="text" name="fechaHasta" class="form-control input-sm" id="fechaHasta" value="{{$fechaActual[0]->fecha}}">
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                        </div>
                                         </div>
 
                                         <div class="col-md-1">
-                                            <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Consultar</button>
+                                            
                                         </div>
                                         <div class="col-md-3">
                                         </div>
@@ -405,8 +392,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                         <input type='button' id='btn' class="btn btn-circle dark" value='Imprimir' onclick='printDiv("divReporteDM");'>
 
-                                        <!--button class="btn blue mt-ladda-btn ladda-button btn-outline btn-circle" onclick="window.print()">Imprimir</button>
-                                        </div-->
+                                        <!--button class="btn blue mt-ladda-btn ladda-button btn-outline btn-circle" onclick="window.print()">Imprimir</button-->
+                                        </div>
 
                                         </div>
 
@@ -414,14 +401,53 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </form>
 
                                         </div>
+                                        <br>
                                         
-                                        
-                                        <header class="onlyprint" >Reporte emitido el: {{ date('Y')}}</header>
-                                        <div class="" id="divReporteDM">
-                                            
+                                        <div class="row" id="divReporteDM">
+                                            <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover" id="sample_1" style="font-size: 9px">
+                                        <thead style="font-size: 9px">
+                                            <tr>
+                                                <th>#</th>
+                                                <th> Código CIP </th>
+                                                <th> Apellidos y Nombres</th>
+                                                <th> Especialidad</th>
+                                                <th> E-mail</th>
+                                                <th> Dirección</th>
+                                                <th> Ubigeo</th>
+                                                <th> Teléfono</th>
+                                                <th> Deuda Total</th>
+                                                <th> Cuotas</th>
+                                                <th> Nro. Cuota</th>
+                                                <th> Fecha Pago</th>
+                                                <th> Monto Pago</th>
+                                               
+                                            </tr>
+                                        </thead><?php $c = 1;?>
+                                        <tbody style="font-size: 9px">
+                                            @foreach ($data as $d )
+                                            <tr>
+                                                <td>{{$c++}}</td>
+                                                <td>{{$d->codigoCIP}}</td>
+                                                <td>{{$d->nombre}}</td>
+                                                <td>{{$d->especialidad}}</td>
+                                                <td>{{$d->email}}</td>
+                                                <td>{{$d->direccion}}</td>
+                                                <td>{{$d->ubigeoDom}}</td>
+                                                <td>{{$d->telefono}}</td>
+                                                <td>{{number_format($d->totalDeuda, 2, '.', '')}}</td>
+                                                <td>{{$d->nroCuotas}}</td>
+                                                <td>{{$d->nroCuota}}</td>
+                                                <td>{{$d->fechaPago}}</td>
+                                                <td>{{number_format($d->montoPago, 2, '.', '')}}</td>
+
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                                         </div>
-                                        <footer class="onlyprint" id="pageFooter">
-                                        Content Goes Here</footer>
+                                        
                                        
                                     </div>
                                 </div>
@@ -455,8 +481,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            <div class="page-footer-inner"> Colegio de Ingenieros del Perú - Sede Puno
+                
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
@@ -525,27 +551,21 @@ License: You must have a valid license purchased only from themeforest(the above
                 format: 'yyyy-mm-dd' 
             });
 
-            $('#frmRptDiarioMensual').submit(function(event) {
+            $('#frmRptCertificados').submit(function(event) {
 
                 var token = $("#token").val();
 
                     $.ajax({ //Process the form using $.ajax()
                         type      : 'POST', //Method type
-                        url       : 'rptDiarioMensual', //Your form processing file URL
+                        url       : 'rptCertificados', //Your form processing file URL
                         headers   : {'X-CSRF-TOKEN':token},
-                        data      : $('#frmRptDiarioMensual').serialize(), //Forms name
+                        data      : $('#frmRptCertificados').serialize(), //Forms name
                         dataType  : 'json',
                         success   : function(data) {
                                         if (data.success)
                                         {
                                             fnReporteDiarioMensual(
-                                                data.arId,
-                                                data.arFecha,
-                                                data.arComprobante,
-                                                data.arCodigoCIP,
-                                                data.arNombre,
-                                                data.arConcepto,
-                                                data.arTotal
+                                                data.arCertData
                                                 )
                                         }
                                         else
@@ -562,57 +582,61 @@ License: You must have a valid license purchased only from themeforest(the above
         })
 
         function fnReporteDiarioMensual(
-                                        arId,
-                                        arFecha,
-                                        arComprobante,
-                                        arCodigoCIP,
-                                        arNombre,
-                                        arConcepto,
-                                        arTotal
+                                        arCertData
                                         )
         {
+            console.log(arCertData[0].fecha);
             $("#divReporteDM").html('');
-                cad = " <br><table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
+                cad = " <table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
 
                         "<thead>" + 
                             "<tr>" +
                                 "<th style='width:3%'> # </th>"+
-                                "<th style='width:10%'> Fecha </th>"+
-                                "<th style='width:12%'> Comprobante Serie - Número</th>"+
-                                "<th style='width:10%'> Código CIP </th>"+
-                                "<th style='width:25%'> Nombres del Colegiado </th>"+
-                                "<th style='width:30%'> Concepto de Pago</th>"+
-                                "<th style='width:10%'> Total</th>"+
+                                "<th style='width:8%'> Fecha </th>"+
+                                "<th style='width:6%'> ID </th>"+
+                                "<th style='width:8%'> Nro. Certificado</th>"+
+                                "<th style='width:8%'> Comprobante Serie - Número</th>"+
+                                "<th style='width:7%'> Código CIP </th>"+
+                                "<th style='width:20%'> Nombres del Colegiado </th>"+
+                                "<th style='width:15%'> Especialidad </th>"+
+                                "<th style='width:18%'> Tipo de Certificado</th>"+
+                                "<th style='width:7%'> Total</th>"+
                             "</tr>"+
                         "</thead>"+
                         "<tbody>";
                         datTabla = "";
                 sumTotal = 0;
-                for(var i = 0 ; i < arId.length; i++)
+                for(var i = 0 ; i < arCertData.length; i++)
                 {
                     datTabla +=  "<tr>"+
                                 
                                 "<td style='text-align: right;'>"+(i+1)+
                                 "</td>"+
-                                "<td>"+arFecha[i]+
+                                "<td>"+arCertData[i].fecha+
                                 "</td>"+
-                                "<td>"+arComprobante[i]+
+                                "<td>"+arCertData[i].identificador+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arCodigoCIP[i]+
+                                "<td>"+arCertData[i].nroCertificado+
                                 "</td>"+
-                                "<td>"+arNombre[i]+
+                                "<td>"+arCertData[i].nroComprobante+
                                 "</td>"+
-                                "<td>"+arConcepto[i]+
+                                "<td style='text-align: right;'>"+arCertData[i].codigoCIP+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arTotal[i].toFixed(2)+
+                                "<td>"+arCertData[i].nombres+
+                                "</td>"+
+                                "<td>"+arCertData[i].especialidad+
+                                "</td>"+
+                                "<td>"+arCertData[i].conceptoPago+
+                                "</td>"+
+                                "<td style='text-align: right;'>"+arCertData[i].montoPago.toFixed(2)+
                                 "</td>"+
                                 "</tr>";
 
-                    sumTotal +=arTotal[i];
+                    sumTotal +=arCertData[i].montoPago;
 
                 }
                     datTabla +=  "<tr>"+
-                                "<td colspan='6' style='text-align: right;'>"+"Total:"+
+                                "<td colspan='9' style='text-align: right;'>"+"Total:"+
                                 "</td>"+
                                 "<td style='text-align: right;'>"+sumTotal.toFixed(2)+
                                 "</td>"+

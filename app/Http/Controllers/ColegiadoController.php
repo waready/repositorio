@@ -162,7 +162,7 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
           $especialidad = DB::select($sql);
           
 
-          $sql = "select concat(A.serieRecibo,'-',A.nroRecibo) as recibo, A.fechaPago, A.total, B.name, A.estado 
+          $sql = "SELECT A.serieRecibo, A.nroRecibo, A.codigoCIP, concat(A.serieRecibo,'-',A.nroRecibo) as recibo, A.fechaPago, A.total, B.name, A.estado 
 from cip_pagos A
 left join cip_users B on B.username = A.usuarioCreador
 where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
@@ -1817,6 +1817,67 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
       return json_encode($resultadoView);
   }
 
+
+  public function rptRecibo(Request $request)
+  {
+      $serie = $_POST['serie'];
+      $recibo = $_POST['recibo'];
+      $codigoCIP = $_POST['cip'];
+
+$sql = "SELECT A.fechaPago, B.idPago, B.idConceptoPago,
+ if(C.conceptoPago is null, B.otroConcepto, C.conceptoPago) as conceptoPagos, 
+B.periodoPago, B.montoPago FROM cip_pagos A 
+left join cip_pagodetalle B on B.idPago = A.id
+left join cip_pagosconfig C on C.idConceptoPago = B.idConceptoPago and C.lVigente = 1
+where A.serieRecibo = '".$serie."' 
+      and A.nroRecibo = '".$recibo."' 
+      and A.codigoCIP = '".$codigoCIP."';";
+
+      if($data = DB::select($sql))
+      {
+        $resultadoView = array(
+              "success" => true,
+              "arRecibo" => $data,
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
+
+      return json_encode($resultadoView);
+  }
+
+  public function rptFraccionamiento()
+  {
+    $sql = "SELECT A.id, A.codigoCIP, concat(C.paterno,' ',C.materno,', ',C.nombres) as nombre,
+    H.valor as especialidad, C.email, C.direccion, 
+    concat(G.valor,',',F.valor,',',E.valor) as ubigeoDom,
+    coalesce(C.telefono, C.celular, C.celular1) as telefono,
+    A.estado, A.totalDeuda, A.nroCuotas, B.nroCuota, B.fechaPago, B.montoPago
+from cip_fraccionamiento A
+inner join cip_db.cip_fraccionamientodetalle B on B.id =(SELECT id
+      FROM cip_db.cip_fraccionamientodetalle 
+      where idFraccionamiento = A.id 
+        and idPago = 0 
+        order by id asc limit 1
+      )
+inner join cip_users C on C.codigoCIP = A.codigoCIP 
+inner join cip_users_especialidad D on D.id = (SELECT id FROM cip_db.cip_users_especialidad where codigoCIP = A.codigoCIP order by id asc limit 1)
+inner join cip_param H on H.grupo = '053' and H.codigo = D.idEspecialidad
+left join cip_param E on E.grupo = '001' and E.codigo = C.ubigeoDomicilio
+left join cip_param F on F.grupo = '002' and F.codigo = E.extra
+left join cip_param G on G.grupo = '003' and G.codigo = F.extra
+where A.estado = 1 order by B.fechaPago desc;";
+
+    $data = DB::select($sql);
+
+    return view('rptFraccionamiento')->with('data',$data);
+  }
+
   public function rptCertif()
   {
 
@@ -1826,6 +1887,8 @@ left join cip_param D on D.grupo = '053' and D.codigo = A.idEspecialidad
 
     return view('rptCertificados')->with('fechaActual',$fechaActual);
   }
+
+  
 
   public function rptCertificados(Request $request)
   {

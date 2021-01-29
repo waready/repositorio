@@ -481,7 +481,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="title">Colegiados</span>
                                 
                             </a>
-                            <ul class="page-sidebar-menu "  >
+                            <ul class="sub-menu "  >
                                 <li class="nav-item  ">
                                     <a href="/user/create" class="nav-link nav-toggle">
                                         <span class="title">-Registro</span>
@@ -507,22 +507,22 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item active open">
                             <a  class="nav-link nav-toggle">
                                 <i class="icon-diamond"></i>
                                 <span class="title">Pagos</span>
                                 <span class="selected"></span>
-                            
+                                <span class="arrow"></span>
                             </a>
-                            <ul class="page-sidebar-menu ">
+                            <ul class="sub-menu ">
                                 <li class="nav-item ">
                                     <a href="/pagos" class="nav-link ">
-                                        <span class="title">-Pagos</span>
+                                        <span class="title">Pagos</span>
                                     </a>
                                 </li>
-                                <li class="nav-item ">
+                                <li class="nav-item active open">
                                     <a href="/fraccionamiento" class="nav-link ">
-                                        <span class="title">-Fraccionamiento</span>
+                                        <span class="title">Fraccionamiento</span>
                                     </a>
                                 </li>
                             </ul>    
@@ -531,13 +531,14 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a  class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Facturacion</span>
-                                
+                                <span class="arrow"></span>
                             </a>
-                            <ul class="page-sidebar-menu ">
+                            <ul class="sub-menu ">
                                 <li class="nav-item  ">
                                     <a href="http://admin.cippuno.org.pe/facturacion/vistas/escritorio.php" class="nav-link ">
                                         <span class="title"> -Ingreso
                                             </span>
+
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
@@ -567,6 +568,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li class="nav-item  ">
                                     <a href="/rptCertif" class="nav-link ">
                                         <span class="title">Certificados
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="/rptFracc" class="nav-link ">
+                                        <span class="title">Rpt Fraccionamientos
                                             </span>
                                     </a>
                                 </li>
