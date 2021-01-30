@@ -192,7 +192,7 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           $reportMultas = DB::select($sql);
 
-          $sql = "SELECT concat(A.nroDocumento,'-', SUBSTR(A.fecha, 1,4)) as nroDocumento, 
+          $sql = "SELECT A.id, concat(A.nroDocumento,'-', SUBSTR(A.fecha, 1,4)) as nroDocumento, 
                   A.fechaCreacion, A.totalDeuda, A.nroCuotas, B.name,
                   C.nombreArchivo,
                   if(A.estado = 1, 'Activo', 'Pagado') as estado
@@ -1868,6 +1868,41 @@ where A.serieRecibo = '".$serie."'
       return json_encode($resultadoView);
   }
 
+  public function detalleFracc(Request $request)
+  {
+      $id = $_POST['id'];
+      
+$sql = "SELECT A.id, A.codigoCIP, A.totalDeuda, 
+    B.nroCuota, (E.id - D.id + 1) as meses,
+    B.fechaPago, B.montoPago,
+    concat(C.serieRecibo,'-', C.nroRecibo) as recibo,
+    D.periodoPago as minimo,
+    E.periodoPago as maximo
+FROM cip_db.cip_fraccionamiento A 
+left join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id
+left join cip_pagos C on C.id=B.idPAgo
+left join cip_fraccionamientomeses D on D.id = (SELECT id FROM cip_fraccionamientomeses where idFraccionamiento = A.id and nroCuota = B.nroCuota order by id asc limit 1)
+left join cip_fraccionamientomeses E on E.id = (SELECT id FROM cip_fraccionamientomeses where idFraccionamiento = A.id and nroCuota = B.nroCuota order by id desc limit 1)
+where A.id = ".$id.";";
+
+      if($data = DB::select($sql))
+      {
+        $resultadoView = array(
+              "success" => true,
+              "arRecibo" => $data,
+            );  
+      }
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
+
+      return json_encode($resultadoView);
+  }
+
   public function rptFraccionamiento()
   {
     $sql = "SELECT A.id, A.codigoCIP, concat(C.paterno,' ',C.materno,', ',C.nombres) as nombre,
@@ -1876,14 +1911,14 @@ where A.serieRecibo = '".$serie."'
     coalesce(C.telefono, C.celular, C.celular1) as telefono,
     A.estado, A.totalDeuda, A.nroCuotas, B.nroCuota, B.fechaPago, B.montoPago
 from cip_fraccionamiento A
-inner join cip_db.cip_fraccionamientodetalle B on B.id =(SELECT id
-      FROM cip_db.cip_fraccionamientodetalle 
+inner join cip_fraccionamientodetalle B on B.id =(SELECT id
+      FROM cip_fraccionamientodetalle 
       where idFraccionamiento = A.id 
         and idPago = 0 
         order by id asc limit 1
       )
 inner join cip_users C on C.codigoCIP = A.codigoCIP 
-inner join cip_users_especialidad D on D.id = (SELECT id FROM cip_db.cip_users_especialidad where codigoCIP = A.codigoCIP order by id asc limit 1)
+inner join cip_users_especialidad D on D.id = (SELECT id FROM cip_users_especialidad where codigoCIP = A.codigoCIP order by id asc limit 1)
 inner join cip_param H on H.grupo = '053' and H.codigo = D.idEspecialidad
 left join cip_param E on E.grupo = '001' and E.codigo = C.ubigeoDomicilio
 left join cip_param F on F.grupo = '002' and F.codigo = E.extra
@@ -1930,26 +1965,7 @@ $sql = "SELECT A.id,
         where fechaPago between '2016-01-21' and '2016-01-21'
             and A.usuarioCreador = 'roucem80' 
             order by A.id, B.id asc ;";
-/*
-            SELECT A.id, 
-    B.fecha, 
-    B.id,
-    concat('A-',LPAD(B.nroConstancia, 7,'0')) as nroCertificado,
-    concat('B/V ',B.serieRecibo,' - ',B.nroRecibo) as nroComprobante,
-    B.codigoCIP,
-    concat(C.nombres,' ',C.paterno,' ',C.materno) as nombres,
-    D.valor as especialidad,
-    E.conceptoPago,
-    E.montoPago
-FROM cip_db.cip_pagos A 
-inner join cip_constancias B on B.idPago = A.id
-left join cip_users C on C.codigoCIP = B.codigoCIP 
-left join cip_param D on D.grupo = '053' and D.codigo = B.idEspecialidad
-left join cip_pagosconfig E on E.idConceptoPago = B.tipo and E.lVigente = 1
-where fechaPago between '2016-01-21' and '2016-01-21'
-    and A.usuarioCreador = 'roucem80' 
-    order by A.id, B.id asc ;
-*/
+
       if($data = DB::select($sql))
       {
         $resultadoView = array(
