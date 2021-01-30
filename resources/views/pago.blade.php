@@ -1511,6 +1511,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "<th> Nro. Cuotas </th>"+
                                 "<th> Usuario</th>"+
                                 "<th> Estado</th>"+
+                                "<th> Referencia</th>"+
                                 "<th> Imprimir</th>"+
                             "</tr>"+
                         "</thead>"+
@@ -1518,6 +1519,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         datTabla = "";
                 for(var i = 0 ; i < dataReport.length; i++)
                 {
+                    var archivo = "";
+                    if(dataReport[i].nombreArchivo != null)
+                    {
+                        archivo = "<a href='FileFracc/"+dataReport[i].nombreArchivo+"' target='_blank'><i class='fa fa-file'></i></a>";
+                    }
+                    
                     datTabla +=  "<tr>"+
                                 
                                 "<td>"+(i+1)+
@@ -1534,7 +1541,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+dataReport[i].estado+
                                 "</td>"+
-                                "<td>"+"<a href='#tab_1'><i class='fa fa-print'></i></a>"+
+                                "<td>"+archivo+
+                                "</td>"+
+                                "<td>"+"<a href='#tab_1'><i class='fa fa-eye'></i></a>"+
                                 "</td>"+
                                 "</tr>";
 

@@ -13,6 +13,7 @@ use App\cip_fraccionamientomeses;
 use App\cip_pagodetalle;
 use App\cip_constancias;
 use App\cip_users_presentes;
+use App\cip_fraccionamientofile;
 
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Response;
@@ -193,9 +194,11 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
 
           $sql = "SELECT concat(A.nroDocumento,'-', SUBSTR(A.fecha, 1,4)) as nroDocumento, 
                   A.fechaCreacion, A.totalDeuda, A.nroCuotas, B.name,
+                  C.nombreArchivo,
                   if(A.estado = 1, 'Activo', 'Pagado') as estado
                   FROM cip_fraccionamiento A 
                   left join cip_users B on B.username = A.usuarioCreador
+                  left join cip_fraccionamientofile C on C.idFraccionamiento = A.id
                   where A.codigoCIP = '".$users[0]->codigoCIP."';";
 
           $reportFracc = DB::select($sql);
@@ -723,22 +726,10 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       $sql = "select idMontoPago, dFechaIni, dFechaFin, nMonto from cip_montopago where lVigente = 1 order by dFechaIni ASC";
 
       $bitacoraPago = DB::select($sql);
-
       
-      $file = $request->file('file');
-
       $path = 'FileFracc';
       $usuarioRegistro = 'guerrerocippuno';
 
-      if($file)
-      {
-        
-        $extension = $file->getClientOriginalExtension();
-        $nombre = $file->getClientOriginalName();
-        $renombre = $nombre.'.'.$file->getClientOriginalExtension();
-        $upload = $file->move($path,$renombre);
-      }      
-      
       $cipfrac = new cip_fraccionamiento();
       $cipfrac->nroDocumento = $nroDocumento;
       $cipfrac->codigoCIP = $codigoCIP;
@@ -757,6 +748,31 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
         $sqlUpdate = 'UPDATE cip_fraccionamientosettings SET nroRecibo ='.$nroDocumento.'  WHERE usuario ="'.$usuarioRegistro.'" and lVigente = 1';
 
         DB::update($sqlUpdate);
+
+        $file = $request->file('file');
+
+        
+
+        if($file)
+        {
+          
+          $extension = $file->getClientOriginalExtension();
+          $nombre = $idTransaccion;
+          //$nombre = $file->getClientOriginalName();
+          $renombre = $nombre.'.'.$file->getClientOriginalExtension();
+          
+          $archivo = new cip_fraccionamientofile();
+          $archivo->idFraccionamiento = $idTransaccion;
+          $archivo->nombreArchivo = $renombre;
+          $archivo->extension = '';
+          $archivo->lVigente = 1;
+
+          if($archivo->save())
+          {
+            $upload = $file->move($path,$renombre);  
+          }
+          
+        }
 
       }
 
@@ -811,8 +827,9 @@ inner join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id and idPago
       
       $resultadoView = array(
                       "success" => true,
-                      "mensaje" => $extension,
-                      "tam" => $nombre
+                      "mensaje" => "Datos Guardados Correctamente",
+                      //"mensaje" => $extension,
+                      //"tam" => $nombre
                     );
 
       return json_encode($resultadoView);
