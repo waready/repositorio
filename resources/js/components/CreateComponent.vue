@@ -131,10 +131,10 @@
                                             <option value="6">Nacional</option>
                                             <option value="4">Temporal</option>
                                             <option value="2">Transferido Nacional</option>
-                                            <option value="3">Vitali</option>
+                                            <option value="3">Vitalicio</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="control-label">Enviar E-mail a este Usuario</label>
                                         <div class="radio-list">
                                             <label class="radio-inline">
@@ -142,7 +142,7 @@
                                             <label class="radio-inline">
                                                 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> NO </label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!--/span-->
                             </div>

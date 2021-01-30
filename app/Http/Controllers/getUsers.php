@@ -44,7 +44,7 @@ class getUsers extends Controller
         ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
         // ->where('B.codigoCIP', 'A.codigoCIP')
         ->where('B.codigoCIP', $row->codigoCIP)
-        ->where('C.grupo', '053')
+        ->where('C.grupo', '052')
         ->select(
           'B.idEspecialidad',
           'C.valor AS especialidad'
@@ -182,7 +182,7 @@ class getUsers extends Controller
                 ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
                 // ->where('B.codigoCIP', 'A.codigoCIP')
                 ->where('B.codigoCIP', $row->codigoCIP)
-                ->where('C.grupo', '053')
+                ->where('C.grupo', '052')
                 ->select(
                 'B.idEspecialidad',
                 'C.valor AS especialidad'
@@ -230,7 +230,7 @@ class getUsers extends Controller
                         ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
                         // ->where('B.codigoCIP', 'A.codigoCIP')
                         ->where('B.codigoCIP', $row->codigoCIP)
-                        ->where('C.grupo', '053')
+                        ->where('C.grupo', '052')
                         ->select(
                         'B.idEspecialidad',
                         'C.valor AS especialidad'
@@ -279,7 +279,7 @@ class getUsers extends Controller
             ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
             // ->where('B.codigoCIP', 'A.codigoCIP')
             ->where('B.codigoCIP', $row->codigoCIP)
-            ->where('C.grupo', '053')
+            ->where('C.grupo', '052')
             ->select(
             'B.idEspecialidad',
             'C.valor AS especialidad'
@@ -295,8 +295,56 @@ class getUsers extends Controller
 
     public function reporte()
     {     
-        $cip_user = cip_users::paginate(100);
+        $cip_user = DB::table('cip_users as A')
+      ->select(
+        'A.id',
+        'A.codigoCIP',
+        'A.nombres',
+        'A.paterno',
+        'A.name',
+        'A.dni',
+        'A.celular',
+        'A.materno',
+        'A.email',
+        'A.ultimoPago',
+        'G.valor AS sede',
+        'A.tipoColegiado',
+        'A.estadoUsuario',
+        'D.valor AS habiliad',
+        'F.valor AS tipo'
+      )
 
+      ->leftJoin('cip_param as D', function ($q) {
+        $q->on('D.codigo', 'A.estadoUsuario')->where('D.grupo', '007');
+      })
+      ->leftJoin('cip_param as G', function ($q) {
+        $q->on('G.codigo', 'A.ubigeoSede')->where('G.grupo', '001');
+      })
+      ->leftJoin('cip_param as F', function ($q) {
+        $q->on('F.codigo', 'A.tipoColegiado')->where('F.grupo', '008');
+      })
+      ->paginate(1000);
+      
+
+      foreach ($cip_user->items() as &$row) {
+        $row->especialidades = DB::table('cip_users_especialidad as B')
+          ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
+          ->leftJoin('cip_param as D', 'D.codigo', 'C.extra')
+          // ->where('B.codigoCIP', 'A.codigoCIP')
+          ->where('B.codigoCIP', $row->codigoCIP)
+          ->where('C.grupo', '052')
+          ->where('D.grupo', '051')
+
+          ->select(
+
+            'B.idEspecialidad',
+            'C.valor AS especialidad',
+            'D.valor AS Capitulo'
+          )
+          ->get();
+      }
+
+      //return $cip_user;
         return view('usuario.reporte',compact('cip_user'));        
     }
 
@@ -379,7 +427,7 @@ class getUsers extends Controller
 
         $busqueda = $id;
 
-        $univercidad = cip_params::where('grupo','032')->get();
+        $univercidad = cip_params::where('grupo','050')->get();
 
             $hola = "SELECT A.id ,A.codigoCIP, A.idEspecialidad, A.idInstitucion, A.fechaIncorporacion, A.fechaPromocion, A.fechaGraduacion, 
             A.tituloProfesional, A.numeroResolucion, A.folioResolucion, A.hojaResolucion, A.fechaRevalidacion, A.resolucionRevalidacion,  A.fechaInscripcion,

@@ -96,6 +96,8 @@
                                 <th> Sede</th>
                                 <th> Tipo de Colegiado</th>
                                 <th>Condicion</th>
+                                <th>especialidad</th>
+                            
                                
                             </tr>
                         </thead>
@@ -110,29 +112,25 @@
                                     <td>{{$users->celular}}</td>
                                     <td>{{$users->ultimoPago}}</td>
                                     <td> 
-                                        <template v-if="{{$users->ubigeoSede}} == 210101"> Puno</template>
-                                        <template v-else-if="{{$users->ubigeoSede}} == 211101"> Juliaca</template>
-                                        <template v-else> Sin sede</template>
+                                        {{$users->sede}}
                                     </td>
                                     
                                     <td>
                                         {{-- {{$users->tipoColegiado}} --}}
-                                        <template v-if="{{$users->tipoColegiado}} == 0">FALLECIDO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 1">INCORPORADO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 2">TRANSFERIDO NACIONAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 3">VITALICIO</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 4">TEMPORAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 5">EN TRAMITE</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 6">NACIONAL</template>
-                                        <template v-if="{{$users->tipoColegiado}} == 7">INCORPORADO NACIONAL</template>
+                                        {{$users->tipo}}
+                                     
                                     </td>
                                     <td >
-                                        <template v-if="{{$users->estadoUsuario}} == 10">
-                                            Habil
-                                        </template>
-                                        <template v-if="{{$users->estadoUsuario}} == 11">
-                                           No Habil
-                                        </template>
+                                        {{$users->habiliad}}
+                                       
+                                    </td>
+                                    <td>
+                                        
+                                        @foreach ($users->especialidades as $items )
+                                            <li>
+                                                {{$items->especialidad}}
+                                            </li>
+                                        @endforeach
                                     </td>
                                    
                                 </tr>
