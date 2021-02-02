@@ -101,7 +101,7 @@ Route::get('reporteDM','ColegiadoController@reporteDM');
 Route::post('rptDiarioMensual','ColegiadoController@rptDiarioMensual');
 
 Route::post('verRecibo','ColegiadoController@rptRecibo');
-Route::post('verFracc','ColegiadoController@detalleFraccionamiento');
+Route::post('verFracc','ColegiadoController@detalleFracc');
 
 Route::get('rptCertif','ColegiadoController@rptCertif');
 Route::post('rptCertificados','ColegiadoController@rptCertificados');

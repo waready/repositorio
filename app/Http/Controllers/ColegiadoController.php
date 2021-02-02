@@ -1889,7 +1889,7 @@ where A.id = ".$id.";";
       {
         $resultadoView = array(
               "success" => true,
-              "arRecibo" => $data,
+              "arFracc" => $data,
             );  
       }
       else

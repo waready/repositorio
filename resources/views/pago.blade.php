@@ -70,6 +70,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 color: blue;
 
             }
+            
 
         </style>
         
@@ -926,6 +927,44 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
         </div>
 
+        <div class="modal fade bs-modal-lg in" id="modalDetalleFracc" role="dialog">
+            <div class="modal-dialog modal-lg">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="titleFracc">Fraccionamiento
+</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <th>Nro. Cuota</th>
+                            <th>Meses</th>
+                            <th>Periodo</th>
+                            <th>Fecha Pago</th>
+                            <th>Monto</th>
+                            <th>Estado</th>
+
+                        </thead>
+                        <tbody id="tableFracc">
+                            
+                        </tbody>
+                    </table>
+                
+                </div>
+                <div class="modal-footer">
+
+                <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="imprimirRecibo()">Imprimir</button>
+
+                  <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+
 
         <div class="modal fade" id="modalCertificadoHE" role="dialog">
             <div class="modal-dialog">
@@ -1512,7 +1551,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "<th> Usuario</th>"+
                                 "<th> Estado</th>"+
                                 "<th> Referencia</th>"+
-                                "<th> Imprimir</th>"+
+                                "<th> Ver</th>"+
                             "</tr>"+
                         "</thead>"+
                         "<tbody>";
@@ -1543,7 +1582,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+archivo+
                                 "</td>"+
-                                "<td>"+"<a href='#tab_1'><i class='fa fa-eye'></i></a>"+
+                                "<td>"+"<a href='javascript:void(0);' onclick="+"modalDetFracc('"+dataReport[i].id+"')><i class='fa fa-eye'></i></a>"+
                                 "</td>"+
                                 "</tr>";
 
@@ -1552,6 +1591,79 @@ License: You must have a valid license purchased only from themeforest(the above
                 cad += datTabla + "<tbody></table>";
                 
                 $("#ctabFracc").html(cad);
+            }
+
+            function modalDetFracc(fracc){
+
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'verFracc', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : {id:fracc}, //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+
+                                        if (data.success) { //If fails
+                                            reporteFracc(data.arFracc)
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+
+                $('#modalDetalleFracc').modal('show');
+
+            }
+            function otherFracc(fracc)
+            {
+                alert(fracc);
+            }
+
+            function reporteFracc(arFracc)
+            {
+                $("#tableFracc").html('');
+                cad = "";
+                datTabla = "";
+                
+                
+                for(var i = 0 ; i < arFracc.length; i++)
+                {
+                    if(arFracc[i].nroCuota == 0)
+                    {
+                        nroCuotaF = "Cuota Inicial";
+                    }
+                    else
+                    {
+                        nroCuotaF = "Cuota Nro. "+arFracc[i].nroCuota;   
+                    }
+
+                    mesMin = mes_Print[arFracc[i].minimo.substr(4,2)]+'-'+arFracc[i].minimo.substr(0,4);
+                    mesMax = mes_Print[arFracc[i].maximo.substr(4,2)]+'-'+arFracc[i].maximo.substr(0,4);
+
+                    datTabla +=  "<tr>"+
+                                
+                                "<td>"+nroCuotaF+
+                                "</td>"+
+                                "<td>"+arFracc[i].meses+
+                                "</td>"+
+                                "<td>"+mesMin+'-'+mesMax+
+                                "</td>"+
+                                "<td>"+arFracc[i].fechaPago+
+                                "</td>"+
+                                "<td>"+arFracc[i].montoPago+
+                                "</td>"+
+                                "<td>"+arFracc[i].recibo+
+                                "</td>"+
+                                "</tr>";
+                    console.log(datTabla);
+                }
+
+                cad += datTabla;
+                
+                $("#tableFracc").html(cad);
             }
             function fnReportMultas(dataReport)
             {
@@ -2740,6 +2852,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 $('#modalRecibo').modal('show');
 
             }
+
+            
 
             function reporteRecibo(dataRecibo)
             {
