@@ -956,7 +956,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="modal-footer">
 
-                <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="imprimirRecibo()">Imprimir</button>
+                <!--button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="imprimirDFracc()">Imprimir</button!-->
 
                   <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -2757,7 +2757,7 @@ License: You must have a valid license purchased only from themeforest(the above
                   
                   var pmes = periodo+element;
 
-                    if(pmes <= ultimoPago )
+                    if(pmes <= ultimoPago && idConceptoPago == '01')
                     {
                         console.log('No puede ser menor.');
                         valCont ++;
