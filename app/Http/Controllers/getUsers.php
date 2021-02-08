@@ -295,6 +295,25 @@ class getUsers extends Controller
 
     public function reporte()
     {     
+        
+      
+
+      //return $cip_user;
+        return view('usuario.reporte');        
+    }
+
+    public function searchCodigo(Request $request)
+    {
+
+        $category = request('tipoColegiado');
+        $make = request('condicion');
+
+        // $cip_user = cip_users::when($category, function ($query) use ($category){
+        //     return $query->where('tipoColegiado', $category);
+        // })
+        // ->when($make, function ($query) use ($make) {
+        //     return $query->where('estadoUsuario', $make);
+        // })->paginate(30);
         $cip_user = DB::table('cip_users as A')
       ->select(
         'A.id',
@@ -344,23 +363,6 @@ class getUsers extends Controller
           ->get();
       }
 
-      //return $cip_user;
-        return view('usuario.reporte',compact('cip_user'));        
-    }
-
-    public function searchCodigo(Request $request)
-    {
-
-        $category = request('tipoColegiado');
-        $make = request('condicion');
-
-        $cip_user = cip_users::when($category, function ($query) use ($category){
-            return $query->where('tipoColegiado', $category);
-        })
-        ->when($make, function ($query) use ($make) {
-            return $query->where('estadoUsuario', $make);
-        })->paginate(30);
-
         // $vehicles = Vehicle::when($category, function ($query) use ($category) {
         //         return $query->where('category', $category);
         //     })
@@ -369,7 +371,7 @@ class getUsers extends Controller
         //     })
         //     ->paginate(10);
 
-         $cip_user->appends(request()->query());
+        // $cip_user->appends(request()->query());
 
          return view('usuario.reporte', compact('cip_user'));
 

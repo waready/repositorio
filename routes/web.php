@@ -27,7 +27,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/ggwp','HomeController@excel');
+Route::get('/reportes','HomeController@excel')->name('reportesall');
+
    
 
 
@@ -148,8 +149,7 @@ Route::get('f', function (Codedge\Fpdf\Fpdf\FPDF $fpdf) {
 
 
 Route::resource('especilidad', 'EspecialidadController');
-Route::get('holas','EspecialidadController@index')->name('teacher.students');
-Route::get('adios','EspecialidadController@vista');
+
 
 Route::get('api/params','getUsers@param');
 // Route::post('especilidad', 'EspecialidadController@store'){
@@ -159,3 +159,4 @@ Route::get('api/params','getUsers@param');
 Route::post('/dashboard/avatar', 'getUsers@upload');
 
 Route::post('institucion', 'EspecialidadController@institucion');
+Route::get('/post','EspecialidadController@full');
