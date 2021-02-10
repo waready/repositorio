@@ -266,4 +266,60 @@ class EspecialidadController extends Controller
         
         return $ultimo;
     }
+
+    public function full(Request $request){
+        $cip_user = DB::table('cip_users as A')
+      ->select(
+        'A.id',
+        'A.codigoCIP',
+        'A.nombres',
+        'A.paterno',
+        'A.name',
+        'A.dni',
+        'A.celular',
+        'A.materno',
+        'A.email',
+        'A.ultimoPago',
+        'G.valor AS sede',
+        'A.tipoColegiado',
+        'A.estadoUsuario',
+        'D.valor AS habiliad',
+        'F.valor AS tipo'
+      )
+
+      ->leftJoin('cip_param as D', function ($q) {
+        $q->on('D.codigo', 'A.estadoUsuario')->where('D.grupo', '007');
+      })
+      ->leftJoin('cip_param as G', function ($q) {
+        $q->on('G.codigo', 'A.ubigeoSede')->where('G.grupo', '001');
+      })
+      ->leftJoin('cip_param as F', function ($q) {
+        $q->on('F.codigo', 'A.tipoColegiado')->where('F.grupo', '008');
+      })
+      ->paginate(500);
+      
+
+      foreach ($cip_user->items() as &$row) {
+        $row->especialidades = DB::table('cip_users_especialidad as B')
+          ->leftJoin('cip_param as C', 'C.codigo', 'B.idEspecialidad')
+          ->leftJoin('cip_param as D', 'D.codigo', 'C.extra')
+          // ->where('B.codigoCIP', 'A.codigoCIP')
+          ->where('B.codigoCIP', $row->codigoCIP)
+          ->where('C.grupo', '052')
+          ->where('D.grupo', '051')
+
+          ->select(
+
+            'B.idEspecialidad',
+            'C.valor AS especialidad',
+            'D.valor AS Capitulo'
+          )
+          ->get();
+      }
+      if($request->ajax()){
+          $view = view('data', compact('cip_user'))->render();
+          return response()->json(['html' => $view]);
+      }
+      return view("report", compact('cip_user'));
+    }
 }
