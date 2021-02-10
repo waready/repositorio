@@ -23,8 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('user/{id}', 'ColegiadoController@hola');
 
-
+Route::get('/user_/{cip}', 'ColegiadoController@hola2')->name('cip');
 
 
 Route::get('/ggwp','HomeController@excel');
@@ -105,6 +106,9 @@ Route::post('verFracc','ColegiadoController@detalleFracc');
 
 Route::get('rptCertif','ColegiadoController@rptCertif');
 Route::post('rptCertificados','ColegiadoController@rptCertificados');
+
+Route::get('rptOpeColegiado','ColegiadoController@rptOpeColegiado');
+Route::post('opeColegiado','ColegiadoController@operacionesColegiado');
 
 Route::get('rptFracc','ColegiadoController@rptFraccionamiento');
 

@@ -39,6 +39,11 @@ class ColegiadoController extends Controller
                       ->with('departamento', $departamento);
   }
 
+public function hola2($cip) {
+
+    echo "hola:".$cip;
+}
+
 public function busquedaColegiadosNombre(Request $request) {
 
     $tipoBusqueda = $request->get('tipoBusqueda');
@@ -451,6 +456,17 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
           $sqlUpdate = 'UPDATE cip_fraccionamientodetalle SET idPago ='.$idTransaccion.'  WHERE idFraccionamiento ='.$idFraccionamiento_.' and nroCuota ="'. $nroCuota_ .'"';
 
           DB::update($sqlUpdate);
+
+          $sql = "SELECT * FROM cip_fraccionamientodetalle where idFraccionamiento = ".$idFraccionamiento_." and idPago = 0;";
+
+          $fraccHabil = DB::select($sql);
+
+          if(!$fraccHabil)
+          {
+            $sqlUpdate = 'UPDATE cip_fraccionamiento SET estado =2  WHERE id ='.$idFraccionamiento_.'';
+
+          DB::update($sqlUpdate);            
+          }
 
           $sql = "SELECT DATE_FORMAT(DATE_ADD(fechaPago, INTERVAL 1 MONTH), '%Y%m') as fHabil, fechaPago from cip_fraccionamientodetalle WHERE idFraccionamiento =".$idFraccionamiento_." and nroCuota =". $nroCuota_ ."";
 
@@ -1878,7 +1894,7 @@ $sql = "SELECT A.id, A.codigoCIP, A.totalDeuda,
     concat(C.serieRecibo,'-', C.nroRecibo) as recibo,
     D.periodoPago as minimo,
     E.periodoPago as maximo
-FROM cip_db.cip_fraccionamiento A 
+FROM cip_fraccionamiento A 
 left join cip_fraccionamientodetalle B on B.idFraccionamiento = A.id
 left join cip_pagos C on C.id=B.idPAgo
 left join cip_fraccionamientomeses D on D.id = (SELECT id FROM cip_fraccionamientomeses where idFraccionamiento = A.id and nroCuota = B.nroCuota order by id asc limit 1)
@@ -1981,15 +1997,56 @@ $sql = "SELECT A.id,
                     ); 
       }
 
-      /*      
-      for($i = 0 ; $i < sizeof($arMPago); $i++)
+      return json_encode($resultadoView);
+  }
+
+  public function rptOpeColegiado()
+  {
+    return view('rptOpeColegiado');
+  }
+
+  public function operacionesColegiado(Request $request)
+  {
+      $codigoCIP = $_POST['codigoCIP'];
+      
+
+$sql = "SELECT A.id, DATE_FORMAT(A.fechaCreacion,'%Y-%m-%d') fechaCreacion,
+                  concat('B/V ', A.serieRecibo,'-',A.nroRecibo) as comprobante,
+                  A.codigoCIP,
+                  concat(B.paterno,' ',B.materno,', ',B.nombres) as nombre,
+                  C.idConceptoPago,
+                  if(D.conceptoPago is null, C.otroConcepto, D.conceptoPago ) as conceptoPago,
+                  SUBSTR(C.periodoPago,1,4) as anio,
+                  SUBSTR(C.periodoPago,5,2) as periodo,
+                  C.montoPago,
+                  A.total 
+              from cip_pagos A
+              left join cip_users B on B.codigoCIP = A.codigoCIP
+              left join cip_pagodetalle C on C.idPago = A.id
+              left join cip_pagosconfig D on D.idConceptoPago = C.idConceptoPago and D.lVigente = 1
+              where 
+              A.estado = 1
+              and A.codigoCIP = '".$codigoCIP."'
+              order by A.id desc, C.id desc;";
+
+      if($data = DB::select($sql))
       {
-        echo $arId[$i]." - ".$arMPago[$i]." - ".$arConcepto[$i]."<br>";
+        $resultadoView = array(
+              "success" => true,
+              "arOpeData" => $data,
+            );  
       }
-      */
+      else
+      {
+        $resultadoView = array(
+                      "success" => false,
+                      "mensaje" => "No se encontraron datos para su consulta.",
+                    ); 
+      }
 
       return json_encode($resultadoView);
   }
+
 
   public function otorgarPresente(Request $request)
   {

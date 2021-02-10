@@ -807,7 +807,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <!--a class="btn green btn-sm " href="javascript:void(0);" onclick="fnAgregar()">Agregar</a>
                                                     <a class="btn default btn-sm" href="javascript:void(0);" onclick="fnQuitar()">Quitar</a-->
 
-                                                    <button type="submit" class="btn btn-circle blue btn-sm " href="javascript:void(0);">Grabar</button>
+                                                    <!--button type="submit" class="btn btn-circle blue btn-sm " href="javascript:void(0);">Grabar</button!-->
+                                                    <button class="btn btn-circle blue btn-sm " onclick="saveFraccionamiento()">Grabar</button>
 
                                                     
                                                 </div>
@@ -1339,6 +1340,39 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
 
             });
+
+            function saveFraccionamiento()
+            {
+                var formElement = document.getElementById("frmPagos");
+                var data = new FormData(formElement);
+
+                    var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'registroFracc', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        //data      : $('#frmPagos').serialize(), //Forms name
+                        data      : data,
+                        processData: false,
+                        contentType: false,
+                        dataType  : 'json',
+                        success   : function(data) {
+                                        if (data.success) { //If fails
+
+                                            var datos=data.mensaje;
+                                            $("#printBoucher").attr("href", "pdfPrint?idTransaccion="+datos);
+                                            $('#myModal').modal('show');
+                                            
+                                            
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+                
+            }
 
         </script>
 

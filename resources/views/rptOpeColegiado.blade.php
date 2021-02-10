@@ -302,7 +302,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item active open">
+                                <li class="nav-item  ">
                                     <a href="/reporteDM" class="nav-link ">
                                         <span class="title">Diario - Mensual
                                             </span>
@@ -320,7 +320,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
-                                <li class="nav-item ">
+
+                                <li class="nav-item active open">
                                     <a href="/rptOpeColegiado" class="nav-link ">
                                         <span class="title">Operaciones Colegiado
                                             </span>
@@ -360,7 +361,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="portlet-title">
                                         <div class="caption">
                                             <i class="icon-social-dribbble font-blue-sharp"></i>
-                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte Diario - Mensual</span>
+                                            <span class="caption-subject font-blue-sharp bold uppercase">Sistema de cobranza: Reporte de Operaciones Realizadas</span>
                                         </div>
                                         <div class="actions">
                                             
@@ -373,32 +374,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <input type="hidden" id="token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-1 form-horizontal" style="text-align: right;">Desde: </label>
+                                            <label class="control-label col-md-2 form-horizontal" style="text-align: right;">Código de Colegiado: </label>
 
                                         <div class="col-md-2">
-                                                
-                                        <div class="input-group date" id="datepicker_">
-                                            <input type="text" name="fechaDesde" class="form-control input-sm" id="fechaDesde" value="{{$fechaActual[0]->fecha}}">
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                        </div>
+                                            <input type="text" name="codigoCIP" class="form-control input-sm" placeholder="Código CIP">
+                                    
                                         </div>
 
-                                        <label class="control-label col-md-1 form-horizontal" style="text-align: right;">Hasta: </label>
-
-                                        <div class="col-md-2">
-                                                
-                                        <div class="input-group date" id="datepicker_">
-                                            <input type="text" name="fechaHasta" class="form-control input-sm" id="fechaHasta" value="{{$fechaActual[0]->fecha}}">
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                        </div>
-                                        </div>
+                                        
 
                                         <div class="col-md-1">
                                             <button type="submit" class="btn btn-circle green" href="javascript:void(0);">Consultar</button>
+                                        </div>
+                                        <div class="col-md-2">
+
                                         </div>
                                         <div class="col-md-3">
                                                 
@@ -526,35 +515,21 @@ License: You must have a valid license purchased only from themeforest(the above
 
             });
 
-            $('#fechaDesde').datepicker({
-                format: 'yyyy-mm-dd' 
-            });
-
-            $('#fechaHasta').datepicker({
-                format: 'yyyy-mm-dd' 
-            });
-
             $('#frmRptDiarioMensual').submit(function(event) {
 
                 var token = $("#token").val();
 
                     $.ajax({ //Process the form using $.ajax()
                         type      : 'POST', //Method type
-                        url       : 'rptDiarioMensual', //Your form processing file URL
+                        url       : 'opeColegiado', //Your form processing file URL
                         headers   : {'X-CSRF-TOKEN':token},
                         data      : $('#frmRptDiarioMensual').serialize(), //Forms name
                         dataType  : 'json',
                         success   : function(data) {
                                         if (data.success)
                                         {
-                                            fnReporteDiarioMensual(
-                                                data.arId,
-                                                data.arFecha,
-                                                data.arComprobante,
-                                                data.arCodigoCIP,
-                                                data.arNombre,
-                                                data.arConcepto,
-                                                data.arTotal
+                                            fnReporteOperaciones(
+                                                data.arOpeData,
                                                 )
                                         }
                                         else
@@ -570,15 +545,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         })
 
-        function fnReporteDiarioMensual(
-                                        arId,
-                                        arFecha,
-                                        arComprobante,
-                                        arCodigoCIP,
-                                        arNombre,
-                                        arConcepto,
-                                        arTotal
-                                        )
+        function fnReporteOperaciones(arOpeData)
         {
             $("#divReporteDM").html('');
                 cad = " <br><table class='table table-striped table-bordered table-hover table-checkable order-column' id='tablePrint'> " +
@@ -591,41 +558,38 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "<th style='width:10%'> Código CIP </th>"+
                                 "<th style='width:25%'> Nombres del Colegiado </th>"+
                                 "<th style='width:30%'> Concepto de Pago</th>"+
-                                "<th style='width:10%'> Total</th>"+
+                                "<th style='width:30%'> Año</th>"+
+                                "<th style='width:30%'> Periodo</th>"+
+                                "<th style='width:10%'> Monto</th>"+
                             "</tr>"+
                         "</thead>"+
                         "<tbody>";
                         datTabla = "";
                 sumTotal = 0;
-                for(var i = 0 ; i < arId.length; i++)
+                for(var i = 0 ; i < arOpeData.length; i++)
                 {
                     datTabla +=  "<tr>"+
                                 
                                 "<td style='text-align: right;'>"+(i+1)+
                                 "</td>"+
-                                "<td>"+arFecha[i]+
+                                "<td>"+arOpeData[i].fechaCreacion+
                                 "</td>"+
-                                "<td>"+arComprobante[i]+
+                                "<td>"+arOpeData[i].comprobante+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arCodigoCIP[i]+
+                                "<td style='text-align: right;'>"+arOpeData[i].codigoCIP+
                                 "</td>"+
-                                "<td>"+arNombre[i]+
+                                "<td>"+arOpeData[i].nombre+
                                 "</td>"+
-                                "<td>"+arConcepto[i]+
+                                "<td>"+arOpeData[i].conceptoPago+
                                 "</td>"+
-                                "<td style='text-align: right;'>"+arTotal[i].toFixed(2)+
+                                "<td>"+arOpeData[i].anio+
+                                "</td>"+
+                                "<td>"+arOpeData[i].periodo+
+                                "</td>"+
+                                "<td>"+arOpeData[i].montoPago.toFixed(2)+
                                 "</td>"+
                                 "</tr>";
-
-                    sumTotal +=arTotal[i];
-
                 }
-                    datTabla +=  "<tr>"+
-                                "<td colspan='6' style='text-align: right;'>"+"Total:"+
-                                "</td>"+
-                                "<td style='text-align: right;'>"+sumTotal.toFixed(2)+
-                                "</td>"+
-                                "</tr>";
                 cad += datTabla + "<tbody></table>";
                 
                 $("#divReporteDM").html(cad);

@@ -312,6 +312,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
+
+                                <li class="nav-item ">
+                                    <a href="/rptOpeColegiado" class="nav-link ">
+                                        <span class="title">Operaciones Colegiado
+                                            </span>
+                                    </a>
+                                </li>
                                 <!--li class="nav-item  ">
                                     <a href="/rptDetalle" class="nav-link ">
                                         <span class="title">Detallado
@@ -397,22 +404,22 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 
                                                 <label class="control-label col-md-1">Nombre</label>
                                                 <div class="col-md-3">
-                                                <input type="text" name="nombreColegiado" id="nombreColegiado" placeholder="Datos de Búsqueda" class="form-control input-sm">
+                                                <input type="text" name="nombreColegiado" id="nombreColegiado" placeholder="Datos de Búsqueda" class="form-control input-sm" readonly>
                                                 </div>
 
                                                 <label class="control-label col-md-1">Código CIP</label>
                                                 <div class="col-md-1">
-                                                <input type="text" name="codigoColegiado" id="codigoColegiado" placeholder="Código CIP" class="form-control input-sm">
+                                                <input type="text" name="codigoColegiado" id="codigoColegiado" placeholder="Código CIP" class="form-control input-sm" readonly>
                                                 </div>
 
                                                 <label class="control-label col-md-1">Condición</label>
                                                 <div class="col-md-2">
-                                                <input type="text" name="condicionColegiado" id="condicionColegiado" placeholder="Condición" class="form-control input-sm">
+                                                <input type="text" name="condicionColegiado" id="condicionColegiado" placeholder="Condición" class="form-control input-sm" readonly>
                                                 </div>
 
                                                 <label class="control-label col-md-1">Especialidad</label>
                                                 <div class="col-md-2">
-                                                <input type="text" name="especialidadColegiado" id="especialidadColegiado" placeholder="Especialidad" class="form-control input-sm">
+                                                <input type="text" name="especialidadColegiado" id="especialidadColegiado" placeholder="Especialidad" class="form-control input-sm" readonly>
                                                 </div>
 
                                             </div>
@@ -424,20 +431,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="form-group">
                                                 <label class="control-label col-md-1">Fecha</label>
                                                 <div class="col-md-2">
-                                                <input type="text" name="dataFecha" id="dataFecha" placeholder="Fecha" class="form-control input-sm">
+                                                <input type="text" name="dataFecha" id="dataFecha" placeholder="Fecha" class="form-control input-sm" readonly>
                                                 </div>
 
                                                 <label class="control-label col-md-1">Ultimo pago</label>
                                                 <div class="col-md-2">
                                                 
-                                                <input type="text" name="ultimoPagoView" id="ultimoPagoView" placeholder="Ultimo Pago" class="form-control input-sm" style="font-weight: bold; background: #ebffeb">
+                                                <input type="text" name="ultimoPagoView" id="ultimoPagoView" placeholder="Ultimo Pago" class="form-control input-sm" style="font-weight: bold; background: #ebffeb" readonly>
                                                 <input type="hidden" name="ultimoPago" id="ultimoPago" placeholder="Ultimo Pago" class="form-control input-sm">
                                                 
                                                 </div>
 
                                                 <label class="control-label col-md-1">Habil Hasta</label>
                                                 <div class="col-md-2">
-                                                <input type="text" name="habilHastaView" id="habilHastaView" placeholder="Habil Hasta" class="form-control input-sm" style="font-weight: bold; background: #ebffeb">
+                                                <input type="text" name="habilHastaView" id="habilHastaView" placeholder="Habil Hasta" class="form-control input-sm" style="font-weight: bold; background: #ebffeb" readonly>
                                                 <input type="hidden" name="habilHasta" id="habilHasta" placeholder="Habil Hasta" class="form-control input-sm">
                                                 
                                                 </div>
@@ -606,12 +613,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                                 <label class="control-label col-md-1">Total a Pagar</label>
                                                 <div class="col-md-2">
-                                                <input type="text" name="totalPago" id="totalPago" placeholder="Pago Total"  style="font-weight: bold; background: #ebffeb" class="form-control input-sm">
+                                                <input type="text" name="totalPago" id="totalPago" placeholder="Pago Total"  style="font-weight: bold; background: #ebffeb" class="form-control input-sm" readonly>
                                                 </div>
 
                                                 <label class="control-label col-md-1">Monto Recibido</label>
                                                 <div class="col-md-1">
-                                                    <input type="number" name="montoRecibido" id="montoRecibido" placeholder="0.00" value="" class="form-control input-sm">
+                                                    <input type="number" name="montoRecibido" id="montoRecibido" placeholder="0.00" value="" class="form-control input-sm" >
                                                 </div>
                                                 <div class="col-md-2">
                                                 <div id="dTotalCambio">

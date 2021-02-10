@@ -37,9 +37,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -296,7 +297,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
+                                <li class="nav-item active open">
                                     <a href="/rptCertif" class="nav-link ">
                                         <span class="title">Certificados
                                             </span>
@@ -305,6 +306,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li class="nav-item  ">
                                     <a href="/rptFracc" class="nav-link ">
                                         <span class="title">Rpt Fraccionamientos
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="/rptOpeColegiado" class="nav-link ">
+                                        <span class="title">Operaciones Colegiado
                                             </span>
                                     </a>
                                 </li>

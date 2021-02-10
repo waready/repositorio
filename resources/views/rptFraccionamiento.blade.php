@@ -313,9 +313,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
+                                <li class="nav-item active open">
                                     <a href="/rptFracc" class="nav-link ">
                                         <span class="title">Rpt Fraccionamientos
+                                            </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="/rptOpeColegiado" class="nav-link ">
+                                        <span class="title">Operaciones Colegiado
                                             </span>
                                     </a>
                                 </li>
