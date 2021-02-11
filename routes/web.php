@@ -113,6 +113,7 @@ Route::post('opeColegiado','ColegiadoController@operacionesColegiado');
 
 Route::get('rptFracc','ColegiadoController@rptFraccionamiento');
 
+Route::post('rptPresentes','ColegiadoController@rptPresentes');
 Route::post('otorgarPresente','ColegiadoController@otorgarPresente');
 
 Route::get('fpdf','ColegiadoController@fpdf');

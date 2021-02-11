@@ -253,6 +253,32 @@ where A.codigoCIP = '".$users[0]->codigoCIP."' order by A.id desc;";
     $v = (int) $cadena;
     return 'Fracc. Cuota Nro.'.$v;
   }
+
+  public function rptPresentes(Request $request)
+  {
+    $codigoCIP = $_POST['codigoCIP'];
+    $anio = $_POST['anio'];
+
+    $sql = "SELECT D.id as iu, B.codigo,B.valor, C.fechaEntrega, 
+                  concat(E.nombres,' ',E.paterno,' ', E.materno) as nombreEntrega, 
+                  C.anho 
+                  from cip_param B 
+                  left join cip_users D on D.codigoCIP = '".$codigoCIP."' 
+                  left join cip_users_presentes C on C.idUser = D.id and C.idPresente = B.codigo and C.anho = '".$anio."' 
+                  left join cip_users E on E.username = C.usuarioEntrega
+                  where B.grupo = '040';";
+
+    $reportPresentes = DB::select($sql);
+
+    $resultadoView = array(
+                      "success" => true,
+                      "rPresentes" => $reportPresentes,
+                      "mensaje" => "Datos encontrados",
+                    ); 
+      
+    
+      return json_encode($resultadoView);
+  }
   
   public function registroPago(Request $request)
   {

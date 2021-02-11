@@ -939,12 +939,17 @@ License: You must have a valid license purchased only from themeforest(the above
             
               <!-- Modal content-->
               <div class="modal-content">
+                <div id="modalReporteDFracc">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title" id="titleFracc">Fraccionamiento
 </h4>
                 </div>
                 <div class="modal-body">
+
+                    <label>Colegiado(a): </label><label id="rfColegiado"></label><br>
+                    <label>Código CIP: </label><label id="rfCIP"></label><br>
+                    <label>Condición: </label><label id="rfCondicion"></label><br>
                     <table class="table table-condensed table-hover">
                         <thead>
                             <th>Nro. Cuota</th>
@@ -961,9 +966,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     </table>
                 
                 </div>
+                </div>
                 <div class="modal-footer">
 
-                <!--button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="imprimirDFracc()">Imprimir</button!-->
+                <button type="button" class="btn blue btn-default " data-dismiss="modal" onclick="printDiv('modalReporteDFracc')">Imprimir</button>
 
                   <button type="button" class="btn red btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -1631,10 +1637,14 @@ License: You must have a valid license purchased only from themeforest(the above
 
             function reporteFracc(arFracc)
             {
+                $("#rfColegiado").html($("#nombreColegiado").val());
+                $("#rfCIP").html($("#codigoColegiado").val());
+                $("#rfCondicion").html($("#condicionColegiado").val());
+
+
                 $("#tableFracc").html('');
                 cad = "";
                 datTabla = "";
-                
                 
                 for(var i = 0 ; i < arFracc.length; i++)
                 {
@@ -1650,6 +1660,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     mesMin = mes_Print[arFracc[i].minimo.substr(4,2)]+'-'+arFracc[i].minimo.substr(0,4);
                     mesMax = mes_Print[arFracc[i].maximo.substr(4,2)]+'-'+arFracc[i].maximo.substr(0,4);
 
+                    rfRecibo = "";
+                    if(arFracc[i].recibo != null)
+                    {
+                        rfRecibo = arFracc[i].recibo;
+                    }
                     datTabla +=  "<tr>"+
                                 
                                 "<td>"+nroCuotaF+
@@ -1662,7 +1677,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td>"+
                                 "<td>"+arFracc[i].montoPago+
                                 "</td>"+
-                                "<td>"+arFracc[i].recibo+
+                                "<td>"+rfRecibo+
                                 "</td>"+
                                 "</tr>";
                     console.log(datTabla);
@@ -1672,6 +1687,25 @@ License: You must have a valid license purchased only from themeforest(the above
                 
                 $("#tableFracc").html(cad);
             }
+
+            function printDiv(div) 
+            {
+
+              var divToPrint=document.getElementById(div);
+
+              var newWin=window.open('','win3','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=800,height=640,directories=no,location=no');
+
+              newWin.document.open();
+
+              newWin.document.write('<html><head><style type="text/css"> table, th, td {'+
+              'border-collapse: collapse; border: 1px solid black; font: 11px Arial; padding: 5px;}</style></head><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+              newWin.document.close();
+
+              setTimeout(function(){newWin.close();},10);
+
+            }
+
             function fnReportMultas(dataReport)
             {
                 $("#ctabMultas").html('');
@@ -1903,6 +1937,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         if (data.success) { //If fails
 
                                             alert(data.mensaje);
+                                            rptPresente();
                                         }
                                         else {
                                                 alert(data.mensaje);
@@ -2833,6 +2868,36 @@ License: You must have a valid license purchased only from themeforest(the above
                 $("#dTotalCambio").html("<h4>Cambio: <b>S/ "+cambio+"</b></h4>");
               
             });
+
+            $( "#fechaPresente" ).change(function() {
+                rptPresente();                
+                
+            });
+
+            function rptPresente()
+            {
+                anio = $("#fechaPresente").val();
+                codigoCIP = $("#codigoColegiado").val();
+
+                var token = $("#token").val();
+
+                    $.ajax({ //Process the form using $.ajax()
+                        type      : 'POST', //Method type
+                        url       : 'rptPresentes', //Your form processing file URL
+                        headers   : {'X-CSRF-TOKEN':token},
+                        data      : {codigoCIP:codigoCIP,anio:anio}, //Forms name
+                        dataType  : 'json',
+                        success   : function(data) {
+
+                                        if (data.success) { //If fails
+                                            fnReportPresentes(data.rPresentes)
+                                        }
+                                        else {
+                                                alert(data.mensaje);
+                                            }
+                                        }
+                    });
+            }
 
             function modalRecibo(serie,recibo,cip){
                 $("#titleRecibo").html("Recibo "+serie+"-"+recibo);
