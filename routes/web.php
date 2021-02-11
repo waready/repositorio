@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('user/{id}', 'ColegiadoController@hola');
+
 
 Route::get('/user_/{cip}', 'ColegiadoController@hola2')->name('cip');
 
