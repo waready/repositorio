@@ -1,5 +1,3 @@
-<p align="center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxhDqSxFHamd63sZZjIkRFyHyba8eLKZQG0dfV35aZtBlbxk53Z9Avqci6fXRDRF7uZ7k" width="100"></p>
-
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
